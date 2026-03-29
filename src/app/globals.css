@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-outfit);
+  
+  --color-brand-green: #2dd4bf;
+  --color-brand-light: #fdf4f6;
+  --color-brand-orange: #fb7185;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: transparent;
+  }
+}
+
+.heading-font {
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
