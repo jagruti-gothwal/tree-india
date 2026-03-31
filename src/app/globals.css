@@ -4,9 +4,26 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-outfit);
   
-  --color-brand-green: #2dd4bf;
-  --color-brand-light: #fdf4f6;
-  --color-brand-orange: #fb7185;
+  --color-brand-blue: #003366;
+  --color-brand-red: #e11d48;
+  --color-brand-amber: #f59e0b;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%,-40%) scale(1);
+    }
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease .75s 1 forwards;
 }
 
 @layer base {
@@ -15,7 +32,8 @@
   }
   
   body {
-    background-color: transparent;
+    background-color: #ffffff;
+    color: #1e293b;
   }
 }
 
