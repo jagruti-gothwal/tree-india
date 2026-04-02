@@ -13,10 +13,16 @@ export async function checkAdminPassword(password: string) {
 
 export async function fetchAllProducts() {
    try {
+     console.log("Supabase URL Check:", !!supabaseUrl, "Key Check:", !!supabaseKey);
      const { data: products, error } = await supabase.from("products").select("*").order("id", { ascending: false });
-     if (error) throw error;
+     if (error) {
+        console.error("Supabase Database Error:", error);
+        throw error;
+     }
+     console.log("Fetched Products successfully, count:", (products || []).length);
      return { success: true, products };
    } catch (error: any) {
+     console.error("Critical Fetch Fail:", error);
      return { success: false, error: error.message };
    }
 }
@@ -44,6 +50,36 @@ export async function updateProduct(id: number, name: string, category: string, 
 export async function deleteProduct(id: number) {
    try {
      const { error } = await supabase.from("products").delete().eq("id", id);
+     if (error) throw error;
+     return { success: true };
+   } catch (error: any) {
+     return { success: false, error: error.message };
+   }
+}
+
+export async function fetchAllInquiries() {
+   try {
+     const { data: inquiries, error } = await supabase.from("inquiries").select("*").order("created_at", { ascending: false });
+     if (error) throw error;
+     return { success: true, inquiries };
+   } catch (error: any) {
+     return { success: false, error: error.message };
+   }
+}
+
+export async function deleteInquiry(id: string) {
+   try {
+     const { error } = await supabase.from("inquiries").delete().eq("id", id);
+     if (error) throw error;
+     return { success: true };
+   } catch (error: any) {
+     return { success: false, error: error.message };
+   }
+}
+
+export async function updateInquiryStatus(id: string, status: string) {
+   try {
+     const { error } = await supabase.from("inquiries").update({ status }).eq("id", id);
      if (error) throw error;
      return { success: true };
    } catch (error: any) {

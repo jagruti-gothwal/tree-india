@@ -44,7 +44,7 @@ export default function Navbar() {
     { name: t("navAbout"), href: "/about" },
     { name: t("navProducts"), href: "/products" },
     { name: t("navExport"), href: "/export" },
-    { name: t("navContact"), href: "/contact" },
+    { name: t("navInquiry"), href: "/contact" },
   ];
 
   return (

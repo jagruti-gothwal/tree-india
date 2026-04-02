@@ -91,7 +91,7 @@ export default function Products() {
         if (res.success && res.products && res.products.length > 0) {
           setProducts(res.products);
         } else {
-          // If DB is empty, use static fallback
+          // If DB is empty OR fetch fails, use static fallback
           setProducts(staticProductsFallback);
         }
       } catch (err) {

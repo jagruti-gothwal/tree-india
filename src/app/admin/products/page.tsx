@@ -1,7 +1,8 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Trash, Edit, Check, X, RefreshCw, UploadCloud, Search, Tag, Image as ImageIcon, Box, LockKeyhole, Eye, EyeOff, Paperclip } from "lucide-react"
+import { Plus, Trash, Edit, Check, X, RefreshCw, UploadCloud, Search, Tag, Image as ImageIcon, Box, LockKeyhole, Eye, EyeOff, Paperclip, MessageSquare } from "lucide-react"
+import Link from "next/link"
 import { fetchAllProducts, addProduct, updateProduct, deleteProduct, checkAdminPassword, seedInitialProducts } from "../actions"
 
 const seedData = [
@@ -322,14 +323,15 @@ export default function AdminPanel() {
            </div>
            
            <div className="flex items-center gap-3">
+             <Link href="/admin/inquiries" className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-full text-slate-600 hover:text-[#003366] hover:border-[#003366] transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+               <MessageSquare className="w-4 h-4" /> View Leads
+             </Link>
              <button onClick={loadProducts} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-full text-slate-600 hover:text-[#003366] hover:border-[#003366] transition-all text-xs font-black uppercase tracking-widest shadow-sm">
                <RefreshCw className="w-4 h-4" /> Refresh
              </button>
-             {products.length === 0 && (
-               <button onClick={handleSeed} className="flex items-center gap-2 px-4 py-2.5 bg-amber-500 rounded-full text-slate-900 transition-all text-xs font-black uppercase tracking-widest shadow-sm hover:scale-105 active:scale-95">
-                 <UploadCloud className="w-4 h-4" /> Seed Live DB
-               </button>
-             )}
+              <button onClick={handleSeed} className="flex items-center gap-2 px-4 py-2.5 bg-amber-500 rounded-full text-slate-900 transition-all text-xs font-black uppercase tracking-widest shadow-sm hover:bg-amber-600 hover:scale-105 active:scale-95">
+                <UploadCloud className="w-4 h-4" /> Seed Live DB
+              </button>
              <button onClick={() => setShowAddForm(!showAddForm)} className="flex items-center gap-2 px-5 py-2.5 bg-[#003366] rounded-full text-white transition-all text-xs font-black uppercase tracking-widest shadow-[0_5px_15px_rgba(0,51,102,0.2)] hover:scale-105 active:scale-95">
                {showAddForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                {showAddForm ? "Close" : "New Item"}
