@@ -16,8 +16,8 @@ export default function Footer() {
                <ShieldCheck className="w-7 h-7 text-amber-400" strokeWidth={1.5} />
              </div>
              <div>
-               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">ISO Compliant</h3>
-               <p className="text-sm font-medium text-slate-300">International Quality Processing</p>
+               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">{t("footerISO")}</h3>
+               <p className="text-sm font-medium text-slate-300">{t("footerISOList")}</p>
              </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-5 group">
@@ -25,8 +25,8 @@ export default function Footer() {
                <Factory className="w-7 h-7 text-amber-400" strokeWidth={1.5} />
              </div>
              <div>
-               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">Bulk Export</h3>
-               <p className="text-sm font-medium text-slate-300">Volume Scale Delivery Solutions</p>
+               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">{t("footerBulk")}</h3>
+               <p className="text-sm font-medium text-slate-300">{t("footerBulkList")}</p>
              </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-5 group">
@@ -34,8 +34,8 @@ export default function Footer() {
                <Globe className="w-7 h-7 text-amber-400" strokeWidth={1.5} />
              </div>
              <div>
-               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">Global Chain</h3>
-               <p className="text-sm font-medium text-slate-300">Active Supply in 15+ Regions</p>
+               <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-amber-400 mb-1">{t("footerChain")}</h3>
+               <p className="text-sm font-medium text-slate-300">{t("footerChainList")}</p>
              </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li><Link href="/about" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("navAbout")}</Link></li>
               <li><Link href="/export" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("navExport")}</Link></li>
-              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("navCatalog")}</Link></li>
+              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("navProducts")}</Link></li>
               <li><Link href="/contact" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("navContact")}</Link></li>
             </ul>
           </div>
@@ -72,10 +72,10 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-3">
             <h3 className="text-white font-black mb-8 text-[11px] uppercase tracking-[0.3em] heading-font">{t("footerCommodities")}</h3>
             <ul className="space-y-4">
-              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">Biscuits & Cookies</Link></li>
-              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">Candies & Toffees</Link></li>
-              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">Lollipops Series</Link></li>
-              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">Bubble Gum Units</Link></li>
+              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("footerBiscuits")}</Link></li>
+              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("footerCandies")}</Link></li>
+              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("footerLollipops")}</Link></li>
+              <li><Link href="/products" className="text-[10px] font-black text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-widest">{t("footerGums")}</Link></li>
             </ul>
           </div>
 
@@ -89,7 +89,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone className="w-4 h-4 mr-4 text-amber-400 shrink-0" />
-                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">+91 98765 43210</span>
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">+91 94084 36732</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-4 h-4 mr-4 text-amber-400 shrink-0" />

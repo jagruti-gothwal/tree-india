@@ -1,12 +1,16 @@
-import { Target, Eye, ShieldCheck, HeartHandshake, FileCheck, Anchor, Handshake, Award, Activity, Globe } from "lucide-react";
+"use client";
+import { Target, Eye, ShieldCheck, HeartHandshake, FileCheck, Anchor, Handshake, ShieldCheck as ShieldIcon, Factory, Globe } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutUs() {
+  const { t } = useLanguage();
+
   const values = [
-    { name: "Uncompromising Quality", icon: ShieldCheck, desc: "Adherence to international food safety and manufacturing standards." },
-    { name: "Global Satisfaction", icon: HeartHandshake, desc: "Exceeding expectations for international clients and distributors." },
-    { name: "Absolute Transparency", icon: FileCheck, desc: "Clear, honest, and documented B2B export practices." },
-    { name: "Supply Reliability", icon: Anchor, desc: "Consistent bulk supply and synchronized timely deliveries." },
-    { name: "Sustainable Partnerships", icon: Handshake, desc: "Forging lasting, mutually beneficial business relationships." },
+    { name: t("value1Name"), icon: ShieldCheck, desc: t("value1Desc") },
+    { name: t("value2Name"), icon: HeartHandshake, desc: t("value2Desc") },
+    { name: t("value3Name"), icon: FileCheck, desc: t("value3Desc") },
+    { name: t("value4Name"), icon: Anchor, desc: t("value4Desc") },
+    { name: t("value5Name"), icon: Handshake, desc: t("value5Desc") },
   ];
 
   return (
@@ -17,14 +21,14 @@ export default function AboutUs() {
         <div className="text-center max-w-4xl mx-auto mb-20">
           <span className="text-amber-600 font-bold tracking-widest text-sm uppercase mb-4 flex justify-center items-center gap-4">
              <span className="w-8 h-0.5 bg-amber-600 block"></span>
-             Corporate Identity
+             {t("aboutCorporateIdentity")}
              <span className="w-8 h-0.5 bg-amber-600 block"></span>
           </span>
           <h1 className="mt-3 text-4xl md:text-6xl font-extrabold text-slate-900 heading-font uppercase tracking-tight leading-tight">
-            Delivering Excellence <br className="hidden md:block"/> Worldwide
+            {t("aboutTitle1")} <br className="hidden md:block"/> {t("aboutTitle2")}
           </h1>
           <p className="mt-6 text-xl text-slate-600 leading-relaxed font-light">
-            Tree India is a premier export-oriented enterprise dedicated to supplying high-grade commercial food products, specializing in biscuits and confectionery, to international markets.
+            {t("aboutHeaderDesc")}
           </p>
         </div>
 
@@ -42,9 +46,9 @@ export default function AboutUs() {
               <div className="w-16 h-16 bg-slate-900 flex items-center justify-center mb-8">
                 <Target className="w-8 h-8 text-amber-500" />
               </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 mb-6 uppercase tracking-tight">Our Mission</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 mb-6 uppercase tracking-tight">{t("aboutMissionTitle")}</h2>
               <p className="text-lg text-slate-600 leading-relaxed font-light">
-                To engineer a seamless export infrastructure that provides affordable, premium-grade food products globally, while cementing long-term B2B alliances secured by trust and performance.
+                {t("aboutMissionDesc")}
               </p>
             </div>
           </div>
@@ -55,9 +59,9 @@ export default function AboutUs() {
               <div className="w-16 h-16 bg-amber-500 flex items-center justify-center mb-8">
                 <Eye className="w-8 h-8 text-slate-900" />
               </div>
-              <h2 className="text-3xl font-extrabold text-white mb-6 uppercase tracking-tight">Our Vision</h2>
+              <h2 className="text-3xl font-extrabold text-white mb-6 uppercase tracking-tight">{t("aboutVisionTitle")}</h2>
               <p className="text-lg text-slate-300 leading-relaxed font-light">
-                To solidify Tree India's position as a globally renowned name in the commercial export sector by consistently delivering unparalleled supply chain value, quality assurance, and market innovation.
+                {t("aboutVisionDesc")}
               </p>
             </div>
           </div>
@@ -66,9 +70,9 @@ export default function AboutUs() {
         {/* Values */}
         <div className="mb-16">
           <span className="text-amber-600 font-bold tracking-widest text-sm uppercase mb-4 flex items-center gap-4">
-             Corporate Principles
+             {t("aboutValuesSub")}
           </span>
-          <h2 className="text-4xl font-extrabold text-slate-900 uppercase tracking-tight mb-12">Core Values</h2>
+          <h2 className="text-4xl font-extrabold text-slate-900 uppercase tracking-tight mb-12">{t("aboutValuesTitle")}</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {values.map((val, idx) => {

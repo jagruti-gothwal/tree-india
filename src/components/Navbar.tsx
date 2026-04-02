@@ -138,11 +138,12 @@ export default function Navbar() {
           </div>
 
           <Link
-             href="/catalogue.pdf"
+             href="/Tree%20India%20Catalogue%20Compressed.pdf"
+             target="_blank"
              className="hidden sm:flex items-center gap-2 text-slate-500 hover:text-[#003366] px-3 py-2 text-[11px] font-black tracking-widest uppercase transition-colors group"
           >
             <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-            <span className="hidden xl:block">{t("navCatalog")}</span>
+            <span className="hidden xl:block">{t("navDownload")}</span>
           </Link>
           
           <Link href="/contact" className="relative group overflow-hidden rounded-full p-[1px] ml-1">
@@ -203,12 +204,13 @@ export default function Navbar() {
               })}
               <div className="h-px bg-slate-100 my-4" />
               <Link
-                href="/catalogue.pdf"
+                href="/Tree%20India%20Catalogue%20Compressed.pdf"
+                target="_blank"
                 onClick={() => setIsOpen(false)}
                 className="px-5 py-4 text-sm font-black uppercase tracking-widest text-[#003366] flex items-center justify-center gap-3 bg-blue-50/50 hover:bg-blue-100 rounded-2xl transition-colors border border-blue-100"
               >
                 <Download className="w-4 h-4" />
-                Download Products
+                {t("navDownload")}
               </Link>
             </div>
           </motion.div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, TrendingUp, PackageSearch, Truck, Award, Globe, ShoppingBag, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, PackageSearch, Truck, Award, Globe, ShoppingBag, ShieldCheck, Zap, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import WorldMap from "@/components/WorldMap";
@@ -140,6 +140,14 @@ export default function Home() {
               </Link>
               
               <Link
+                href="/Tree%20India%20Catalogue%20Compressed.pdf"
+                target="_blank"
+                className="group relative h-16 w-full sm:w-auto flex items-center justify-center px-10 bg-white border-2 border-slate-200 rounded-full text-slate-700 text-[12px] font-black uppercase tracking-widest transition-all hover:border-[#003366] hover:text-[#003366] hover:shadow-lg gap-3"
+              >
+                <Download className="w-4 h-4 text-[#003366]" /> {t("navDownload")}
+              </Link>
+
+              <Link
                 href="/contact"
                 className="group relative h-16 w-full sm:w-auto flex items-center justify-center px-10 bg-white border-2 border-slate-200 rounded-full text-slate-700 text-[12px] font-black uppercase tracking-widest transition-all hover:border-[#003366] hover:text-[#003366] hover:shadow-lg"
               >
@@ -191,10 +199,10 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
-              { title: "Baba Lollipops", category: "Lollipops", image: "/BABA LOVELY POP BLUEBERRY MARKUP.png", color: "from-blue-50 to-white" },
-              { title: "American Biscuits", category: "Biscuits", image: "/DJ American Biscuits Markup.png", color: "from-amber-50 to-white" },
-              { title: "Fruit Candies", category: "Bubble Gum", image: "/DJ Gum Pops Markup.png", color: "from-rose-50 to-white" },
-              { title: "Choco Eclairs", category: "Toffees", image: "/DJ Choco Eclairs Jar Markup.png", color: "from-slate-100 to-white" }
+              { title: t("featured1Title"), category: t("featured1Cat"), image: "/BABA LOVELY POP BLUEBERRY MARKUP.png", color: "from-blue-50 to-white" },
+              { title: t("featured2Title"), category: t("featured2Cat"), image: "/DJ American Biscuits Markup.png", color: "from-amber-50 to-white" },
+              { title: t("featured3Title"), category: t("featured3Cat"), image: "/DJ Gum Pops Markup.png", color: "from-rose-50 to-white" },
+              { title: t("featured4Title"), category: t("featured4Cat"), image: "/DJ Choco Eclairs Jar Markup.png", color: "from-slate-100 to-white" }
             ].map((item, idx) => (
               <motion.div
                 key={idx}

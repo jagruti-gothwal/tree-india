@@ -45,14 +45,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return translations[language]?.[key] || translations["EN"]?.[key] || key;
   };
 
-  // Prevent hydration mismatch by rendering nothing or a simplified version until mounted
-  if (!mounted) {
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
-
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, isRTL }}>
-      {children}
+      <div style={{ visibility: mounted ? "visible" : "hidden" }}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 };
