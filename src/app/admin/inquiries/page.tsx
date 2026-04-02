@@ -108,7 +108,7 @@ export default function InquiriesAdmin() {
   }
 
   return (
-    <div className="pt-24 pb-32 bg-[#f8fafc] min-h-screen relative font-sans">
+    <div className="pt-32 pb-32 bg-[#f8fafc] min-h-screen relative font-sans">
       <div className="absolute inset-0 z-0 h-[400px] w-full bg-slate-100 opacity-30 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -117,9 +117,6 @@ export default function InquiriesAdmin() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
            <div>
              <div className="flex items-center gap-3 mb-3">
-               <Link href="/admin/products" className="p-2 bg-white rounded-full border border-slate-200 text-slate-400 hover:text-[#003366] hover:bg-slate-50 transition-all group">
-                 <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-               </Link>
                <span className="text-[10px] font-black text-[#003366] uppercase tracking-[0.3em]">Pipeline Management</span>
              </div>
              <h1 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-none">Inquiry <span className="text-[#003366]">Leads</span></h1>

@@ -308,7 +308,7 @@ export default function AdminPanel() {
   // MAIN ADMIN DASHBOARD
   // ---------------------------------------------------------------------------
   return (
-    <div className="pt-24 pb-32 bg-slate-50 min-h-screen relative">
+    <div className="pt-32 pb-32 bg-slate-50 min-h-screen relative">
       <div className="absolute inset-0 z-0 h-[400px] w-full bg-slate-100 opacity-50 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_100%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -323,9 +323,6 @@ export default function AdminPanel() {
            </div>
            
            <div className="flex items-center gap-3">
-             <Link href="/admin/inquiries" className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-full text-slate-600 hover:text-[#003366] hover:border-[#003366] transition-all text-xs font-black uppercase tracking-widest shadow-sm">
-               <MessageSquare className="w-4 h-4" /> View Leads
-             </Link>
              <button onClick={loadProducts} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-full text-slate-600 hover:text-[#003366] hover:border-[#003366] transition-all text-xs font-black uppercase tracking-widest shadow-sm">
                <RefreshCw className="w-4 h-4" /> Refresh
              </button>
