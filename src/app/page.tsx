@@ -16,42 +16,76 @@ export default function Home() {
   const { t, isRTL } = useLanguage();
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
 
-  // Background product images for float effect (Subtle for Light Mode)
+  // Background product images for float effect (More Colorful & Visible)
   const floatingProducts = [
-    { src: "/BABA LOVELY POP BLUEBERRY MARKUP.png", size: "w-64 md:w-80", top: "8%", left: "2%", delay: 0, rotate: -15 },
-    { src: "/DJ American Biscuits Markup.png", size: "w-72 md:w-96", top: "12%", right: "1%", delay: 2, rotate: 10 },
-    { src: "/DJ Choco Eclairs Jar Markup.png", size: "w-64 md:w-80", bottom: "12%", left: "5%", delay: 4, rotate: 15 },
-    { src: "/DJ Gum Pops Markup.png", size: "w-72 md:w-80", bottom: "15%", right: "8%", delay: 1, rotate: -5 },
+    { src: "/transparent/DJ CREMO COMBINE.png", size: "w-80 md:w-[28rem]", top: "5%", left: "0%", delay: 0, rotate: -15 },
+    { src: "/transparent/BABA LOVELY POP STRAWBERRY MARKUP.png", size: "w-80 md:w-[26rem]", top: "10%", right: "0%", delay: 2, rotate: 10 },
+    { src: "/transparent/DJ Conico Chocolate.png", size: "w-80 md:w-[24rem]", bottom: "10%", left: "2%", delay: 4, rotate: 15 },
+    { src: "/transparent/DJ CREAM COMBINE.png", size: "w-80 md:w-[28rem]", bottom: "12%", right: "2%", delay: 1, rotate: -5 },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white font-sans text-slate-900 overflow-hidden relative">
+    <div className="flex flex-col min-h-screen bg-white font-sans text-slate-900 overflow-x-hidden relative">
       
-      {/* Aceternity Spotlight (Soft Blue for Light Mode) */}
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20 opacity-[0.4]" fill="#e0f2fe" />
+      {/* Super Candy Pro Aesthetic: Vibrant Gradients & Chunky Type */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@900&family=Fredoka+One&display=swap');
+        .heading-font { font-family: 'Outfit', sans-serif; letter-spacing: -0.04em; }
+        .wavy-divider { position: absolute; bottom: -1px; left: 0; width: 100%; line-height: 0; z-index: 40; pointer-events: none; }
+        .wavy-divider svg { display: block; width: 101%; height: 120px; }
+        .candy-shimmer {
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+          background-size: 200% 100%;
+          animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer { 0% { background-position: -150% 0%; } 100% { background-position: 150% 0%; } }
+      `}</style>
       
-      {/* Background Glows for Color (Soft for Light Mode) */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-blue-50 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 opacity-60"></div>
-        <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-amber-50 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4 opacity-60"></div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="relative min-h-[100vh] flex items-center justify-center pt-20 pb-20 z-10 overflow-hidden">
+      {/* Cinematic Pink Hero Section */}
+      <section className="relative min-h-[95vh] flex items-center justify-center pt-32 pb-44 z-10 overflow-visible bg-gradient-to-br from-[#ff5c8a] via-[#ff7eb3] to-[#ff5c8a]">
         
-        {/* Large Floating Background Products (Highly Transparent) */}
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+           <motion.div animate={{ scale: [1, 1.2, 1], rotate: 360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-pink-400/20 rounded-full blur-[120px]" />
+           <motion.div animate={{ scale: [1.2, 1, 1.2], rotate: -360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-pink-300/10 rounded-full blur-[150px]" />
+        </div>
+        
+        {/* Floating Stars/Circles (Candy Style) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+           {[...Array(6)].map((_, i) => (
+             <motion.div
+               key={i}
+               animate={{ 
+                 y: [0, -20, 0], 
+                 rotate: [0, 10, 0],
+                 scale: [1, 1.1, 1] 
+               }}
+               transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute text-white/30"
+               style={{ 
+                 top: `${10 + i * 15}%`, 
+                 left: `${5 + (i % 2) * 85}%`,
+                 fontSize: `${20 + i * 10}px`
+               }}
+             >
+               ✦
+             </motion.div>
+           ))}
+        </div>
+        
+        {/* Large Floating Background Products (More Visible) */}
         {floatingProducts.map((p, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
-              opacity: [0.08, 0.15, 0.08], 
+              opacity: [0.15, 0.25, 0.15], 
               scale: 1, 
-              y: [0, -40, 0],
-              rotate: [p.rotate, p.rotate + 10, p.rotate]
+              y: [0, -60, 0],
+              rotate: [p.rotate, p.rotate + 15, p.rotate]
             }}
             transition={{ 
-              duration: 10 + i * 2, 
+              duration: 12 + i * 3, 
               repeat: Infinity, 
               ease: "easeInOut",
               delay: p.delay 
@@ -64,9 +98,9 @@ export default function Home() {
               position: "absolute",
               zIndex: 0
             }}
-            className={`${p.size} pointer-events-none filter drop-shadow-2xl hidden lg:block`}
+            className={`${p.size} pointer-events-none filter drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hidden lg:block`}
           >
-            <img src={p.src} alt="Product" className="w-full h-auto object-contain opacity-40 grayscale-[10%]" />
+            <img src={p.src} alt="Product" className="w-full h-auto object-contain" />
           </motion.div>
         ))}
         
@@ -87,30 +121,21 @@ export default function Home() {
               </span>
             </motion.div>
 
-            <motion.div className="pb-8">
+            <motion.div className="pb-6">
               <motion.h1 
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-7xl lg:text-8xl font-black mb-8 leading-[0.95] tracking-tighter text-slate-900 uppercase heading-font"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-7xl sm:text-8xl md:text-9xl font-black text-white leading-[0.85] tracking-tighter uppercase heading-font drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
               >
-                {t("heroTitle1")} <br />
-                <span className="relative inline-block mt-2">
-                  <span className="text-[#003366]">
-                    {t("heroTitle2")}
-                  </span>
-                  <motion.div 
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
-                    className="absolute -bottom-1 left-0 right-0 h-[6px] bg-amber-400 rounded-full origin-left"
-                  ></motion.div>
-                </span>
+                World Class<br />
+                <span className="text-[#014995] bg-white px-8 py-2 inline-block -rotate-2 rounded-3xl shadow-2xl relative translate-y-2">Snacks &</span><br />
+                Confectionery
               </motion.h1>
               
               <TextGenerateEffect 
                 words={t("heroSubtitle")}
-                className="text-lg md:text-2xl font-black text-[#003366]/80 mt-6 mb-6 tracking-[0.15em] uppercase max-w-4xl"
+                className="text-xl md:text-3xl font-black text-rose-100 mt-6 mb-10 tracking-[0.05em] uppercase max-w-4xl drop-shadow-sm"
               />
             </motion.div>
             
@@ -123,105 +148,197 @@ export default function Home() {
               {t("heroDesc")}
             </motion.p>
             
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
+              transition={{ delay: 1, duration: 0.5 }}
+              className="flex flex-col sm:flex-row gap-8 justify-center items-center w-full"
             >
               <Link
                 href="/products"
-                className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[2px] shadow-xl group active:scale-95 transition-transform"
+                className="group relative h-24 w-full sm:w-auto flex items-center justify-center px-16 bg-[#014995] rounded-full text-white text-[18px] font-black uppercase tracking-widest transition-all hover:bg-[#01356d] hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(1,73,149,0.4)] gap-4 overflow-hidden"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#003366_0%,#3b82f6_50%,#003366_100%)] opacity-20" />
-                <span className="inline-flex h-full w-full sm:px-12 cursor-pointer items-center justify-center rounded-full bg-[#003366] px-8 py-4 text-[12px] font-black uppercase tracking-widest text-white transition-all group-hover:bg-[#002244] gap-3">
-                  <PackageSearch className="w-5 h-5" /> {t("heroViewProducts")}
-                </span>
+                <div className="candy-shimmer absolute inset-0 opacity-20 pointer-events-none"></div>
+                <PackageSearch className="w-8 h-8" /> {t("heroViewProducts")}
               </Link>
               
               <Link
-                href="/Tree%20India%20Catalogue%20Compressed.pdf"
-                target="_blank"
-                className="group relative h-16 w-full sm:w-auto flex items-center justify-center px-10 bg-white border-2 border-slate-200 rounded-full text-slate-700 text-[12px] font-black uppercase tracking-widest transition-all hover:border-[#003366] hover:text-[#003366] hover:shadow-lg gap-3"
-              >
-                <Download className="w-4 h-4 text-[#003366]" /> {t("navDownload")}
-              </Link>
-
-              <Link
                 href="/contact"
-                className="group relative h-16 w-full sm:w-auto flex items-center justify-center px-10 bg-white border-2 border-slate-200 rounded-full text-slate-700 text-[12px] font-black uppercase tracking-widest transition-all hover:border-[#003366] hover:text-[#003366] hover:shadow-lg"
+                className="group relative h-24 w-full sm:w-auto flex items-center justify-center px-16 bg-white rounded-full text-[#ff5c8a] text-[18px] font-black uppercase tracking-widest transition-all hover:bg-rose-50 hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(255,92,138,0.2)] gap-4"
               >
-                {t("heroBulkInquiry")} <ArrowRight className={cn("w-4 h-4 ml-3 group-hover:translate-x-1.5 transition-transform", isRTL && "rotate-180")} />
+                {t("heroBulkInquiry")} <ArrowRight className={cn("w-7 h-7 ml-1", isRTL && "rotate-180")} />
               </Link>
             </motion.div>
 
           </div>
         </div>
+        
+        {/* Wavy Divider - Moved outside content div for better alignment */}
+        <div className="wavy-divider">
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path fill="#fff5f0" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+          </svg>
+        </div>
       </section>
 
-      {/* Trust Bar (Bakewell Style) */}
-      <section className="bg-white py-14 border-y border-slate-100 relative z-20">
-         <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center md:justify-around items-center gap-x-16 gap-y-8">
-            {[
-               { icon: Globe, label: t("trustCountries") },
-               { icon: ShoppingBag, label: t("trustProducts") },
-               { icon: ShieldCheck, label: t("trustQuality") },
-               { icon: Zap, label: t("trustLogistics") }
-            ].map((item, idx) => (
-               <div key={idx} className="flex items-center gap-3.5 group">
-                  <div className="p-2.5 rounded-xl bg-slate-50 group-hover:bg-blue-50 transition-colors">
-                    <item.icon className="w-5 h-5 text-[#003366]" />
-                  </div>
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-600 group-hover:text-[#003366] transition-colors">{item.label}</span>
-               </div>
-            ))}
+      {/* Lifestyle Section (Girl Image) */}
+      <section className="bg-[#fff5f0] pt-60 pb-32 relative z-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-center gap-16 lg:gap-32">
+            
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative order-2 lg:order-1 flex justify-center lg:justify-start"
+            >
+              {/* Soft decorative background glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#ff5c8a]/15 to-transparent rounded-full blur-[120px] -z-10"></div>
+              
+              <div className="relative w-full max-w-lg">
+                 <img 
+                   src="/transparent/girl.png" 
+                   alt="Tree India Tasty Snacks" 
+                   className="w-full h-auto object-contain filter drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)] transition-transform duration-700 hover:scale-[1.03]" 
+                 />
+                 
+                 {/* Floating badge (now detached from any card) */}
+                 <motion.div 
+                   animate={{ y: [0, -10, 0] }}
+                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-20 right-0 w-28 h-28 bg-[#014995] rounded-full flex items-center justify-center text-white px-4 text-center leading-tight shadow-xl z-20"
+                 >
+                    <span className="font-black text-[12px] uppercase">Loved by Millions</span>
+                 </motion.div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-2xl order-1 lg:order-2"
+            >
+              <div className="inline-flex items-center gap-3 bg-[#ff5c8a]/10 px-6 py-2 rounded-full mb-10 border border-[#ff5c8a]/20">
+                <span className="w-2 h-2 bg-[#ff5c8a] rounded-full animate-pulse"></span>
+                <span className="text-[#ff5c8a] font-black tracking-[0.3em] text-[12px] uppercase">Global Taste Leader</span>
+              </div>
+              
+              <h2 className="text-6xl md:text-8xl font-black text-[#014995] tracking-tighter uppercase leading-[0.85] mb-12 heading-font">
+                The <span className="text-[#ff5c8a]">Sweet</span> life <br /> gets stuck in <br /> the <span className="text-amber-500">Teeth</span>
+              </h2>
+              
+              <p className="text-lg md:text-xl text-slate-500 font-bold mb-14 leading-relaxed uppercase tracking-wider max-w-lg">
+                Crafting moments of pure joy through export-quality confectionery that bridges cultures and satisfies every sweet craving.
+              </p>
+              
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-6 bg-[#014995] text-white px-16 py-8 rounded-full font-black text-[16px] uppercase tracking-widest hover:bg-[#3b0764] transition-all hover:scale-105 shadow-[0_20px_40px_rgba(76,29,149,0.25)]"
+              >
+                Learn More <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Bar (Vibrant Amber Gradient) */}
+      <section className="bg-gradient-to-br from-[#fff5f0] to-[#fffdec] py-40 border-none relative z-20 overflow-visible">
+         <div className="max-w-7xl mx-auto px-4">
+            <div className="flex flex-wrap justify-center md:justify-around items-center gap-x-20 gap-y-16">
+              {[
+                 { icon: Globe, label: t("trustCountries"), color: "bg-blue-400 text-white shadow-blue-200" },
+                 { icon: ShoppingBag, label: t("trustProducts"), color: "bg-amber-400 text-white shadow-amber-200" },
+                 { icon: ShieldCheck, label: t("trustQuality"), color: "bg-emerald-400 text-white shadow-emerald-200" },
+                 { icon: Zap, label: t("trustLogistics"), color: "bg-purple-400 text-white shadow-purple-200" }
+              ].map((item, idx) => (
+                 <motion.div 
+                   key={idx} 
+                   whileHover={{ scale: 1.1, rotate: idx % 2 === 0 ? 5 : -5 }}
+                   className="flex flex-col items-center gap-6 group"
+                 >
+                    <div className={`w-24 h-24 rounded-[2.5rem] ${item.color} flex items-center justify-center shadow-2xl group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all`}>
+                      <item.icon className="w-10 h-10" strokeWidth={2.5} />
+                    </div>
+                    <span className="text-[14px] font-black uppercase tracking-widest text-slate-700">{item.label}</span>
+                 </motion.div>
+              ))}
+            </div>
+         </div>
+
+         {/* Wavy Divider to Blue-Green Gradient */}
+         <div className="wavy-divider">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+              <path fill="#bdeeff" d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,53.3C1200,53,1320,43,1380,37.3L1440,32L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z"></path>
+            </svg>
          </div>
       </section>
 
-      {/* Certificates Section (Cefa Style) */}
-      <Certificates />
+      {/* World Map Section (Blue-Cyan Gradient) */}
+      <div className="bg-gradient-to-b from-[#bdeeff] to-[#e0f7ff] py-20 relative overflow-visible">
+        <WorldMap />
+        
+        {/* Wavy Divider to Yellow-Orange Gradient */}
+        <div className="wavy-divider">
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path fill="#ffd93d" d="M0,64L120,53.3C240,43,480,21,720,21.3C960,21,1200,43,1320,53.3L1440,64L1440,100L1320,100C1200,100,960,100,720,100C480,100,240,100,120,100L0,100Z"></path>
+          </svg>
+        </div>
+      </div>
 
-      {/* Interactive World Map (Dukes Style - Open & Clean) */}
-      <WorldMap />
+      <div className="bg-gradient-to-b from-[#ffd93d] to-[#ffc107] py-20 relative overflow-visible">
+        <Certificates />
+        <div className="wavy-divider">
+           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+             <path fill="#ffffff" d="M0,32L80,37.3C160,43,320,53,480,53.3C640,53,800,43,960,37.3C1120,32,1280,32,1360,32L1440,32L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+           </svg>
+        </div>
+      </div>
 
-      {/* Featured Products Grid (Dukes Style - Circular Frames) */}
-      <section className="py-40 relative bg-white overflow-hidden">
+      {/* Featured Products Grid (High-Energy Colors) */}
+      <section className="py-60 relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-10">
             <div className="max-w-3xl">
-              <span className="text-amber-500 font-black tracking-[0.3em] text-[11px] uppercase mb-5 block">{t("bestSellers")}</span>
-              <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] heading-font">{t("exportPortfolio1")} <br /><span className="text-[#003366]">{t("exportPortfolio2")}</span></h2>
+              <span className="text-white px-6 py-2 bg-[#ff5c8a] rounded-full font-black tracking-widest text-[12px] uppercase mb-8 inline-block shadow-[0_10px_20px_rgba(255,92,138,0.3)]">{t("bestSellers")}</span>
+              <h2 className="text-7xl md:text-9xl font-black text-[#014995] tracking-tighter uppercase leading-[0.8] heading-font">
+                 <span className="text-[#ff5c8a]">{t("exportPortfolio1").split(' ')[0]}</span> {t("exportPortfolio1").split(' ').slice(1).join(' ')} <br />
+                 <span className="text-[#014995]">{t("exportPortfolio2")}</span>
+              </h2>
             </div>
-            <Link href="/products" className="inline-flex items-center gap-4 bg-[#003366] text-white px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-widest hover:bg-[#002244] transition-all transform hover:-translate-y-1.5 shadow-xl shadow-[#003366]/20">
-               {t("exploreCatalog")} <ArrowRight className={cn("w-5 h-5", isRTL && "rotate-180")} />
+            <Link href="/products" className="inline-flex items-center gap-6 bg-[#014995] text-white px-16 py-8 rounded-full font-black text-[16px] uppercase tracking-widest hover:bg-[#01356d] transition-all transform hover:scale-105 shadow-[0_20px_40px_rgba(1,73,149,0.3)]">
+               {t("exploreCatalog")} <ArrowRight className={cn("w-6 h-6", isRTL && "rotate-180")} />
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
             {[
-              { title: t("featured1Title"), category: t("featured1Cat"), image: "/BABA LOVELY POP BLUEBERRY MARKUP.png", color: "from-blue-50 to-white" },
-              { title: t("featured2Title"), category: t("featured2Cat"), image: "/DJ American Biscuits Markup.png", color: "from-amber-50 to-white" },
-              { title: t("featured3Title"), category: t("featured3Cat"), image: "/DJ Gum Pops Markup.png", color: "from-rose-50 to-white" },
-              { title: t("featured4Title"), category: t("featured4Cat"), image: "/DJ Choco Eclairs Jar Markup.png", color: "from-slate-100 to-white" }
+              { title: t("featured1Title"), category: t("featured1Cat"), image: "/transparent/BABA LOVELY POP BLUEBERRY MARKUP.png", color: "bg-[#bdeeff] shadow-blue-100" },
+              { title: t("featured2Title"), category: t("featured2Cat"), image: "/transparent/DJ American Biscuits Markup.png", color: "bg-[#ffd93d] shadow-amber-100" },
+              { title: t("featured3Title"), category: t("featured3Cat"), image: "/transparent/DJ Gum Pops Markup.png", color: "bg-[#ff96bc] shadow-pink-100" },
+              { title: t("featured4Title"), category: t("featured4Cat"), image: "/transparent/DJ Choco Eclairs Jar Markup.png", color: "bg-[#cfaffc] shadow-purple-100" }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50, rotate: idx % 2 === 0 ? 5 : -5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                transition={{ delay: idx * 0.15, duration: 0.8, type: "spring" }}
                 onMouseEnter={() => setHoveredProduct(idx)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href="/products" className="block group text-center">
-                  <div className={`relative aspect-square bg-gradient-to-br ${item.color} border border-slate-100 rounded-full flex items-center justify-center p-14 mb-8 transition-all duration-500 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] group-hover:scale-105 group-hover:border-blue-100`}>
+                  <div className={`relative aspect-square ${item.color} rounded-[3rem] flex items-center justify-center p-12 mb-10 transition-all duration-500 group-hover:scale-105 shadow-2xl`}>
                     <motion.img 
-                      animate={hoveredProduct === idx ? { y: -15, scale: 1.1, rotate: 3 } : { y: 0, scale: 1, rotate: 0 }}
-                      src={item.image} alt={item.title} className="max-h-full max-w-full object-contain filter drop-shadow-2xl z-10" 
+                      animate={hoveredProduct === idx ? { y: -30, scale: 1.15, rotate: 5 } : { y: 0, scale: 1, rotate: 0 }}
+                      src={item.image} alt={item.title} className="max-h-full max-w-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] z-10" 
                     />
                   </div>
-                  <span className="inline-block px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[9px] font-black text-slate-400 tracking-widest uppercase mb-4">{item.category}</span>
-                  <h4 className="text-xl font-black text-slate-900 uppercase tracking-tighter group-hover:text-[#003366] transition-colors heading-font">{item.title}</h4>
+                  <span className="inline-block px-5 py-2 bg-slate-50 rounded-full text-[11px] font-black text-slate-400 tracking-widest uppercase mb-6 shadow-sm">{item.category}</span>
+                  <h4 className="text-2xl font-black text-[#014995] uppercase tracking-tighter group-hover:text-[#ff5c8a] transition-colors heading-font">{item.title}</h4>
                 </Link>
               </motion.div>
             ))}
@@ -229,9 +346,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Production & Reliability (Corporate Strategy) */}
-      <section className="py-40 relative z-10 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Production & Reliability (Vibrant Deep Blue Section) */}
+      <section className="py-40 relative z-10 bg-slate-50 overflow-hidden">
+        {/* Animated Background Blobs */}
+        <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-blue-100 rounded-full blur-[120px] opacity-60"></div>
+        <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-pink-100 rounded-full blur-[120px] opacity-60"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             
             <motion.div 
@@ -240,8 +361,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="order-2 lg:order-1 relative"
             >
-               <div className="relative rounded-[4rem] bg-white p-6 shadow-3xl overflow-hidden group">
-                 <img src="/DJ American Biscuits Markup Combine.png" alt="Tree India Production" className="w-full h-auto object-cover rounded-[3.5rem] bg-slate-50 group-hover:scale-105 transition-transform duration-1000" />
+               <div className="relative rounded-[4rem] bg-white p-6 shadow-[0_50px_100px_rgba(0,0,0,0.08)] overflow-hidden group border-8 border-white">
+                 <img src="/transparent/DJ American Biscuits Markup Combine.png" alt="Tree India Production" className="w-full h-auto object-cover rounded-[3.5rem] bg-slate-50 group-hover:scale-105 transition-transform duration-1000" />
                </div>
             </motion.div>
             
@@ -251,29 +372,29 @@ export default function Home() {
               viewport={{ once: true }}
               className="order-1 lg:order-2"
             >
-              <span className="text-[#003366] font-black tracking-[0.3em] text-[11px] uppercase mb-6 block">{t("strategyExport")}</span>
+              <span className="text-[#014995] font-black tracking-[0.3em] text-[11px] uppercase mb-6 block drop-shadow-sm">{t("strategyExport")}</span>
               <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-[0.95] tracking-tighter uppercase heading-font">
-                {t("strategyTitle1")} <br /><span className="text-[#003366]">{t("strategyTitle2")}</span>
+                {t("strategyTitle1")} <br /><span className="text-[#ff5c8a]">{t("strategyTitle2")}</span>
               </h2>
-              <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed mb-10">
+              <p className="text-lg md:text-xl text-slate-500 font-bold leading-relaxed mb-10 max-w-lg">
                 {t("strategyDesc")}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                 {[
-                  t("strategyPricing"),
-                  t("strategyTesting"),
-                  t("strategyLogistics"),
-                  t("strategyPort")
+                  { text: t("strategyPricing"), color: "text-blue-500 bg-blue-50" },
+                  { text: t("strategyTesting"), color: "text-emerald-500 bg-emerald-50" },
+                  { text: t("strategyLogistics"), color: "text-purple-500 bg-purple-50" },
+                  { text: t("strategyPort"), color: "text-amber-500 bg-amber-50" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3.5 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 group hover:border-[#003366]/20 transition-colors">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                    <span className="font-black text-[10px] uppercase tracking-widest text-slate-600 group-hover:text-[#003366] transition-colors">{item}</span>
+                  <div key={idx} className={`flex items-center gap-3.5 p-6 ${item.color.split(' ')[1]} rounded-3xl group border-none transition-all hover:scale-105 shadow-sm`}>
+                    <CheckCircle2 className={`w-6 h-6 ${item.color.split(' ')[0]}`} />
+                    <span className="font-black text-[10px] uppercase tracking-widest text-slate-700">{item.text}</span>
                   </div>
                 ))}
               </div>
 
-              <Link href="/about" className="inline-flex items-center justify-center h-16 px-12 rounded-full bg-[#003366] text-white font-black uppercase tracking-widest text-[11px] hover:bg-[#002244] shadow-xl shadow-[#003366]/20 transition-all hover:scale-105">
+              <Link href="/about" className="inline-flex items-center justify-center h-20 px-16 rounded-full bg-[#014995] text-white font-black uppercase tracking-widest text-[13px] hover:bg-[#01356d] shadow-2xl transition-all hover:scale-105">
                 {t("strategyAbout")}
               </Link>
             </motion.div>

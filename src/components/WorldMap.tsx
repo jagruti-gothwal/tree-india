@@ -22,15 +22,16 @@ const pinnedCountries = [
   { name: "South Africa", coords: [22.9375, -30.5595], yOffset: 12 },
   { name: "Kenya", coords: [37.9062, -0.0236], yOffset: -8, anchor: "start" },
   { name: "Ghana", coords: [-1.0232, 7.9465], yOffset: 15, anchor: "middle" },
-  { name: "Egypt", coords: [30.8025, 30.0000], yOffset: -10 },
+  { name: "Mali", coords: [-3.9962, 17.5707], yOffset: -10, anchor: "end" },
+  { name: "Niger", coords: [8.0817, 17.6078], yOffset: 10, anchor: "start" },
+  { name: "Benin", coords: [2.3158, 9.3077], yOffset: -10, anchor: "end" },
   { name: "Ivory Coast", coords: [-5.5471, 7.5399], yOffset: -12, anchor: "end" },
   { name: "Ethiopia", coords: [39.1225, 9.1450], yOffset: 12, anchor: "start" },
-  { name: "UAE", coords: [54.3773, 24.4539], yOffset: -10, anchor: "start" },
-  { name: "Saudi Arabia", coords: [45.0792, 23.8859], yOffset: 15, anchor: "end" },
-  { name: "UK", coords: [-3.4360, 55.3781], yOffset: -10 },
-  { name: "USA", coords: [-95.7129, 37.0902], yOffset: -10 },
-  { name: "Brazil", coords: [-51.9253, -14.2350], yOffset: -10 },
+  { name: "Cameroon", coords: [12.3547, 7.3697], yOffset: 15 },
+  { name: "Tanzania", coords: [34.8888, -6.3690], yOffset: -12 },
+  { name: "Uganda", coords: [32.2903, 1.3733], yOffset: 10 },
   { name: "India (Home)", coords: [78.9629, 20.5937], isHome: true, yOffset: -15 },
+  { name: "UAE", coords: [54.3773, 24.4539], yOffset: -10, anchor: "start" },
 ];
 
 export default function WorldMap() {
