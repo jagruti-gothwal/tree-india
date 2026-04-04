@@ -1,0 +1,866 @@
+[
+  {
+    "id": 100,
+    "name": "BABA LOVELY POP BLUEBERRY",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP BLUEBERRY MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 101,
+    "name": "BABA LOVELY POP GUAVA",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP GUAVA MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 102,
+    "name": "BABA LOVELY POP MANGO",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP MANGO MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 103,
+    "name": "BABA LOVELY POP ORANGE",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP ORANGE MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 104,
+    "name": "BABA LOVELY POP STRAWBERRY ICECREAM",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP STRAWBERRY ICECREAM MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 105,
+    "name": "BABA LOVELY POP STRAWBERRY",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP STRAWBERRY MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 106,
+    "name": "BABA LOVELY POP WATERMELON",
+    "category": "Lollipops",
+    "image": "/transparent/BABA LOVELY POP WATERMELON MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 107,
+    "name": "BABA MILK FRESH",
+    "category": "Candies & Toffees",
+    "image": "/transparent/BABA MILK FRESH Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 108,
+    "name": "Boost Chocolate",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/Boost Chocolate.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 109,
+    "name": "DJ American Biscuits",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ American Biscuits Markup Combine.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 110,
+    "name": "DJ American Biscuits",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ American Biscuits Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 111,
+    "name": "DJ BUTTER COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ BUTTER COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 112,
+    "name": "DJ Bigg Boom",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Bigg Boom Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 113,
+    "name": "DJ Boost wheat",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Boost wheat.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 114,
+    "name": "DJ Butter and Milk Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Butter and Milk Candy.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 115,
+    "name": "DJ Butter pop",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Butter pop markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 116,
+    "name": "DJ CASHEW COOKIE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CASHEW COOKIE DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 117,
+    "name": "DJ CASHEW COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CASHEW COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 118,
+    "name": "DJ CHOCOCHIP COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CHOCOCHIP COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 119,
+    "name": "DJ CHOCOHIP COOKIE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CHOCOHIP COOKIE DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 120,
+    "name": "DJ COCONUT COOKIE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ COCONUT COOKIE DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 121,
+    "name": "DJ COCONUT COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ COCONUT COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 122,
+    "name": "DJ COCOVIBE",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ COCOVIBE AI.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 123,
+    "name": "DJ CREAM CHOCOLATE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM CHOCOLATE MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 124,
+    "name": "DJ CREAM",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM COMBINE.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 125,
+    "name": "DJ CREAM FRESH",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM FRESH MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 126,
+    "name": "DJ CREAM MANGO",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM MANGO MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 127,
+    "name": "DJ CREAM PINEAPPLE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM PINEAPPLE MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 128,
+    "name": "DJ CREAM STRAWBERRY",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM STRAWBERRY MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 129,
+    "name": "DJ CREAM VANILLA",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREAM VANILLA MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 130,
+    "name": "DJ CREMO CHOCOLATE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO CHOCOLATE Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 131,
+    "name": "DJ CREMO",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO COMBINE.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 132,
+    "name": "DJ CREMO MANGO",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO MANGO markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 133,
+    "name": "DJ CREMO ORANGE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO ORANGE Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 134,
+    "name": "DJ CREMO PINEAPPLE",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO PINEAPPLE Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 135,
+    "name": "DJ CREMO STRAWBERRY",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO STRAWBERRY MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 136,
+    "name": "DJ CREMO VANILLA",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ CREMO VANILLA Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 137,
+    "name": "DJ Choco Eclrs",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Choco Eclairs Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 138,
+    "name": "DJ Choco Eclrs",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Choco Eclairs Markup Pouch.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 139,
+    "name": "DJ Chocofull Toffee",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Chocofull Toffee Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 140,
+    "name": "DJ Chocolate",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Chocolate Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 141,
+    "name": "DJ Coconut Desire Toffee",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Coconut Desire Toffee Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 142,
+    "name": "DJ Coconut Eclrs",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Coconut Eclairs Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 143,
+    "name": "DJ Coconut",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Coconut Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 144,
+    "name": "DJ Cocovibe",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Cocovibe Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 145,
+    "name": "DJ Color Pop",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Color Pop Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 146,
+    "name": "DJ Conico Chocolate",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Conico Chocolate.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 147,
+    "name": "DJ Conico Mango",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Conico Mango.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 148,
+    "name": "DJ Conico Orange",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Conico Orange.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 149,
+    "name": "DJ Conico Strawberry",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Conico Strawberry.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 150,
+    "name": "DJ Creamy Topper",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Creamy Topper Combine.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 151,
+    "name": "DJ Creamy topper Chocolate",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Creamy topper Chocolate Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 152,
+    "name": "DJ Creamy topper Mango",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Creamy topper Mango Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 153,
+    "name": "DJ Creamy topper Orange",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Creamy topper Orange Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 154,
+    "name": "DJ Creamy topper Strawberry",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Creamy topper Strawberry Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 155,
+    "name": "DJ FINGER SHORTBREAD COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ FINGER SHORTBREAD COOKIES DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 156,
+    "name": "DJ FINGER SHORTBREAD COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ FINGER SHORTBREAD COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 157,
+    "name": "DJ FRENZY",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ FRENZY AI.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 158,
+    "name": "DJ Football",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Football Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 159,
+    "name": "DJ Frenzy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Frenzy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 160,
+    "name": "DJ Frubon",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Frubon Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 161,
+    "name": "DJ Frubon",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Frubon Pouch Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 162,
+    "name": "DJ Fruit Shots Toffee",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Fruit Shots Toffee Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 163,
+    "name": "DJ Fruitoo lollipops",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Fruitoo lollipops markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 164,
+    "name": "DJ Fruits Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Fruits Candy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 165,
+    "name": "DJ Glucose",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Glucose Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 166,
+    "name": "DJ Gum Pops",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Gum Pops Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 167,
+    "name": "DJ LOL Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ LOL Candy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 168,
+    "name": "DJ Love Pop",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Love Pop Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 169,
+    "name": "DJ MILK COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ MILK COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 170,
+    "name": "DJ Milk Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Milk Candy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 171,
+    "name": "DJ Milk Eclrs",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Milk Eclairs Jar Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 172,
+    "name": "DJ Milk Plus",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Milk Plus Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 173,
+    "name": "DJ Milk Pop",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Milk Pop Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 174,
+    "name": "DJ Milkshake Toffee",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Milkshake Toffee Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 175,
+    "name": "DJ Mint Cool Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Mint Cool Candy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 176,
+    "name": "DJ My Milk",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ My Milk Markup Jar.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 177,
+    "name": "DJ Nice",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Nice Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 178,
+    "name": "DJ OLIVARY Bubblegum",
+    "category": "Bubble Gum",
+    "image": "/transparent/DJ OLIVARY Bubblegum Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 179,
+    "name": "DJ ORIGINAL SHORTBREAD COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ ORIGINAL SHORTBREAD COOKIES DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 180,
+    "name": "DJ ORIGINAL SHORTBREAD",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ ORIGINAL SHORTBREAD.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 181,
+    "name": "DJ PISTACHIO COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ PISTACHIO COOKIES DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 182,
+    "name": "DJ PISTACHIO COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ PISTACHIO COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 183,
+    "name": "DJ Plutoo Candy",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Plutoo Candy Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 184,
+    "name": "DJ SHORT BREAD COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ SHORT BREAD COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 185,
+    "name": "DJ SHORTBREAD DELICIOUS COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ SHORTBREAD DELICIOUS COOKIES DISPLAY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 186,
+    "name": "DJ STARVIBE",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ STARVIBE AI.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 187,
+    "name": "DJ SUPERB COOKIES",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ SUPERB COOKIES.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 188,
+    "name": "DJ Starvibe",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ Starvibe Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 189,
+    "name": "DJ Superb Plus Cookies",
+    "category": "Cookies & Biscuits",
+    "image": "/transparent/DJ Superb Plus Cookies.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 190,
+    "name": "DJ TAMARIND BLAST",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ TAMARIND BLAST MARKUP.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 191,
+    "name": "DJ TANGY TAMARIND",
+    "category": "Candies & Toffees",
+    "image": "/transparent/DJ TANGY TAMARIND Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 192,
+    "name": "DJ Wafers Chocolate",
+    "category": "Wafers",
+    "image": "/transparent/DJ Wafers Chocolate.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 193,
+    "name": "DJ Wafers Strawberry",
+    "category": "Wafers",
+    "image": "/transparent/DJ Wafers Strawberry.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 194,
+    "name": "DJ Wafers Vanilla",
+    "category": "Wafers",
+    "image": "/transparent/DJ Wafers Vanilla.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 195,
+    "name": "DJ Whistle Lollipops",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Whistle Lollipops Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 196,
+    "name": "DJ Yogurt Pop Lollipop",
+    "category": "Lollipops",
+    "image": "/transparent/DJ Yogurt Pop Lollipop Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 197,
+    "name": "Maravila Chocolatev",
+    "category": "Wafers",
+    "image": "/transparent/Maravila ChocolatevMarkup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 198,
+    "name": "Maravila Orange",
+    "category": "Wafers",
+    "image": "/transparent/Maravila Orange Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 199,
+    "name": "Maravila Strawberry",
+    "category": "Wafers",
+    "image": "/transparent/Maravila StrawberryMarkup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 200,
+    "name": "Maravilha Vanilla",
+    "category": "Wafers",
+    "image": "/transparent/Maravilha Vanilla Markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 201,
+    "name": "Maravilha",
+    "category": "Wafers",
+    "image": "/transparent/Maravilha combine markup.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 202,
+    "name": "TICK TICK FRUITY MILKY",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK FRUITY MILKY.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 203,
+    "name": "TICK TICK LEMON",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK LEMON.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 204,
+    "name": "TICK TICK LYCHEE",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK LYCHEE.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 205,
+    "name": "TICK TICK MENTHOL",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK MENTHOL.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 206,
+    "name": "TICK TICK PEANUT",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK PEANUT.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  },
+  {
+    "id": 207,
+    "name": "TICK TICK TAMARIND",
+    "category": "Candies & Toffees",
+    "image": "/transparent/TICK TICK TAMARIND.png",
+    "specs": "Export Grade",
+    "price": "Standard Unit"
+  }
+]

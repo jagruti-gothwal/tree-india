@@ -32,21 +32,21 @@ function ContactForm() {
   };
 
   return (
-    <div className="bg-white p-10 lg:p-14 shadow-xl border border-slate-200 relative overflow-hidden group">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full translate-x-32 -translate-y-32 z-0"></div>
+    <div className="bg-white p-10 lg:p-14 rounded-[3rem] border-4 border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] transition-all duration-500 relative overflow-hidden group">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full translate-x-1/3 -translate-y-1/3 z-0 group-hover:bg-pink-100 transition-colors duration-500"></div>
       
       {status === "success" ? (
-        <div className="absolute inset-0 bg-slate-900/95 backdrop-blur-md flex flex-col items-center justify-center z-20 text-center p-12 border-l-4 border-amber-500">
-            <div className="w-20 h-20 bg-amber-500 flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(245,158,11,0.5)]">
-               <Send className="w-8 h-8 text-slate-900" strokeWidth={2} />
+        <div className="absolute inset-0 bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center z-20 text-center p-12 border-4 border-[#ff5c8a] rounded-[2.5rem]">
+            <div className="w-24 h-24 bg-[#ffd93d] rounded-[2rem] flex items-center justify-center mb-10 shadow-[0_20px_40px_rgba(255,217,61,0.4)]">
+               <Send className="w-10 h-10 text-[#014995]" strokeWidth={2.5} />
             </div>
-            <h3 className="text-3xl font-extrabold text-white mb-4 uppercase tracking-widest">{t("contactSuccessTitle")}</h3>
-            <p className="text-slate-300 font-light text-lg mb-10 max-w-sm mx-auto leading-relaxed">
+            <h3 className="text-4xl font-black text-[#014995] mb-4 uppercase tracking-tighter heading-font">{t("contactSuccessTitle")}</h3>
+            <p className="text-slate-500 font-bold text-lg mb-10 max-w-sm mx-auto leading-relaxed">
               {t("contactSuccessDesc")}
             </p>
             <button 
               onClick={() => setStatus("idle")} 
-              className="px-8 py-4 bg-transparent border-2 border-amber-500 hover:bg-amber-500 hover:text-slate-900 text-amber-500 font-bold uppercase tracking-widest text-sm transition-colors"
+              className="px-10 py-5 bg-[#ff5c8a] hover:bg-[#e11d48] text-white rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
               {t("contactNewInquiry")}
             </button>
@@ -62,57 +62,62 @@ function ContactForm() {
 
       <form onSubmit={handleSubmit} className={cn("space-y-8 relative z-10", isRTL && "text-right")}>
         {productIds && (
-          <div className="p-4 mb-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl text-sm font-bold shadow-sm">
-            <span className="uppercase tracking-widest text-[10px] block mb-1 text-amber-600">{"Attached:"}</span>
-            {productIds.split(",").length} {t("productSelectedCount")}
+          <div className="p-6 mb-8 bg-amber-50 border-2 border-[#ffd93d] rounded-3xl text-sm font-bold shadow-sm flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="uppercase tracking-widest text-[11px] block mb-1 text-amber-600 font-black">{"Attached for Bulk Inquiry:"}</span>
+              <span className="text-lg text-amber-900">{productIds.split(",").length} {t("productSelectedCount")}</span>
+            </div>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-inner">
+               <span className="text-[#ff5c8a] font-black">{productIds.split(",").length}</span>
+            </div>
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <label htmlFor="name" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{t("contactLabelName")}</label>
+            <label htmlFor="name" className="block text-xs font-black text-[#014995] uppercase tracking-widest mb-3 ml-2">{t("contactLabelName")}</label>
             <input
               type="text"
               id="name"
               name="name"
               required
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:ring-1 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors text-slate-900 font-medium"
+              className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-3xl focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-[#ff5c8a] outline-none transition-all text-[#014995] font-bold"
               placeholder=""
             />
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{t("contactLabelEmail")}</label>
+            <label htmlFor="email" className="block text-xs font-black text-[#014995] uppercase tracking-widest mb-3 ml-2">{t("contactLabelEmail")}</label>
             <input
               type="email"
               id="email"
               name="email"
               required
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:ring-1 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors text-slate-900 font-medium"
+              className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-3xl focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-[#ff5c8a] outline-none transition-all text-[#014995] font-bold"
               placeholder=""
             />
           </div>
         </div>
         
         <div>
-          <label htmlFor="phone" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{t("contactLabelPhone")}</label>
+          <label htmlFor="phone" className="block text-xs font-black text-[#014995] uppercase tracking-widest mb-3 ml-2">{t("contactLabelPhone")}</label>
           <input
             type="tel"
             id="phone"
             name="phone"
             required
-            className="w-full px-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:ring-1 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors text-slate-900 font-medium"
+            className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-3xl focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-[#ff5c8a] outline-none transition-all text-[#014995] font-bold"
             placeholder=""
           />
         </div>
         
         <div>
-          <label htmlFor="message" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{t("contactLabelMessage")}</label>
+          <label htmlFor="message" className="block text-xs font-black text-[#014995] uppercase tracking-widest mb-3 ml-2">{t("contactLabelMessage")}</label>
           <textarea
             id="message"
             name="message"
             required
             rows={6}
-            className="w-full px-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:ring-1 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors text-slate-900 font-medium resize-none shadow-inner"
+            className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-3xl focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-[#ff5c8a] outline-none transition-all text-[#014995] font-bold resize-none shadow-inner"
             placeholder=""
           ></textarea>
         </div>
@@ -120,10 +125,10 @@ function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full bg-slate-900 hover:bg-slate-800 text-white py-5 font-bold uppercase tracking-widest text-sm transition-colors border-l-4 border-amber-500 flex justify-center items-center gap-3 disabled:opacity-75"
+          className="w-full bg-[#014995] hover:bg-[#3b0764] text-white py-6 rounded-full font-black uppercase tracking-widest text-[14px] transition-all shadow-[0_20px_40px_rgba(1,73,149,0.3)] hover:shadow-xl hover:scale-[1.02] active:scale-95 flex justify-center items-center gap-4 disabled:opacity-75 disabled:scale-100 mt-4"
         >
           {status === "submitting" ? t("contactSubmitting") : t("contactLabelSubmit")}
-          <ArrowRight className={cn("w-5 h-5", isRTL && "rotate-180")} />
+          <ArrowRight className={cn("w-6 h-6", isRTL && "rotate-180")} strokeWidth={3} />
         </button>
       </form>
     </div>
@@ -134,82 +139,88 @@ export default function ContactUs() {
   const { t, isRTL } = useLanguage();
 
   return (
-    <div className="pt-32 pb-24 bg-slate-50 min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-40 pb-32 min-h-screen relative overflow-hidden bg-gradient-to-br from-[#fff5f0] to-[#fffdec]" dir={isRTL ? "rtl" : "ltr"}>
+      {/* Background Blobs */}
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-pink-300/20 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-blue-300/20 rounded-full blur-[120px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Section */}
-        <div className="text-center max-w-4xl mx-auto mb-20 pt-16">
-          <span className="text-amber-600 font-bold tracking-widest text-sm uppercase mb-4 flex justify-center items-center gap-4">
-             <span className="w-8 h-0.5 bg-amber-600 block"></span>
-             {t("contactCorporateComm")}
-             <span className="w-8 h-0.5 bg-amber-600 block"></span>
-          </span>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 heading-font uppercase tracking-tight leading-tight">
-            {t("contactTitle1")} {t("contactTitle2")}
+        <div className="text-center max-w-4xl mx-auto mb-20 relative">
+          <div className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full border border-pink-200 bg-pink-50 shadow-sm mb-8 group">
+             <span className="relative flex h-3 w-3">
+               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+               <span className="relative inline-flex rounded-full h-3 w-3 bg-[#ff5c8a]"></span>
+             </span>
+             <span className="text-[#ff5c8a] font-black text-[11px] tracking-[0.3em] uppercase">{t("contactCorporateComm")}</span>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-black text-[#014995] heading-font uppercase tracking-tighter leading-[0.85] drop-shadow-sm">
+            {t("contactTitle1")} <br className="md:hidden"/><span className="text-[#ff5c8a]">{t("contactTitle2")}</span>
           </h1>
-          <p className="mt-8 text-xl text-slate-600 leading-relaxed font-light">
+          <p className="mt-8 text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-wider leading-relaxed max-w-2xl mx-auto">
             {t("contactSubtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 xl:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           
           {/* Left Column: Contact Details */}
           <div className="lg:col-span-5 flex flex-col justify-start">
-            <span className="text-amber-600 font-bold tracking-widest text-xs uppercase mb-4 block">{t("contactOfficialChannels")}</span>
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-[#014995] font-black tracking-[0.2em] text-[11px] uppercase border border-blue-100 mb-4 shadow-sm max-w-max">{t("contactOfficialChannels")}</span>
             <h2 className={cn(
-              "text-4xl font-extrabold text-slate-900 uppercase tracking-tight mb-10 pl-6 leading-none",
-              isRTL ? "border-r-4 border-amber-500 pr-6 pl-0 text-right" : "border-l-4 border-amber-500"
+              "text-5xl md:text-6xl font-black text-[#ff5c8a] uppercase tracking-tighter mb-10 heading-font leading-[0.9]",
+              isRTL ? "text-right" : "text-left"
             )}>
               {t("contactHeadquarters")}
             </h2>
 
-            <div className="bg-white border border-slate-200 shadow-sm p-8 group relative overflow-hidden flex-1">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 translate-x-16 -translate-y-16 group-hover:bg-amber-50 transition-colors rounded-none"></div>
+            <div className="bg-white border-2 border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] hover:border-pink-200 transition-all duration-500 p-10 rounded-[3rem] group relative overflow-hidden flex-1">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-pink-50 rounded-full translate-x-1/3 -translate-y-1/3 group-hover:bg-pink-100 transition-colors duration-500"></div>
               
-              <ul className="space-y-10 relative z-10 mt-6">
+              <ul className="space-y-10 relative z-10">
                 
-                <li className={cn("flex items-start", isRTL && "flex-row-reverse text-right")}>
-                  <div className="w-12 h-12 bg-slate-900 flex items-center justify-center shrink-0 border-b-4 border-amber-500">
-                    <Building2 className="text-amber-500 w-5 h-5" />
+                <li className={cn("flex items-start group/item", isRTL && "flex-row-reverse text-right")}>
+                  <div className="w-14 h-14 rounded-2xl bg-[#fff5f0] flex items-center justify-center shrink-0 text-[#ff5c8a] group-hover/item:bg-[#ff5c8a] group-hover/item:text-white transition-colors shadow-sm">
+                    <Building2 className="w-6 h-6" strokeWidth={2.5} />
                   </div>
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t("contactAddrTitle")}</h4>
-                    <p className="text-slate-900 font-medium leading-relaxed uppercase tracking-wider">
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactAddrTitle")}</h4>
+                    <p className="text-xl text-[#014995] font-black leading-tight uppercase tracking-wide heading-font group-hover/item:text-[#ff5c8a] transition-colors">
                       Navi Mumbai,<br /> Maharashtra, India
                     </p>
                   </div>
                 </li>
                 
-                <li className={cn("flex items-start", isRTL && "flex-row-reverse text-right")}>
-                  <div className="w-12 h-12 bg-slate-900 flex items-center justify-center shrink-0 border-b-4 border-amber-500">
-                    <Phone className="text-amber-500 w-5 h-5" />
+                <li className={cn("flex items-start group/item", isRTL && "flex-row-reverse text-right")}>
+                  <div className="w-14 h-14 rounded-2xl bg-[#fff5f0] flex items-center justify-center shrink-0 text-[#ff5c8a] group-hover/item:bg-[#ff5c8a] group-hover/item:text-white transition-colors shadow-sm">
+                    <Phone className="w-6 h-6" strokeWidth={2.5} />
                   </div>
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t("contactPhoneTitle")}</h4>
-                    <p className="text-slate-900 font-medium leading-relaxed tracking-wider" dir="ltr">+91 94084 36732</p>
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactPhoneTitle")}</h4>
+                    <p className="text-xl text-[#014995] font-black leading-tight tracking-wide heading-font group-hover/item:text-[#ff5c8a] transition-colors" dir="ltr">+91 94084 36732</p>
                   </div>
                 </li>
                 
-                <li className={cn("flex items-start", isRTL && "flex-row-reverse text-right")}>
-                  <div className="w-12 h-12 bg-slate-900 flex items-center justify-center shrink-0 border-b-4 border-amber-500">
-                    <Mail className="text-amber-500 w-5 h-5" />
+                <li className={cn("flex items-start group/item", isRTL && "flex-row-reverse text-right")}>
+                  <div className="w-14 h-14 rounded-2xl bg-[#fff5f0] flex items-center justify-center shrink-0 text-[#ff5c8a] group-hover/item:bg-[#ff5c8a] group-hover/item:text-white transition-colors shadow-sm">
+                    <Mail className="w-6 h-6" strokeWidth={2.5} />
                   </div>
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t("contactMailTitle")}</h4>
-                    <a href="mailto:tree.india@yahoo.com" className="text-slate-900 font-bold tracking-wide hover:text-amber-600 transition-colors uppercase">
-                      tree.india@yahoo.com
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactMailTitle")}</h4>
+                    <a href="mailto:tree.india@yahoo.com" className="text-xl text-[#014995] font-black uppercase tracking-widest hover:text-[#ff5c8a] transition-colors heading-font overflow-hidden text-clip w-full block">
+                      tree.india@y<wbr/>ahoo.com
                     </a>
                   </div>
                 </li>
 
-                <li className={cn("flex items-start", isRTL && "flex-row-reverse text-right")}>
-                  <div className="w-12 h-12 bg-slate-900 flex items-center justify-center shrink-0 border-b-4 border-[#25D366]">
-                    <MessageCircle className="text-[#25D366] w-5 h-5 fill-current" />
+                <li className={cn("flex items-start group/item", isRTL && "flex-row-reverse text-right")}>
+                  <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center shrink-0 text-[#25D366] group-hover/item:bg-[#25D366] group-hover/item:text-white transition-colors shadow-sm border border-green-100">
+                    <MessageCircle className="w-6 h-6 fill-current" />
                   </div>
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t("contactWhatsAppTitle")}</h4>
-                    <a href="https://wa.me/919408436732" target="_blank" rel="noopener noreferrer" className="text-slate-900 font-bold tracking-wide hover:text-[#25D366] block transition-colors uppercase">
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactWhatsAppTitle")}</h4>
+                    <a href="https://wa.me/919408436732" target="_blank" rel="noopener noreferrer" className="text-xl text-slate-700 font-black uppercase tracking-wider hover:text-[#25D366] block transition-colors heading-font">
                       WhatsApp Commercial
                     </a>
                   </div>
@@ -218,9 +229,9 @@ export default function ContactUs() {
               </ul>
             </div>
             
-            <div className={cn("mt-8 p-8 bg-slate-900 border-amber-500 shadow-xl", isRTL ? "border-r-4 text-right" : "border-l-4")}>
-              <p className="text-white font-light leading-relaxed">
-                <span className="font-bold text-amber-500 uppercase tracking-widest text-xs block mb-2">{t("contactNoticeTitle")}</span>
+            <div className={cn("mt-8 p-8 md:p-10 bg-gradient-to-br from-[#014995] to-[#2e1065] rounded-[2rem] shadow-[0_20px_40px_rgba(1,73,149,0.3)] border-4 border-white", isRTL ? "text-right" : "")}>
+              <p className="text-blue-100 font-bold leading-relaxed uppercase tracking-widest">
+                <span className="font-black text-[#ffd93d] uppercase tracking-[0.3em] text-[12px] block mb-3">{t("contactNoticeTitle")}</span>
                 {t("contactNoticeDesc")}
               </p>
             </div>
@@ -228,16 +239,18 @@ export default function ContactUs() {
 
           {/* Right Column: Contact Form Wrapper */}
           <div className="lg:col-span-7">
-            <span className="text-amber-600 font-bold tracking-widest text-xs uppercase mb-4 block">{t("contactFormSub")}</span>
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-pink-50 text-[#ff5c8a] font-black tracking-[0.2em] text-[11px] uppercase border border-pink-100 mb-4 shadow-sm">{t("contactFormSub")}</span>
             <h2 className={cn(
-              "text-4xl font-extrabold text-slate-900 uppercase tracking-tight mb-10 pl-6 leading-none",
-              isRTL ? "border-r-4 border-amber-500 pr-6 pl-0 text-right" : "border-l-4 border-amber-500"
+              "text-5xl md:text-6xl font-black text-[#014995] uppercase tracking-tighter mb-10 heading-font leading-[0.9]",
+              isRTL ? "text-right" : "text-left"
             )}>
               {t("contactFormTitle")}
             </h2>
-            <Suspense fallback={<div>Loading inquiry form...</div>}>
-               <ContactForm />
-            </Suspense>
+            <div className="relative">
+               <Suspense fallback={<div className="p-10 bg-white rounded-[3rem] animate-pulse h-[600px]"></div>}>
+                  <ContactForm />
+               </Suspense>
+            </div>
           </div>
         </div>
       </div>
