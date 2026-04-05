@@ -142,7 +142,7 @@ export const translations: Translations = {
     exportReachDesc: "Tree India sends products to many countries, especially across Africa.",
     exportFootprint: "Where We Are",
     exportHubTitle: "Fast Shipping",
-    exportHubDesc: "Located in Navi Mumbai, we ship by sea and air to over 15 countries.",
+    exportHubDesc: "Located in Ahmedabad, Gujarat, we ship by sea and air to over 15 countries.",
     
     // Contact Page
     contactTitle1: "Initiate",
@@ -304,7 +304,7 @@ export const translations: Translations = {
     exportReachDesc: "A Tree India executa distribuições de alto volume em várias rotas comerciais primárias.",
     exportFootprint: "Pegada Geográfica",
     exportHubTitle: "Centro de Despacho Global",
-    exportHubDesc: "Operando a partir de Navi Mumbai, facilitamos o roteamento de frete marítimo e aéreo para mais de 15 economias globais.",
+    exportHubDesc: "Operando a partir de Ahmedabad, Gujarat, facilitamos o roteamento de frete marítimo e aéreo para mais de 15 economias globais.",
     
     contactTitle1: "Iniciar",
     contactTitle2: "Contato",
@@ -465,7 +465,7 @@ export const translations: Translations = {
     exportReachDesc: "تقوم تري إنديا بتنفيذ توزيعات كبيرة الحجم عبر مسارات تجارية عبر القارات.",
     exportFootprint: "البصمة الجغرافية",
     exportHubTitle: "مركز الشحن العالمي",
-    exportHubDesc: "انطلاقاً من نافي مومباي، يسهل مركزنا اللوجستي شحن البضائع البحرية والجوية لأكثر من 15 دولة.",
+    exportHubDesc: "انطلاقاً من أحمد آباد، غوجارات، يسهل مركزنا اللوجستي شحن البضائع البحرية والجوية لأكثر من 15 دولة.",
     
     contactTitle1: "بدء",
     contactTitle2: "الاتصال",
@@ -626,7 +626,7 @@ export const translations: Translations = {
     exportReachDesc: "Tree India exécute des distributions à haut volume sur plusieurs routes commerciales primaires.",
     exportFootprint: "Empreinte Géographique",
     exportHubTitle: "Centre d'Expédition Mondial",
-    exportHubDesc: "Opérant depuis Navi Mumbai, facilité par le fret maritime et aérien vers plus de 15 économies mondiales.",
+    exportHubDesc: "Opérant depuis Ahmedabad, Gujarat, facilité par le fret maritime et aérien vers plus de 15 économies mondiales.",
     
     contactTitle1: "Initier",
     contactTitle2: "Contact",
@@ -787,7 +787,7 @@ export const translations: Translations = {
     exportReachDesc: "Tree India ejecuta distribuciones de alto volumen a través de múltiples rutas comerciales primarias.",
     exportFootprint: "Huella Geográfica",
     exportHubTitle: "Centro de Despacho Global",
-    exportHubDesc: "Operando desde Navi Mumbai, facilitado por el flete marítimo y aéreo a más de 15 economías globales.",
+    exportHubDesc: "Operando desde Ahmedabad, Gujarat, facilitado por el flete marítimo y aéreo a más de 15 economías globales.",
     
     contactTitle1: "Iniciar",
     contactTitle2: "Contacto",

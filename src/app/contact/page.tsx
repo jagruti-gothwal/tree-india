@@ -32,7 +32,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="bg-white p-10 lg:p-14 rounded-[3rem] border-4 border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] transition-all duration-500 relative overflow-hidden group">
+    <div className="bg-white p-6 md:p-10 lg:p-14 rounded-[3rem] border-4 border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] transition-all duration-500 relative overflow-hidden group">
       <div className="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full translate-x-1/3 -translate-y-1/3 z-0 group-hover:bg-pink-100 transition-colors duration-500"></div>
       
       {status === "success" ? (
@@ -155,7 +155,7 @@ export default function ContactUs() {
              </span>
              <span className="text-[#ff5c8a] font-black text-[11px] tracking-[0.3em] uppercase">{t("contactCorporateComm")}</span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black text-[#014995] heading-font uppercase tracking-tighter leading-[0.85] drop-shadow-sm">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-[#014995] heading-font uppercase tracking-tighter leading-[0.9] md:leading-[0.85] drop-shadow-sm">
             {t("contactTitle1")} <br className="md:hidden"/><span className="text-[#ff5c8a]">{t("contactTitle2")}</span>
           </h1>
           <p className="mt-8 text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-wider leading-relaxed max-w-2xl mx-auto">
@@ -175,7 +175,7 @@ export default function ContactUs() {
               {t("contactHeadquarters")}
             </h2>
 
-            <div className="bg-white border-2 border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] hover:border-pink-200 transition-all duration-500 p-10 rounded-[3rem] group relative overflow-hidden flex-1">
+            <div className="bg-white border-2 border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] hover:border-pink-200 transition-all duration-500 p-8 md:p-10 rounded-[3rem] group relative overflow-hidden flex-1">
               <div className="absolute top-0 right-0 w-48 h-48 bg-pink-50 rounded-full translate-x-1/3 -translate-y-1/3 group-hover:bg-pink-100 transition-colors duration-500"></div>
               
               <ul className="space-y-10 relative z-10">
@@ -187,7 +187,7 @@ export default function ContactUs() {
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
                     <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactAddrTitle")}</h4>
                     <p className="text-xl text-[#014995] font-black leading-tight uppercase tracking-wide heading-font group-hover/item:text-[#ff5c8a] transition-colors">
-                      Navi Mumbai,<br /> Maharashtra, India
+                      Ahmedabad,<br /> Gujarat, India
                     </p>
                   </div>
                 </li>

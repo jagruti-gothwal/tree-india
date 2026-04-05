@@ -54,7 +54,7 @@ export default function Navbar() {
         animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "flex w-full max-w-7xl fixed top-4 md:top-6 inset-x-4 md:mx-auto border shadow-sm border-white/40 rounded-full bg-white/40 backdrop-blur-2xl z-[5000] px-8 py-3.5 items-center justify-between transition-all"
+          "flex w-full max-w-7xl fixed top-4 md:top-6 inset-x-4 md:mx-auto border shadow-sm border-white/40 rounded-full bg-white/40 backdrop-blur-2xl z-[5000] px-4 md:px-8 py-3.5 items-center justify-between transition-all"
         )}
       >
         <Link href="/" className="flex items-center gap-3 group flex-shrink-0">

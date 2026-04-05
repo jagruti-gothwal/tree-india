@@ -46,7 +46,7 @@ export default function AboutUs() {
 
         {/* Mission & Vision */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32">
-          <div className="bg-white p-12 md:p-16 rounded-[3rem] border-2 border-transparent hover:border-pink-200 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] transition-all duration-500 group relative overflow-hidden flex flex-col justify-center">
+          <div className="bg-white p-8 md:p-16 rounded-[3rem] border-2 border-transparent hover:border-pink-200 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_40px_60px_rgba(255,92,138,0.1)] transition-all duration-500 group relative overflow-hidden flex flex-col justify-center">
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-50 rounded-full translate-x-1/3 -translate-y-1/3 group-hover:bg-pink-100 transition-colors duration-500"></div>
             <div className="relative z-10">
               <div className="w-20 h-20 bg-pink-50 rounded-[1.5rem] flex items-center justify-center mb-10 group-hover:bg-[#ff5c8a] group-hover:text-white transition-colors text-[#ff5c8a] shadow-sm">
@@ -59,7 +59,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#014995] to-[#2e1065] p-12 md:p-16 rounded-[3rem] border-4 border-white shadow-[0_20px_40px_rgba(1,73,149,0.3)] hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden text-white flex flex-col justify-center">
+          <div className="bg-gradient-to-br from-[#014995] to-[#2e1065] p-8 md:p-16 rounded-[3rem] border-4 border-white shadow-[0_20px_40px_rgba(1,73,149,0.3)] hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden text-white flex flex-col justify-center">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3 group-hover:bg-white/10 transition-colors duration-500"></div>
             <div className="absolute bottom-0 left-0 w-full h-[150%] bg-gradient-to-t from-[#ff5c8a]/20 to-transparent pointer-events-none"></div>
             <div className="relative z-10">
@@ -76,11 +76,11 @@ export default function AboutUs() {
 
         {/* Values */}
         <div className="mb-16">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 px-4">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-[#014995] font-black tracking-[0.2em] text-[11px] uppercase border border-blue-100 mb-4 shadow-sm">
                {t("aboutValuesSub")}
             </span>
-            <h2 className="text-5xl md:text-6xl font-black text-[#ff5c8a] uppercase tracking-tighter heading-font leading-none">{t("aboutValuesTitle")}</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#ff5c8a] uppercase tracking-tighter heading-font leading-none">{t("aboutValuesTitle")}</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">

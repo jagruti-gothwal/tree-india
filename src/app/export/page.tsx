@@ -41,7 +41,7 @@ export default function Export() {
              <span className="text-white font-black text-[11px] tracking-[0.3em] uppercase">{t("exportCapabilities")}</span>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black text-white heading-font tracking-tighter uppercase leading-[0.85] drop-shadow-2xl mb-8">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white heading-font tracking-tighter uppercase leading-[0.9] md:leading-[0.85] drop-shadow-2xl mb-8">
             {t("exportDeskTitle")}
           </h1>
           <p className="mt-8 text-xl md:text-2xl text-slate-100 max-w-4xl mx-auto leading-relaxed font-bold tracking-wider mb-14 drop-shadow-sm uppercase">
@@ -98,7 +98,7 @@ export default function Export() {
             </div>
             
             <div className={cn(
-              "bg-[#014995] text-white p-12 lg:p-16 rounded-[3rem] shadow-[0_20px_40px_rgba(1,73,149,0.3)] relative overflow-hidden group border-4 border-white",
+              "bg-[#014995] text-white p-8 lg:p-16 rounded-[3rem] shadow-[0_20px_40px_rgba(1,73,149,0.3)] relative overflow-hidden group border-4 border-white",
               isRTL ? "" : ""
             )}>
                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/20 rounded-full translate-x-16 -translate-y-16 blur-3xl pointer-events-none"></div>
@@ -161,7 +161,7 @@ export default function Export() {
                <span className="w-2 h-2 bg-[#ffd93d] rounded-full animate-ping"></span>
                {t("exportFootprint")}
             </span>
-            <h2 className="text-6xl md:text-8xl font-black text-white heading-font uppercase tracking-tighter leading-[0.85] mb-10 drop-shadow-2xl">
+            <h2 className="text-5xl sm:text-6xl md:text-8xl font-black text-white heading-font uppercase tracking-tighter leading-[0.9] md:leading-[0.85] mb-10 drop-shadow-2xl">
               {t("exportReachTitle")}
             </h2>
             <div className="w-32 h-2 bg-[#ffd93d] rounded-full mx-auto mb-10 shadow-[0_0_20px_rgba(255,217,61,0.5)]"></div>
@@ -169,7 +169,7 @@ export default function Export() {
               {t("exportReachDesc")}
             </p>
 
-            <div className="bg-white/10 backdrop-blur-xl border-4 border-white/20 p-16 md:p-20 rounded-[3rem] shadow-[0_40px_80px_rgba(0,0,0,0.3)] max-w-4xl mx-auto relative group hover:-translate-y-2 transition-transform duration-500">
+            <div className="bg-white/10 backdrop-blur-xl border-4 border-white/20 p-8 md:p-20 rounded-[3rem] shadow-[0_40px_80px_rgba(0,0,0,0.3)] max-w-4xl mx-auto relative group hover:-translate-y-2 transition-transform duration-500">
                <div className={cn(
                  "absolute top-0 w-full h-2 bg-[#ffd93d] left-0 rounded-t-[2.5rem]",
                )}></div>

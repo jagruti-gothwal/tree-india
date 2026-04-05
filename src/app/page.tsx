@@ -126,11 +126,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-7xl sm:text-8xl md:text-9xl font-black text-white leading-[0.85] tracking-tighter uppercase heading-font drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+                className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[1.05] md:leading-[0.95] tracking-tight md:tracking-tighter uppercase heading-font drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
               >
-                World Class<br />
-                <span className="text-[#014995] bg-white px-8 py-2 inline-block -rotate-2 rounded-3xl shadow-2xl relative translate-y-2">Snacks &</span><br />
-                Confectionery
+                Global <br className="md:hidden" />
+                <span className="text-[#014995] bg-white px-4 md:px-6 py-1.5 md:py-2 inline-block -rotate-2 rounded-[2rem] md:rounded-3xl shadow-2xl relative translate-y-2 text-3xl sm:text-5xl md:text-7xl font-black break-words max-w-[90vw] md:max-w-none text-center leading-[1.2] md:leading-none my-2 md:my-0">Snacks & Confectionery</span><br />
+                You Can Trust
               </motion.h1>
               
               <TextGenerateEffect 
@@ -223,11 +223,11 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-3 bg-[#ff5c8a]/10 px-6 py-2 rounded-full mb-10 border border-[#ff5c8a]/20">
                 <span className="w-2 h-2 bg-[#ff5c8a] rounded-full animate-pulse"></span>
-                <span className="text-[#ff5c8a] font-black tracking-[0.3em] text-[12px] uppercase">Global Taste Leader</span>
+                <span className="text-[#ff5c8a] font-black tracking-[0.3em] text-[12px] uppercase">DJ</span>
               </div>
               
-              <h2 className="text-6xl md:text-8xl font-black text-[#014995] tracking-tighter uppercase leading-[0.85] mb-12 heading-font">
-                The <span className="text-[#ff5c8a]">Sweet</span> life <br /> gets stuck in <br /> the <span className="text-amber-500">Teeth</span>
+              <h2 className="text-5xl sm:text-6xl md:text-8xl font-black text-[#014995] tracking-tighter uppercase leading-[0.9] md:leading-[0.85] mb-12 heading-font">
+                <span className="text-[#ff5c8a]">Sweet</span> <br /> for all <br /> <span className="text-amber-500">Ages</span>
               </h2>
               
               <p className="text-lg md:text-xl text-slate-500 font-bold mb-14 leading-relaxed uppercase tracking-wider max-w-lg">

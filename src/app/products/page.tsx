@@ -189,7 +189,7 @@ export default function Products() {
               <span className="text-[#ff5c8a] font-black text-[11px] tracking-[0.3em] uppercase">{t("productCategoryLabel")}</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-black text-[#014995] uppercase tracking-tighter leading-[0.85] mb-8 heading-font drop-shadow-sm">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-[#014995] uppercase tracking-tighter leading-[0.9] md:leading-[0.85] mb-8 heading-font drop-shadow-sm">
               {t("productsTitle1")} <br className="md:hidden" /><span className="text-[#ff5c8a]">{t("productsTitle2")}</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto mb-10 leading-relaxed uppercase tracking-wider">
@@ -328,7 +328,7 @@ export default function Products() {
                 </button>
   
                 {/* Left Side: Product Image & Vibrancy */}
-                <div className="w-full md:w-1/2 bg-gradient-to-br from-indigo-50 via-[#f0f9ff] to-pink-50 p-10 md:p-20 flex flex-col items-center justify-center relative overflow-hidden">
+                <div className="w-full md:w-1/2 bg-gradient-to-br from-indigo-50 via-[#f0f9ff] to-pink-50 p-6 md:p-20 flex flex-col items-center justify-center relative overflow-hidden">
                   <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-[#ff5c8a]/10 to-transparent -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px] pointer-events-none"></div>
                   
                   <AnimatePresence mode="wait">
@@ -365,10 +365,10 @@ export default function Products() {
                 </div>
   
                 {/* Right Side: Product Details */}
-                <div className={cn("w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white h-full overflow-y-auto", isRTL && "text-right")}>
+                <div className={cn("w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center bg-white h-full overflow-y-auto", isRTL && "text-right")}>
                   <div className="mb-10">
                     <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-100 text-amber-600 font-black tracking-[0.2em] text-[11px] uppercase mb-6 shadow-sm">{getTranslatedCategory(detailProduct.category)}</span>
-                    <h2 className="text-5xl md:text-7xl font-black text-[#014995] uppercase tracking-tighter leading-[0.85] heading-font drop-shadow-sm">{detailProduct.name}</h2>
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#014995] uppercase tracking-tighter leading-[0.9] md:leading-[0.85] heading-font drop-shadow-sm">{detailProduct.name}</h2>
                   </div>
                   
                   <div className="space-y-8 mb-12">
