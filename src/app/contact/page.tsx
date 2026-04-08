@@ -1,6 +1,7 @@
 "use client";
 import { useState, Suspense } from "react";
-import { MapPin, Phone, Mail, MessageCircle, Send, Building2, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Send, Building2, ArrowRight } from "lucide-react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { submitInquiry } from "@/app/actions";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -216,7 +217,7 @@ export default function ContactUs() {
 
                 <li className={cn("flex items-start group/item", isRTL && "flex-row-reverse text-right")}>
                   <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center shrink-0 text-[#25D366] group-hover/item:bg-[#25D366] group-hover/item:text-white transition-colors shadow-sm border border-green-100">
-                    <MessageCircle className="w-6 h-6 fill-current" />
+                    <WhatsAppIcon className="w-6 h-6" />
                   </div>
                   <div className={cn(isRTL ? "mr-6" : "ml-6")}>
                     <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">{t("contactWhatsAppTitle")}</h4>

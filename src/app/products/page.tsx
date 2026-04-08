@@ -6,106 +6,112 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchAllProducts } from "../admin/actions";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const staticProductsFallback = [
-  // Lollipops
-  { 
-    id: 1, name: "Baba Lovely Pop", category: "Lollipops", image: "/transparent/BABA LOVELY POP BLUEBERRY MARKUP.png", 
-    specs: "24g x 24 packets", price: "Export Grade",
-    variants: [
-      { name: "Blueberry", image: "/transparent/BABA LOVELY POP BLUEBERRY MARKUP.png" },
-      { name: "Guava", image: "/transparent/BABA LOVELY POP GUAVA MARKUP.png" },
-      { name: "Mango", image: "/transparent/BABA LOVELY POP MANGO MARKUP.png" },
-      { name: "Orange", image: "/transparent/BABA LOVELY POP ORANGE MARKUP.png" },
-      { name: "Strawberry Icecream", image: "/transparent/BABA LOVELY POP STRAWBERRY ICECREAM MARKUP.png" },
-      { name: "Strawberry", image: "/transparent/BABA LOVELY POP STRAWBERRY MARKUP.png" },
-      { name: "Watermelon", image: "/transparent/BABA LOVELY POP WATERMELON MARKUP.png" }
-    ]
-  },
-  { 
-    id: 2, name: "DJ Milk Pop", category: "Lollipops", image: "/transparent/DJ Milk Pop Markup.png", 
-    specs: "15g x 48 pieces", price: "Export Grade" 
-  },
-  { 
-    id: 3, name: "DJ Fruitoo Lollipops", category: "Lollipops", image: "/transparent/DJ Fruitoo lollipops markup.png", 
-    specs: "10g x 100 pieces", price: "Export Grade" 
-  },
+  // Lollipops & Gums (Category/Lollipops and Bubblegum)
+  { id: 101, name: "BABA LOVELY POP BLUEBERRY", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP BLUEBERRY MARKUP.png" },
+  { id: 102, name: "BABA LOVELY POP GUAVA", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP GUAVA MARKUP.png" },
+  { id: 103, name: "BABA LOVELY POP MANGO", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP MANGO MARKUP.png" },
+  { id: 104, name: "BABA LOVELY POP ORANGE", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP ORANGE MARKUP.png" },
+  { id: 105, name: "BABA LOVELY POP STRAWBERRY ICECREAM", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP STRAWBERRY ICECREAM MARKUP.png" },
+  { id: 106, name: "BABA LOVELY POP STRAWBERRY", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP STRAWBERRY MARKUP.png" },
+  { id: 107, name: "BABA LOVELY POP WATERMELON", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/BABA LOVELY POP WATERMELON MARKUP.png" },
+  { id: 108, name: "DJ Bigg Boom", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Bigg Boom Markup.png" },
+  { id: 109, name: "DJ Butter pop", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Butter pop markup.png" },
+  { id: 110, name: "DJ Color Pop", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Color Pop Markup.png" },
+  { id: 111, name: "DJ Fruitoo lollipops", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Fruitoo lollipops markup.png" },
+  { id: 112, name: "DJ Gum Pops", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Gum Pops Markup.png" },
+  { id: 113, name: "DJ Love Pop", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Love Pop Markup.png" },
+  { id: 114, name: "DJ Milk Pop", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Milk Pop Markup.png" },
+  { id: 115, name: "DJ OLIVARY Bubblegum", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ OLIVARY Bubblegum Markup.png" },
+  { id: 116, name: "DJ Whistle Lollipops", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Whistle Lollipops Markup.png" },
+  { id: 117, name: "DJ Yogurt Pop Lollipop", category: "Lollipops", image: "/Category/Lollipops and Bubblegum/DJ Yogurt Pop Lollipop Markup.png" },
 
-  // Cookies & Biscuits
-  { 
-    id: 10, name: "DJ Cremo Series", category: "Cookies & Biscuits", image: "/transparent/DJ CREMO COMBINE.png", 
-    specs: "24g x 24 packets", price: "Export Grade",
-    variants: [
-      { name: "Chocolate", image: "/transparent/DJ CREMO CHOCOLATE Markup.png" },
-      { name: "Mango", image: "/transparent/DJ CREMO MANGO markup.png" },
-      { name: "Orange", image: "/transparent/DJ CREMO ORANGE Markup.png" },
-      { name: "Pineapple", image: "/transparent/DJ CREMO PINEAPPLE Markup.png" },
-      { name: "Strawberry", image: "/transparent/DJ CREMO STRAWBERRY MARKUP.png" },
-      { name: "Vanilla", image: "/transparent/DJ CREMO VANILLA Markup.png" }
-    ]
-  },
-  { 
-    id: 11, name: "DJ American Biscuits", category: "Cookies & Biscuits", image: "/transparent/DJ American Biscuits Markup Combine.png", 
-    specs: "24g x 24 packets", price: "Export Grade" 
-  },
-  { 
-    id: 12, name: "DJ Creamy Topper", category: "Cookies & Biscuits", image: "/transparent/DJ Creamy Topper Combine.png", 
-    specs: "24g x 24 packets", price: "Export Grade",
-    variants: [
-      { name: "Chocolate", image: "/transparent/DJ Creamy topper Chocolate Markup.png" },
-      { name: "Mango", image: "/transparent/DJ Creamy topper Mango Markup.png" },
-      { name: "Orange", image: "/transparent/DJ Creamy topper Orange Markup.png" },
-      { name: "Strawberry", image: "/transparent/DJ Creamy topper Strawberry Markup.png" }
-    ]
-  },
-  { 
-    id: 13, name: "DJ Milk Cookies", category: "Cookies & Biscuits", image: "/transparent/DJ Milk Cookies.png", 
-    specs: "20g x 48 packets", price: "Export Grade" 
-  },
-  { 
-    id: 18, name: "DJ Superb Plus", category: "Cookies & Biscuits", image: "/transparent/DJ Superb Plus Cookies.png", 
-    specs: "25g x 36 packets", price: "Export Grade" 
-  },
+  // Candies & Toffees (Category/Candies and toffees)
+  { id: 201, name: "DJ Butter and Milk Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Butter and Milk Candy.png" },
+  { id: 202, name: "DJ Choco Eclairs Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Choco Eclairs Jar Markup.png" },
+  { id: 203, name: "DJ Choco Eclairs Pouch", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Choco Eclairs Markup Pouch.png" },
+  { id: 204, name: "DJ Chocofull Toffee", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Chocofull Toffee Markup.png" },
+  { id: 205, name: "DJ Chocolate Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Chocolate Jar Markup.png" },
+  { id: 206, name: "DJ Coconut Desire Toffee", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Coconut Desire Toffee Markup.png" },
+  { id: 207, name: "DJ Coconut Eclairs Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Coconut Eclairs Jar Markup.png" },
+  { id: 208, name: "DJ Frubon Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Frubon Jar Markup.png" },
+  { id: 209, name: "DJ Frubon Pouch", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Frubon Pouch Markup.png" },
+  { id: 210, name: "DJ Fruit Shots Toffee", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Fruit Shots Toffee Markup.png" },
+  { id: 211, name: "DJ Fruits Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Fruits Candy Markup.png" },
+  { id: 212, name: "DJ LOL Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ LOL Candy Markup.png" },
+  { id: 213, name: "DJ Milk Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Milk Candy Markup.png" },
+  { id: 214, name: "DJ Milk Eclairs Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Milk Eclairs Jar Markup.png" },
+  { id: 215, name: "DJ Milkshake Toffee", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Milkshake Toffee Markup.png" },
+  { id: 216, name: "DJ Mint Cool Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Mint Cool Candy Markup.png" },
+  { id: 217, name: "DJ My Milk Jar", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ My Milk Markup Jar.png" },
+  { id: 218, name: "DJ Plutoo Candy", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ Plutoo Candy Markup.png" },
+  { id: 219, name: "DJ Tamarind Blast", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ TAMARIND BLAST MARKUP.png" },
+  { id: 220, name: "DJ Tangy Tamarind", category: "Candies & Toffees", image: "/Category/Candies and toffees/DJ TANGY TAMARIND Markup.png" },
+  { id: 221, name: "Tick Tick Fruity Milky", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK FRUITY MILKY.png" },
+  { id: 222, name: "Tick Tick Lemon", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK LEMON.png" },
+  { id: 223, name: "Tick Tick Lychee", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK LYCHEE.png" },
+  { id: 224, name: "Tick Tick Menthol", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK MENTHOL.png" },
+  { id: 225, name: "Tick Tick Peanut", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK PEANUT.png" },
+  { id: 226, name: "Tick Tick Tamarind", category: "Candies & Toffees", image: "/Category/Candies and toffees/TICK TICK TAMARIND.png" },
 
-  // Wafers
-  { 
-    id: 30, name: "Maravilha Wafers", category: "Wafers", image: "/transparent/Maravilha combine markup.png", 
-    specs: "24g x 24 packets", price: "Export Grade",
-    variants: [
-      { name: "Chocolate", image: "/transparent/Maravila ChocolatevMarkup.png" },
-      { name: "Orange", image: "/transparent/Maravila Orange Markup.png" },
-      { name: "Strawberry", image: "/transparent/Maravila StrawberryMarkup.png" },
-      { name: "Vanilla", image: "/transparent/Maravilha Vanilla Markup.png" }
-    ]
-  },
+  // Chocolates (Category/Chocolates)
+  { id: 301, name: "DJ Cocovibe", category: "Chocolates", image: "/Category/Chocolates/DJ Cocovibe Markup.png" },
+  { id: 302, name: "DJ Frenzy", category: "Chocolates", image: "/Category/Chocolates/DJ Frenzy Markup.png" },
+  { id: 303, name: "DJ Starvibe", category: "Chocolates", image: "/Category/Chocolates/DJ Starvibe Markup.png" },
 
-  // Candies & Toffees
-  { 
-    id: 40, name: "DJ Choco Eclairs", category: "Candies & Toffees", image: "/transparent/DJ Choco Eclairs Jar Markup.png", 
-    specs: "150 pieces x 12 jars", price: "Export Grade" 
-  },
-  { 
-    id: 43, name: "Tick Tick Series", category: "Candies & Toffees", image: "/transparent/TICK TICK FRUITY MILKY.png", 
-    specs: "100 pieces x 50 packets", price: "Export Grade",
-    variants: [
-      { name: "Fruity Milky", image: "/transparent/TICK TICK FRUITY MILKY.png" },
-      { name: "Lemon", image: "/transparent/TICK TICK LEMON.png" },
-      { name: "Lychee", image: "/transparent/TICK TICK LYCHEE.png" },
-      { name: "Menthol", image: "/transparent/TICK TICK MENTHOL.png" },
-      { name: "Peanut", image: "/transparent/TICK TICK PEANUT.png" },
-      { name: "Tamarind", image: "/transparent/TICK TICK TAMARIND.png" }
-    ]
-  },
-
-  // Bubble Gum
-  { 
-    id: 60, name: "DJ Olivary Gum", category: "Bubble Gum", image: "/transparent/DJ OLIVARY Bubblegum Markup.png", 
-    specs: "100 pieces per jar", price: "Export Grade" 
-  },
-  { 
-    id: 61, name: "DJ Gum Pops", category: "Bubble Gum", image: "/transparent/DJ Gum Pops Markup.png", 
-    specs: "50 pieces per packet", price: "Export Grade" 
-  }
+  // Cookies & Biscuits (Category/Bicsuits and Wafers)
+  { id: 401, name: "BABA MILK FRESH", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/BABA MILK FRESH Markup.png" },
+  { id: 402, name: "Boost Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Boost Chocolate.png" },
+  { id: 403, name: "DJ American Biscuits Combine", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ American Biscuits Markup Combine.png" },
+  { id: 404, name: "DJ American Biscuits", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ American Biscuits Markup.png" },
+  { id: 405, name: "DJ Boost wheat", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Boost wheat.png" },
+  { id: 406, name: "DJ Butter Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Butter Cookies.png" },
+  { id: 407, name: "DJ Cashew Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CASHEW COOKIES.png" },
+  { id: 408, name: "DJ Chocochip Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CHOCOCHIP COOKIES.png" },
+  { id: 409, name: "DJ Coconut Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ COCONUT COOKIES.png" },
+  { id: 410, name: "DJ Cream Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM CHOCOLATE MARKUP.png" },
+  { id: 411, name: "DJ Cream Combine", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM COMBINE.png" },
+  { id: 412, name: "DJ Cream Fresh", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM FRESH MARKUP.png" },
+  { id: 413, name: "DJ Cream Mango", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM MANGO MARKUP.png" },
+  { id: 414, name: "DJ Cream Pineapple", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM PINEAPPLE MARKUP.png" },
+  { id: 415, name: "DJ Cream Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM STRAWBERRY MARKUP.png" },
+  { id: 416, name: "DJ Cream Vanilla", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREAM VANILLA MARKUP.png" },
+  { id: 417, name: "DJ Cremo Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO CHOCOLATE Markup.png" },
+  { id: 418, name: "DJ Cremo Combine", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO COMBINE.png" },
+  { id: 419, name: "DJ Cremo Mango", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO MANGO markup.png" },
+  { id: 420, name: "DJ Cremo Orange", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO ORANGE Markup.png" },
+  { id: 421, name: "DJ Cremo Pineapple", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO PINEAPPLE Markup.png" },
+  { id: 422, name: "DJ Cremo Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO STRAWBERRY MARKUP.png" },
+  { id: 423, name: "DJ Cremo Vanilla", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ CREMO VANILLA Markup.png" },
+  { id: 424, name: "DJ Conico Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Conico Chocolate.png" },
+  { id: 425, name: "DJ Conico Mango", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Conico Mango.png" },
+  { id: 426, name: "DJ Conico Orange", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Conico Orange.png" },
+  { id: 427, name: "DJ Conico Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Conico Strawberry.png" },
+  { id: 428, name: "DJ Creamy Topper Combine", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Creamy Topper Combine.png" },
+  { id: 429, name: "DJ Creamy topper Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Creamy topper Chocolate Markup.png" },
+  { id: 430, name: "DJ Creamy topper Mango", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Creamy topper Mango Markup.png" },
+  { id: 431, name: "DJ Creamy topper Orange", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Creamy topper Orange Markup.png" },
+  { id: 432, name: "DJ Creamy topper Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Creamy topper Strawberry Markup.png" },
+  { id: 433, name: "DJ Finger Shortbread", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ FINGER SHORTBREAD COOKIES.png" },
+  { id: 434, name: "DJ Football", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Football Markup.png" },
+  { id: 435, name: "DJ Glucose", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Glucose Markup.png" },
+  { id: 436, name: "DJ Milk Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Milk Cookies.png" },
+  { id: 437, name: "DJ Milk Plus", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Milk Plus Markup.png" },
+  { id: 438, name: "DJ Nice", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Nice Markup.png" },
+  { id: 439, name: "DJ Original Shortbread", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ ORIGINAL SHORTBREAD.png" },
+  { id: 440, name: "DJ Pistachio Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ PISTACHIO COOKIES.png" },
+  { id: 441, name: "DJ Short Bread", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ SHORT BREAD COOKIES.png" },
+  { id: 442, name: "DJ Superb Cookies", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ SUPERB COOKIES.jpeg" },
+  { id: 443, name: "DJ Wafers Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Wafers Chocolate.png" },
+  { id: 444, name: "DJ Wafers Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Wafers Strawberry.png" },
+  { id: 445, name: "DJ Wafers Vanilla", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/DJ Wafers Vanilla.png" },
+  { id: 446, name: "Maravila Chocolate", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Maravila ChocolatevMarkup.png" },
+  { id: 447, name: "Maravila Orange", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Maravila Orange Markup.png" },
+  { id: 448, name: "Maravila Strawberry", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Maravila StrawberryMarkup.png" },
+  { id: 449, name: "Maravilha Vanilla", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Maravilha Vanilla Markup.png" },
+  { id: 450, name: "Maravilha Combine", category: "Cookies & Biscuits", image: "/Category/Bicsuits and Wafers/Maravilha combine markup.png" },
 ];
 
 export default function Products() {
@@ -121,13 +127,8 @@ export default function Products() {
     const loadProducts = async () => {
       try {
         setIsLoading(true);
-        const res = await fetchAllProducts();
-        if (res.success && res.products && res.products.length > 0) {
-          setProducts(res.products);
-        } else {
-          // If DB is empty OR fetch fails, use static fallback
-          setProducts(staticProductsFallback);
-        }
+        // User requested to use ONLY products from the category folders (fallback)
+        setProducts(staticProductsFallback);
       } catch (err) {
         console.error("Error loading products:", err);
         setProducts(staticProductsFallback);
@@ -147,17 +148,26 @@ export default function Products() {
   }, [detailProduct]);
 
   const categories = [
-    { id: "All", label: t("categoryAll") },
-    { id: "Cookies & Biscuits", label: t("categoryBiscuits") },
-    { id: "Wafers", label: t("categoryWafers") },
-    { id: "Candies & Toffees", label: t("categoryCandies") },
-    { id: "Lollipops", label: t("categoryLollipops") },
-    { id: "Bubble Gum", label: t("categoryGum") }
+    { id: "All", label: t("categoryAll"), image: "/Category/Bicsuits and Wafers/DJ CREMO COMBINE.png" },
+    { id: "Lollipops", label: t("categoryLollipops"), image: "/Category/Lollipops and Bubblegum/DJ Whistle Lollipops Markup.png" },
+    { id: "Candies & Toffees", label: t("categoryCandies"), image: "/Category/Candies and toffees/DJ Choco Eclairs Jar Markup.png" },
+    { id: "Cookies & Biscuits", label: t("categoryBiscuits"), image: "/Category/Bicsuits and Wafers/DJ American Biscuits Markup Combine.png" },
+    { id: "Chocolates", label: t("categoryChocolates"), image: "/Category/Chocolates/DJ Cocovibe Markup.png" }
   ];
 
   const filteredProducts = activeCategory === "All" 
     ? products 
-    : products.filter(p => p.category === activeCategory);
+    : products.filter(p => {
+        const cat = p.category?.toLowerCase() || "";
+        const active = activeCategory.toLowerCase();
+        
+        if (active === "lollipops") return cat.includes("lollipop") || cat.includes("gum");
+        if (active === "cookies & biscuits") return cat.includes("biscuit") || cat.includes("cookie") || cat.includes("wafer");
+        if (active === "candies & toffees") return cat.includes("candy") || cat.includes("toffee");
+        if (active === "chocolates") return cat.includes("chocolate");
+        
+        return cat === active;
+      });
 
   const toggleProductSelection = (e: React.MouseEvent, id: number) => {
     e.stopPropagation();
@@ -206,31 +216,60 @@ export default function Products() {
             </Link>
           </div>
   
-          {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {/* Visual Categories Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 mb-20">
             {categories.map((cat) => {
                const isActive = activeCategory === cat.id;
-               const catCount = cat.id === "All" ? products.length : products.filter((p: any) => p.category === cat.id).length;
+               const catCount = cat.id === "All" ? products.length : products.filter((p: any) => {
+                  const pCat = p.category?.toLowerCase() || "";
+                  const cTerm = cat.id.toLowerCase();
+                  if (cTerm === "lollipops") return pCat.includes("lollipop") || pCat.includes("gum");
+                  if (cTerm === "cookies & biscuits") return pCat.includes("biscuit") || pCat.includes("cookie") || pCat.includes("wafer");
+                  if (cTerm === "candies & toffees") return pCat.includes("candy") || pCat.includes("toffee");
+                  if (cTerm === "chocolates") return pCat.includes("chocolate");
+                  return pCat === cTerm;
+               }).length;
 
                return (
-                <button
+                <motion.button
                   key={cat.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveCategory(cat.id)}
                   className={cn(
-                    "px-8 py-4 text-[11px] font-black uppercase tracking-widest rounded-full transition-all flex items-center gap-3 border-2 border-transparent",
+                    "relative group flex flex-col items-center p-6 md:p-8 rounded-[3rem] transition-all border-4 overflow-hidden",
                     isActive 
-                      ? "bg-[#ff5c8a] text-white shadow-[0_15px_30px_rgba(255,92,138,0.4)] scale-105" 
-                      : "bg-white text-slate-500 hover:border-pink-200 hover:text-[#ff5c8a] shadow-sm hover:shadow-md"
+                      ? "bg-white border-[#ff5c8a] shadow-[0_20px_40px_rgba(255,92,138,0.15)]" 
+                      : "bg-white/60 border-transparent hover:border-pink-200 hover:bg-white shadow-sm"
                   )}
                 >
-                  {cat.label}
-                  <span className={cn(
-                    "px-2.5 py-0.5 rounded-full text-[10px] font-bold",
-                    isActive ? "bg-white text-[#ff5c8a]" : "bg-slate-100 text-slate-400 group-hover:bg-pink-100 group-hover:text-[#ff5c8a]"
+                  <div className={cn(
+                    "w-24 h-24 md:w-32 md:h-32 mb-6 rounded-[2rem] flex items-center justify-center p-3 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
+                    isActive ? "bg-pink-50" : "bg-slate-50"
                   )}>
-                    {catCount}
+                    <img src={cat.image} alt={cat.label} className="w-full h-full object-contain filter drop-shadow-sm" />
+                  </div>
+                  
+                  <span className={cn(
+                    "text-[11px] font-black uppercase tracking-widest text-center leading-tight mb-1",
+                    isActive ? "text-[#ff5c8a]" : "text-slate-600 group-hover:text-[#ff5c8a]"
+                  )}>
+                    {cat.label}
                   </span>
-                </button>
+                  
+                  <span className="text-[10px] font-bold text-slate-400">
+                    {catCount} {t("navProducts") || "Products"}
+                  </span>
+
+                  {isActive && (
+                    <motion.div 
+                      layoutId="activeCatIndicator" 
+                      className="absolute bottom-0 left-0 right-0 h-2 bg-[#ff5c8a]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                    />
+                  )}
+                </motion.button>
                )
             })}
           </div>
@@ -244,51 +283,25 @@ export default function Products() {
               </div>
             ) : filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {filteredProducts.map((product: any) => {
-                  const isSelected = selectedProductIds.includes(product.id);
-  
-                  return (
-                    <motion.div 
-                      key={product.id}
-                      layout
-                      onClick={() => setDetailProduct(product)}
-                      className={cn(
-                        "group relative bg-white border-2 rounded-[3rem] overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_60px_rgba(0,0,0,0.08)]",
-                        isSelected ? "border-[#ff5c8a] ring-4 ring-[#ff5c8a]/10" : "border-transparent shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
-                      )}
-                    >
-                      {/* Select Button */}
-                      <button 
-                        onClick={(e) => toggleProductSelection(e, product.id)}
-                        className={cn(
-                          "absolute top-6 w-10 h-10 rounded-full flex items-center justify-center z-20 transition-all border-2",
-                          isRTL ? "left-6" : "right-6",
-                          isSelected ? "bg-[#ff5c8a] border-[#ff5c8a] text-white shadow-lg shadow-pink-500/40" : "bg-white/80 backdrop-blur-sm border-slate-200 text-slate-300 hover:border-[#ff5c8a] hover:text-[#ff5c8a]"
-                        )}
-                      >
-                        <Check className="w-5 h-5" strokeWidth={4} />
-                      </button>
-                      
-                      <div className="aspect-square w-full bg-white flex items-center justify-center p-8 relative overflow-hidden">
-                        <motion.img 
-                          src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"} 
-                          alt={product.name} 
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 filter drop-shadow-xl"
-                        />
-                      </div>
-                      
-                      <div className="p-8 text-center bg-gradient-to-b from-white to-slate-50 flex flex-col items-center">
-                        <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] mb-3 block">{getTranslatedCategory(product.category)}</span>
-                        <h3 className="text-2xl font-black text-[#014995] uppercase tracking-tighter group-hover:text-[#ff5c8a] transition-colors mb-5 heading-font leading-tight">{product.name}</h3>
-                        
-                        <div className="inline-flex items-center gap-2 bg-white border-2 border-slate-100 px-4 py-2 rounded-full shadow-sm group-hover:border-blue-100 transition-colors">
-                           <Layers className="w-4 h-4 text-[#ff5c8a]" />
-                           <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{product.specs || "Standard Unit"}</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )
-                })}
+                {filteredProducts.map((product: any) => (
+                  <motion.div 
+                    key={product.id}
+                    layout
+                    onClick={() => setDetailProduct(product)}
+                    className="group relative bg-white border-2 border-transparent rounded-[3rem] overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_60px_rgba(0,0,0,0.08)] shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+                  >
+                    <div className="aspect-square w-full bg-white flex items-center justify-center p-6 relative overflow-hidden">
+                      <motion.img 
+                        src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"} 
+                        alt={product.name} 
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4 text-center bg-gradient-to-b from-white to-slate-50 border-t border-slate-50">
+                      <h3 className="text-lg font-black text-[#014995] uppercase tracking-tighter group-hover:text-[#ff5c8a] transition-colors heading-font leading-tight">{product.name}</h3>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             ) : (
               <div className="text-center py-32">
@@ -371,33 +384,20 @@ export default function Products() {
                     <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#014995] uppercase tracking-tighter leading-[0.9] md:leading-[0.85] heading-font drop-shadow-sm">{detailProduct.name}</h2>
                   </div>
                   
-                  <div className="space-y-8 mb-12">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                         <div className="w-10 h-10 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center text-[#ff5c8a]">
-                           <Layers className="w-5 h-5" />
-                         </div>
-                         <h4 className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">{t("productSpecs")}</h4>
-                      </div>
-                      <p className="text-xl md:text-2xl font-bold text-[#334155] bg-slate-50 border-2 border-slate-100 rounded-3xl p-6 shadow-none uppercase">{detailProduct.specs}</p>
-                    </div>
+                  <div className="flex flex-col gap-4 mt-auto">
+                    <Link 
+                      href={`https://wa.me/919924403330?text=${encodeURIComponent(`Hello, I am interested in ${detailProduct.name} ${detailProduct.specs || ""}. Can you provide more details?`)}`}
+                      target="_blank"
+                      className="h-20 rounded-full font-black uppercase tracking-widest text-[14px] transition-all flex items-center justify-center gap-4 transform active:scale-95 bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-105 shadow-[0_20px_40px_rgba(37,211,102,0.3)]"
+                    >
+                      <WhatsAppIcon className="w-7 h-7" />
+                      Connect on WhatsApp
+                    </Link>
 
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                         <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#014995]">
-                           <Globe className="w-5 h-5" />
-                         </div>
-                         <h4 className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">{t("productSupplyType")}</h4>
-                      </div>
-                      <p className="text-lg font-bold text-slate-600 bg-slate-50 border-2 border-slate-100 rounded-3xl p-6 uppercase">{t("productSupplyDesc")}</p>
-                    </div>
-                  </div>
-  
-                  <div className="flex gap-4 mt-auto">
                     <button 
                       onClick={(e) => { toggleProductSelection(e as any, detailProduct.id); setDetailProduct(null); }}
                       className={cn(
-                        "flex-1 h-20 rounded-full font-black uppercase tracking-widest text-[14px] transition-all flex items-center justify-center gap-4 transform active:scale-95",
+                        "h-20 rounded-full font-black uppercase tracking-widest text-[14px] transition-all flex items-center justify-center gap-4 transform active:scale-95",
                         selectedProductIds.includes(detailProduct.id) ? "bg-[#014995] text-white shadow-[0_20px_40px_rgba(1,73,149,0.3)] hover:scale-105" : "bg-[#ff5c8a] text-white hover:bg-[#e11d48] hover:scale-105 shadow-[0_20px_40px_rgba(255,92,138,0.3)]"
                       )}
                     >

@@ -36,22 +36,15 @@ const pinnedCountries = [
 
 export default function WorldMap() {
   const { t, isRTL } = useLanguage();
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   const highlights = [
-    { title: t("mapHigh1Title"), desc: t("mapHigh1Desc"), focus: [20, 10] },
-    { title: t("mapHigh2Title"), desc: t("mapHigh2Desc"), focus: [45, 20] },
-    { title: t("mapHigh3Title"), desc: t("mapHigh3Desc"), focus: [-20, 30] }
+    { title: t("mapHigh1Title"), desc: t("mapHigh1Desc"), focus: [20, 10] }
   ];
 
   useEffect(() => {
     setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % highlights.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [highlights.length]);
+  }, []);
 
   if (!mounted) return <div className="py-40 bg-white h-[801px]" />;
 
@@ -65,41 +58,19 @@ export default function WorldMap() {
           {/* Left: Content Slider */}
           <div className="w-full lg:w-1/3 text-left">
             <motion.div
-              key={currentSlide}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
               className="space-y-6"
             >
               <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#003366] rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
-                {highlights[currentSlide].title}
+                {highlights[0].title}
               </span>
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-[1.1] heading-font">
                 {t("mapTitle")} <br /><span className="text-[#003366]">{t("mapSubtitle")}</span>
               </h2>
               <p className="text-lg text-slate-500 font-medium leading-relaxed">
-                {highlights[currentSlide].desc}
+                {highlights[0].desc}
               </p>
-              
-              <div className="flex items-center gap-4 pt-4">
-                <button 
-                  onClick={() => setCurrentSlide((prev) => (prev - 1 + highlights.length) % highlights.length)}
-                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors group"
-                >
-                  <ChevronLeft className={cn("w-4 h-4 text-slate-400 group-hover:text-[#003366] transition-colors", isRTL && "rotate-180")} />
-                </button>
-                <div className="flex gap-2">
-                  {highlights.map((_, i) => (
-                    <div key={i} className={cn("w-1.5 h-1.5 rounded-full transition-all", i === currentSlide ? "bg-[#003366] w-5" : "bg-slate-200")} />
-                  ))}
-                </div>
-                <button 
-                  onClick={() => setCurrentSlide((prev) => (prev + 1) % highlights.length)}
-                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors group"
-                >
-                  <ChevronRight className={cn("w-4 h-4 text-slate-400 group-hover:text-[#003366] transition-colors", isRTL && "rotate-180")} />
-                </button>
-              </div>
             </motion.div>
           </div>
 
@@ -107,7 +78,8 @@ export default function WorldMap() {
           <div className="w-full lg:w-2/3 h-[500px] relative cursor-grab active:cursor-grabbing bg-slate-50/50 rounded-[3rem] border border-slate-100 p-4">
             <ComposableMap
                projectionConfig={{
-                 scale: 180,
+                 scale: 350,
+                 center: [30, 5]
                }}
                style={{ width: "100%", height: "100%" }}
             >

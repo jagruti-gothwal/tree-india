@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const certificates = [
-  { name: "FEIO", image: "/certificates/feio.png", fallback: "FEIO" },
+  { name: "FIEO", image: "/certificates/fieo.png", fallback: "FIEO" },
   { name: "APEDA", image: "/certificates/apeda.png", fallback: "APEDA" },
   { name: "GST", image: "/certificates/gst.png", fallback: "GST" },
   { name: "IEC", image: "/certificates/iec.png", fallback: "IEC" },
