@@ -273,6 +273,45 @@ export default function Products() {
                )
             })}
           </div>
+
+          {/* Bulk Actions */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-12">
+             <div className="flex items-center gap-4">
+               <Layers className="w-5 h-5 text-[#ff5c8a]" />
+               <span className="text-sm font-black text-[#014995] uppercase tracking-widest">
+                  {filteredProducts.length} {t("navProducts") || "Products"} in {getTranslatedCategory(activeCategory)}
+               </span>
+             </div>
+             
+             <div className="flex items-center gap-4">
+                <button
+                  onClick={() => {
+                    const allIds = filteredProducts.map((p: any) => p.id);
+                    setSelectedProductIds(prev => {
+                      const newIds = [...prev];
+                      allIds.forEach(id => {
+                        if (!newIds.includes(id)) newIds.push(id);
+                      });
+                      return newIds;
+                    });
+                  }}
+                  className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border-2 border-slate-100 text-[#014995] font-black text-[11px] uppercase tracking-widest hover:border-[#ff5c8a] transition-all hover:scale-105 active:scale-95 shadow-sm"
+                >
+                  <Check className="w-4 h-4" />
+                  {t("productSelectAll") || "Select All"}
+                </button>
+                
+                {selectedProductIds.length > 0 && (
+                  <button
+                    onClick={() => setSelectedProductIds([])}
+                    className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border-2 border-red-100 text-red-500 font-black text-[11px] uppercase tracking-widest hover:border-red-400 transition-all hover:scale-105 active:scale-95 shadow-sm"
+                  >
+                    <X className="w-4 h-4" />
+                    {t("productClearAll") || "Clear All"}
+                  </button>
+                )}
+             </div>
+          </div>
   
           {/* Products Grid */}
           <div className="min-h-[400px]">
@@ -283,25 +322,68 @@ export default function Products() {
               </div>
             ) : filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {filteredProducts.map((product: any) => (
-                  <motion.div 
-                    key={product.id}
-                    layout
-                    onClick={() => setDetailProduct(product)}
-                    className="group relative bg-white border-2 border-transparent rounded-[3rem] overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_60px_rgba(0,0,0,0.08)] shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
-                  >
-                    <div className="aspect-square w-full bg-white flex items-center justify-center p-6 relative overflow-hidden">
-                      <motion.img 
-                        src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"} 
-                        alt={product.name} 
-                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4 text-center bg-gradient-to-b from-white to-slate-50 border-t border-slate-50">
-                      <h3 className="text-lg font-black text-[#014995] uppercase tracking-tighter group-hover:text-[#ff5c8a] transition-colors heading-font leading-tight">{product.name}</h3>
-                    </div>
-                  </motion.div>
-                ))}
+                {filteredProducts.map((product: any) => {
+                  const isSelected = selectedProductIds.includes(product.id);
+                  return (
+                    <motion.div 
+                      key={product.id}
+                      layout
+                      className={cn(
+                        "group relative bg-white border-4 rounded-[3rem] overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-[0_10px_30px_rgba(0,0,0,0.04)]",
+                        isSelected 
+                          ? "border-[#ff5c8a] shadow-[0_30px_60px_rgba(255,92,138,0.15)] ring-4 ring-[#ff5c8a]/10" 
+                          : "border-transparent hover:shadow-[0_40px_60px_rgba(0,0,0,0.08)]"
+                      )}
+                      onClick={() => setDetailProduct(product)}
+                    >
+                      {/* Selection Badge */}
+                      <div 
+                        onClick={(e) => toggleProductSelection(e, product.id)}
+                        className={cn(
+                          "absolute top-6 right-6 z-20 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg",
+                          isSelected 
+                            ? "bg-[#ff5c8a] text-white scale-110 rotate-0" 
+                            : "bg-white/80 backdrop-blur-md text-slate-300 hover:text-[#ff5c8a] hover:scale-110 -rotate-12 group-hover:rotate-0 group-hover:text-slate-400"
+                        )}
+                      >
+                        {isSelected ? <Check className="w-7 h-7" strokeWidth={4} /> : <div className="w-6 h-6 border-4 border-current rounded-lg" />}
+                      </div>
+
+                      <div className="aspect-square w-full bg-white flex items-center justify-center p-6 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <motion.img 
+                          src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"} 
+                          alt={product.name} 
+                          className={cn(
+                            "w-full h-full object-contain transition-transform duration-700",
+                            isSelected ? "scale-95" : "group-hover:scale-110"
+                          )}
+                        />
+                      </div>
+                      
+                      <div className={cn(
+                        "p-6 text-center transition-colors duration-500",
+                        isSelected ? "bg-pink-50/50" : "bg-gradient-to-b from-white to-slate-50 border-t border-slate-50 group-hover:bg-white"
+                      )}>
+                        <h3 className={cn(
+                          "text-xl font-black uppercase tracking-tighter transition-colors heading-font leading-tight",
+                          isSelected ? "text-[#ff5c8a]" : "text-[#014995] group-hover:text-[#ff5c8a]"
+                        )}>{product.name}</h3>
+                        <p className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                          {getTranslatedCategory(product.category)}
+                        </p>
+                      </div>
+
+                      {/* Info Icon for Detail */}
+                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                         <div className="flex items-center gap-2 px-4 py-2 bg-[#014995] rounded-full text-white font-black text-[10px] uppercase tracking-widest shadow-xl">
+                            <Info className="w-4 h-4" />
+                            {t("productSpecs") || "View Details"}
+                         </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-32">
