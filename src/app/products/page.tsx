@@ -244,7 +244,7 @@ export default function Products() {
                   )}
                 >
                   <div className={cn(
-                    "w-24 h-24 md:w-32 md:h-32 mb-6 rounded-[2rem] flex items-center justify-center p-3 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
+                    "w-24 h-24 md:w-32 md:h-32 mb-6 rounded-[2rem] flex items-center justify-center p-1 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
                     isActive ? "bg-pink-50" : "bg-slate-50"
                   )}>
                     <img src={cat.image} alt={cat.label} className="w-full h-full object-contain filter drop-shadow-sm" />
@@ -349,14 +349,14 @@ export default function Products() {
                         {isSelected ? <Check className="w-7 h-7" strokeWidth={4} /> : <div className="w-6 h-6 border-4 border-current rounded-lg" />}
                       </div>
 
-                      <div className="aspect-square w-full bg-white flex items-center justify-center p-6 relative overflow-hidden">
+                      <div className="aspect-square w-full bg-white flex items-center justify-center p-3 relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                         <motion.img 
                           src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"} 
                           alt={product.name} 
                           className={cn(
                             "w-full h-full object-contain transition-transform duration-700",
-                            isSelected ? "scale-95" : "group-hover:scale-110"
+                            isSelected ? "scale-95" : "scale-105 group-hover:scale-115"
                           )}
                         />
                       </div>

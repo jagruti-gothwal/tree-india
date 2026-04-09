@@ -155,9 +155,9 @@ export default function Export() {
       <section className="relative z-20 -mt-16 mb-40 px-4">
         <div className="max-w-7xl mx-auto bg-white rounded-[3rem] shadow-[0_50px_100px_rgba(0,0,0,0.1)] border border-slate-100 p-12 grid grid-cols-2 lg:grid-cols-4 gap-12 divide-x divide-slate-100 divide-dashed">
           {[
-            { label: t("exportStatsGlobal"), val: "50+", sub: t("exportStatsCountries") },
-            { label: t("exportStatsProducts"), val: "200+", sub: t("exportStatsSKUs") },
-            { label: t("exportStatsExp"), val: "15+", sub: t("exportStatsYears") },
+            { label: t("exportStatsGlobal"), val: "15+", sub: t("exportStatsCountries") },
+            { label: t("exportStatsProducts"), val: "100+", sub: t("exportStatsSKUs") },
+            { label: t("exportStatsExp"), val: "10+", sub: t("exportStatsYears") },
             { label: t("exportStatsSuccess"), val: "99%", sub: t("exportStatsDelivery") },
           ].map((stat, i) => (
             <motion.div 

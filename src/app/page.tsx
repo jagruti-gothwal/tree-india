@@ -310,7 +310,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: t("featured1Title"), category: t("featured1Cat"), image: "/WhatsApp Image 2026-04-06 at 3.54.32 PM (1).png", color: "bg-[#bdeeff] shadow-blue-100" },
               { title: t("featured2Title"), category: t("featured2Cat"), image: "/WhatsApp Image 2026-04-06 at 3.54.32 PM.png", color: "bg-[#ffd93d] shadow-amber-100" },
@@ -327,9 +327,9 @@ export default function Home() {
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link href="/products" className="block group text-center">
-                  <div className={`relative aspect-square ${item.color} rounded-[3rem] flex items-center justify-center p-12 mb-10 transition-all duration-500 group-hover:scale-105 shadow-2xl`}>
+                  <div className={`relative aspect-square ${item.color} rounded-[3rem] flex items-center justify-center p-2 mb-10 transition-all duration-500 group-hover:scale-105 shadow-2xl`}>
                     <motion.img
-                      animate={hoveredProduct === idx ? { y: -30, scale: 1.15, rotate: 5 } : { y: 0, scale: 1, rotate: 0 }}
+                      animate={hoveredProduct === idx ? { y: -30, scale: 1.25, rotate: 5 } : { y: 0, scale: 1.1, rotate: 0 }}
                       src={item.image} alt={item.title} className="max-h-full max-w-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] z-10"
                     />
                   </div>
