@@ -6,6 +6,7 @@ import { submitInquiry } from "@/app/actions";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
+import { staticProductsFallback } from "@/lib/products";
 
 function ContactForm() {
   const { t, isRTL } = useLanguage();
@@ -43,7 +44,7 @@ function ContactForm() {
             </div>
             <h3 className="text-4xl font-black text-[#014995] mb-4 uppercase tracking-tighter heading-font">{t("contactSuccessTitle")}</h3>
             <p className="text-slate-500 font-bold text-lg mb-10 max-w-sm mx-auto leading-relaxed">
-              {t("contactSuccessDesc")}
+               {t("contactSuccessDesc")}
             </p>
             <button 
               onClick={() => setStatus("idle")} 
@@ -63,12 +64,21 @@ function ContactForm() {
 
       <form onSubmit={handleSubmit} className={cn("space-y-8 relative z-10", isRTL && "text-right")}>
         {productIds && (
-          <div className="p-6 mb-8 bg-amber-50 border-2 border-[#ffd93d] rounded-3xl text-sm font-bold shadow-sm flex items-center justify-between">
-            <div className="flex flex-col">
+          <div className="p-6 mb-8 bg-amber-50 border-2 border-[#ffd93d] rounded-3xl text-sm font-bold shadow-sm flex items-center justify-between gap-6">
+            <div className="flex flex-col flex-1">
               <span className="uppercase tracking-widest text-[11px] block mb-1 text-amber-600 font-black">{"Attached for Bulk Inquiry:"}</span>
-              <span className="text-lg text-amber-900">{productIds.split(",").length} {t("productSelectedCount")}</span>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {productIds.split(",").map(id => {
+                  const product = staticProductsFallback.find(p => p.id === parseInt(id));
+                  return product ? (
+                    <span key={id} className="px-3 py-1 bg-white border border-amber-200 rounded-full text-[10px] text-amber-800 font-bold uppercase tracking-tighter">
+                      {product.name}
+                    </span>
+                  ) : null;
+                })}
+              </div>
             </div>
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-inner">
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-inner shrink-0">
                <span className="text-[#ff5c8a] font-black">{productIds.split(",").length}</span>
             </div>
           </div>

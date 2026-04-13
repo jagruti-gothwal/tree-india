@@ -14,6 +14,7 @@ export const translations: Translations = {
     navInquiry: "Bulk Inquiry",
     navQuote: "Get Quote",
     navDownload: "Download Products",
+    navFlavors: "Flavors",
     
     heroTrust: "Trusted Global Exporter",
     heroTitle1: "Best Quality",
@@ -226,6 +227,7 @@ export const translations: Translations = {
     navInquiry: "Consulta em Lote",
     navQuote: "Solicitar Cotação",
     navDownload: "Baixar Catálogo",
+    navFlavors: "Sabores",
     
     heroTrust: "Exportador Global Premium",
     heroTitle1: "Qualidade",
@@ -424,6 +426,7 @@ export const translations: Translations = {
     navInquiry: "طلب بالجملة",
     navQuote: "اطلب عرض سعر",
     navDownload: "تحميل الكتالوج",
+    navFlavors: "نكهات",
     
     heroTrust: "مصدر عالمي متميز",
     heroTitle1: "مصدر",
@@ -618,6 +621,7 @@ export const translations: Translations = {
     navInquiry: "Demande de Gros",
     navQuote: "Demander Devis",
     navDownload: "Télécharger Catalogue",
+    navFlavors: "Saveurs",
     
     heroTrust: "Exportateur Mondial Premium",
     heroTitle1: "Qualité",
@@ -812,6 +816,7 @@ export const translations: Translations = {
     navInquiry: "Consulta Mayorista",
     navQuote: "Obtener Cotización",
     navDownload: "Descargar Catálogo",
+    navFlavors: "Sabores",
     
     heroTrust: "Exportador Global Premium",
     heroTitle1: "Calidad",
