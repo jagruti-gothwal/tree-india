@@ -13,6 +13,11 @@ const fredoka = Fredoka({ subsets: ["latin"], variable: "--font-outfit", weight:
 export const metadata: Metadata = {
   title: "Tree India | High-Quality Confectionery Export",
   description: "Tree India delivers high-quality confectionery products to international markets with consistency, reliability, and competitive pricing.",
+  icons: {
+    icon: "/tree.png",
+    shortcut: "/tree.png",
+    apple: "/tree.png",
+  },
 };
 
 export default function RootLayout({
