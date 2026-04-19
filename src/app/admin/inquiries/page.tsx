@@ -6,13 +6,24 @@ import { fetchAllInquiries, deleteInquiry, checkAdminPassword, updateInquiryStat
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  product_ids: string;
+  status: string;
+  created_at: string;
+}
+
 export default function InquiriesAdmin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [inquiries, setInquiries] = useState<any[]>([])
-  const [activeInquiry, setActiveInquiry] = useState<any>(null)
+  const [inquiries, setInquiries] = useState<Inquiry[]>([])
+  const [activeInquiry, setActiveInquiry] = useState<Inquiry | null>(null)
   const [activeTab, setActiveTab] = useState<string>("New")
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -32,7 +43,10 @@ export default function InquiriesAdmin() {
     setLoading(true)
     const res = await fetchAllInquiries()
     if (res.success) setInquiries(res.inquiries || [])
-    else console.error(res.error)
+    else {
+      console.error(res.error)
+      alert("Database Error: " + res.error)
+    }
     setLoading(false)
   }
 
@@ -54,8 +68,7 @@ export default function InquiriesAdmin() {
     } else alert(res.error)
   }
 
-  // Filter inquiries by tab
-  const filteredInquiries = inquiries.filter(inq => {
+  const filteredInquiries = inquiries.filter((inq: Inquiry) => {
       const status = inq.status || "New";
       if (activeTab === "New") return status === "New";
       if (activeTab === "Contacted") return status === "Contacted";

@@ -9,77 +9,88 @@ import { staticProductsFallback } from "@/lib/products";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchAllProducts } from "../admin/actions";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
+
+interface ProductVariant {
+  id: number;
+  name: string;
+  image: string;
+}
+
+interface ProductGroup {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  specs?: string;
+  variants: ProductVariant[];
+}
+
 export default function Products() {
   const { t, isRTL } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
-  const [detailProduct, setDetailProduct] = useState<any>(null);
-  const [products, setProducts] = useState<any[]>([]);
+  const [detailProduct, setDetailProduct] = useState<ProductGroup | null>(null);
+  const [products, setProducts] = useState<ProductGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
   useEffect(() => {
+    const groupProducts = (rawProducts: any[]) => {
+      const groups: { [key: string]: ProductGroup } = {};
+      const suffixes = [
+        "BLUEBERRY", "GUAVA", "MANGO", "ORANGE", "STRAWBERRY ICECREAM", "STRAWBERRY", "WATERMELON",
+        "Chocolate", "Strawberry", "Vanilla", "Orange", "Pineapple", "Mango", "Lemon", "Lychee", "Menthol", "Peanut", "Tamarind", "Pistachio",
+        "Jar", "Pouch", "Combine", "wheat", "Toffee", "Lollipop", "Lollipops", "Bubblegum", "Milky", "Fruity"
+      ];
+
+      const normalizationMap: { [key: string]: string } = {
+        "Maravilha": "Maravila",
+        "Creamy topper": "Creamy Topper",
+      };
+
+      rawProducts.forEach(p => {
+        let baseName = p.name;
+        Object.keys(normalizationMap).forEach(key => {
+          if (baseName.includes(key)) baseName = baseName.replace(key, normalizationMap[key]);
+        });
+
+        let flavor = "";
+        const sortedSuffixes = [...suffixes].sort((a, b) => b.length - a.length);
+
+        for (const suffix of sortedSuffixes) {
+          const regex = new RegExp(`\\s+${suffix}$`, 'i');
+          if (regex.test(baseName)) {
+            flavor = suffix;
+            baseName = baseName.replace(regex, '').trim();
+            break;
+          }
+        }
+
+        if (!groups[baseName]) {
+          groups[baseName] = { ...p, name: baseName, variants: [] };
+        }
+
+        if (flavor.toLowerCase() === "combine" || p.name.toLowerCase().includes("combine")) {
+          groups[baseName].image = p.image;
+        }
+
+        groups[baseName].variants.push({
+          id: p.id,
+          name: flavor || "Original",
+          image: p.image
+        });
+      });
+      return Object.values(groups);
+    };
+
     const loadProducts = async () => {
       try {
         setIsLoading(true);
-
-        const groups: { [key: string]: any } = {};
-        const suffixes = [
-          "BLUEBERRY", "GUAVA", "MANGO", "ORANGE", "STRAWBERRY ICECREAM", "STRAWBERRY", "WATERMELON",
-          "Chocolate", "Strawberry", "Vanilla", "Orange", "Pineapple", "Mango", "Lemon", "Lychee", "Menthol", "Peanut", "Tamarind", "Pistachio",
-          "Jar", "Pouch", "Combine", "wheat", "Toffee", "Lollipop", "Lollipops", "Bubblegum", "Milky", "Fruity"
-        ];
-
-        const normalizationMap: { [key: string]: string } = {
-          "Maravilha": "Maravila",
-          "Creamy topper": "Creamy Topper",
-        };
-
-        staticProductsFallback.forEach(p => {
-          let baseName = p.name;
-
-          // Apply normalization for known typos/variations
-          Object.keys(normalizationMap).forEach(key => {
-            if (baseName.includes(key)) baseName = baseName.replace(key, normalizationMap[key]);
-          });
-
-          let flavor = "";
-          // Sort suffixes by length descending to match longer ones first (e.g. "Strawberry Icecream" before "Strawberry")
-          const sortedSuffixes = [...suffixes].sort((a, b) => b.length - a.length);
-
-          for (const suffix of sortedSuffixes) {
-            const regex = new RegExp(`\\s+${suffix}$`, 'i');
-            if (regex.test(baseName)) {
-              flavor = suffix;
-              baseName = baseName.replace(regex, '').trim();
-              break;
-            }
-          }
-
-          if (!groups[baseName]) {
-            groups[baseName] = {
-              ...p,
-              name: baseName,
-              variants: []
-            };
-          }
-
-          // Prioritize 'Combine' variant image for the group's main display image
-          if (flavor.toLowerCase() === "combine" || p.name.toLowerCase().includes("combine")) {
-            groups[baseName].image = p.image;
-          }
-
-          groups[baseName].variants.push({
-            id: p.id,
-            name: flavor || "Original",
-            image: p.image
-          });
-        });
-
-        setProducts(Object.values(groups));
+        // We could fetch from Supabase here if needed, but for now we use static + local grouping
+        setProducts(groupProducts(staticProductsFallback));
       } catch (err) {
         console.error("Error loading products:", err);
-        setProducts(staticProductsFallback);
+        setProducts(groupProducts(staticProductsFallback));
       } finally {
         setIsLoading(false);
       }
@@ -168,7 +179,7 @@ export default function Products() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 mb-20">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
-            const catCount = cat.id === "All" ? products.length : products.filter((p: any) => {
+            const catCount = cat.id === "All" ? products.length : products.filter((p: ProductGroup) => {
               const pCat = p.category?.toLowerCase() || "";
               const cTerm = cat.id.toLowerCase();
               if (cTerm === "lollipops") return pCat.includes("lollipop") || pCat.includes("gum");
@@ -270,8 +281,8 @@ export default function Products() {
             </div>
           ) : filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {filteredProducts.map((product: any) => {
-                const isSelected = product.variants.some((v: any) => selectedProductIds.includes(v.id));
+              {filteredProducts.map((product: ProductGroup) => {
+                const isSelected = product.variants.some((v: ProductVariant) => selectedProductIds.includes(v.id));
                 return (
                   <motion.div
                     key={product.id}
@@ -300,7 +311,7 @@ export default function Products() {
                     <div className="aspect-square w-full bg-white flex items-center justify-center p-3 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                       <motion.img
-                        src={product.image || product.mainImage || "/TREE-INDIA-LOGO-CDR.jpg"}
+                        src={product.image || "/TREE-INDIA-LOGO-CDR.jpg"}
                         alt={product.name}
                         className={cn(
                           "w-full h-full object-contain transition-transform duration-700",
@@ -399,7 +410,7 @@ export default function Products() {
                     <div className="mt-4 md:mt-12 w-full relative z-10">
                       <p className="text-[8px] md:text-[10px] font-black text-[#014995] uppercase tracking-[0.2em] mb-2 md:mb-4 text-center">Available Flavors / Variants</p>
                       <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-4 px-2">
-                        {detailProduct.variants.map((v: any, i: number) => (
+                        {detailProduct.variants.map((v: ProductVariant, i: number) => (
                           <button
                             key={i}
                             onClick={() => {

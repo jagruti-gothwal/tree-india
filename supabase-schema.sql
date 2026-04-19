@@ -16,6 +16,7 @@ ALTER TABLE public.inquiries ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Allow anonymous inserts" ON public.inquiries
   FOR INSERT WITH CHECK (true);
 
--- Optional: Only allow authenticated users to view inquiries
-CREATE POLICY "Allow authenticated users to read" ON public.inquiries
-  FOR SELECT USING (auth.role() = 'authenticated');
+-- Allow anyone with the key to read inquiries for the admin dashboard
+-- In a production app, you should restrict this with a service role key or Supabase Auth
+CREATE POLICY "Allow reading inquiries" ON public.inquiries
+  FOR SELECT USING (true);

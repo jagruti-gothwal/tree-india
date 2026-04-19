@@ -1,9 +1,10 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Trash, Edit, Check, X, RefreshCw, UploadCloud, Search, Tag, Image as ImageIcon, Box, LockKeyhole, Eye, EyeOff, Paperclip, MessageSquare } from "lucide-react"
+import { Plus, Trash, Edit, Check, X, RefreshCw, UploadCloud, Search, Tag, Image as ImageIcon, Box, LockKeyhole, Eye, EyeOff, Paperclip, MessageSquare, AlertCircle } from "lucide-react"
 import Link from "next/link"
-import { fetchAllProducts, addProduct, updateProduct, deleteProduct, checkAdminPassword, seedInitialProducts } from "../actions"
+import { cn } from "@/lib/utils"
+import { fetchAllProducts, addProduct, updateProduct, deleteProduct, checkAdminPassword, seedInitialProducts, getDatabaseStatus, deleteAllProducts } from "../actions"
 
 const seedData = [
   // Lollipops
@@ -124,15 +125,32 @@ const seedData = [
   { name: "DJ Gum Pops", category: "Bubble Gum", image: "/DJ Gum Pops Markup.png" }
 ];
 
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  price?: string;
+}
+
 export default function AdminPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [products, setProducts] = useState<any[]>([])
+  const [products, setProducts] = useState<Product[]>([])
   const [isEditing, setIsEditing] = useState<number | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [filterCategory, setFilterCategory] = useState("All")
+  const [dbStatus, setDbStatus] = useState<any>({ isConfigured: true, tableExists: true, url: "" })
+  
+  useEffect(() => {
+    const checkStatus = async () => {
+      const status = await getDatabaseStatus()
+      setDbStatus(status)
+    }
+    checkStatus()
+  }, [])
   
   const [editForm, setEditForm] = useState({ name: "", category: "", image: "", price: "" })
   const [newForm, setNewForm] = useState({ name: "", category: "Candies & Toffees", image: "", price: "Export Grade" })
@@ -200,15 +218,18 @@ export default function AdminPanel() {
   const loadProducts = async () => {
     setLoading(true)
     const res = await fetchAllProducts()
-    if (res.success) setProducts(res.products!)
-    else console.error(res.error)
+    if (res.success) setProducts((res.products || []) as any)
+    else {
+      console.error(res.error)
+      alert("Database Error: " + res.error)
+    }
     setLoading(false)
   }
 
   const handleCreate = async () => {
     if (!newForm.name || !newForm.image) return alert("Name and Image URL are required")
     setLoading(true)
-    const res = await addProduct(newForm.name, newForm.category, newForm.image, newForm.price)
+    const res = await addProduct(newForm)
     if (res.success) {
       setNewForm({ name: "", category: "Candies & Toffees", image: "", price: "Export Grade" })
       setShowAddForm(false)
@@ -228,13 +249,13 @@ export default function AdminPanel() {
     else alert(res.error)
   }
 
-  const startEdit = (product: any) => {
+  const startEdit = (product: Product) => {
     setIsEditing(product.id)
     setEditForm({ name: product.name, category: product.category, image: product.image, price: product.price || "Export Grade" })
   }
 
   const saveEdit = async (id: number) => {
-    const res = await updateProduct(id, editForm.name, editForm.category, editForm.image, editForm.price)
+    const res = await updateProduct(id, editForm)
     if (res.success) {
       setIsEditing(null)
       loadProducts()
@@ -242,11 +263,28 @@ export default function AdminPanel() {
   }
 
   const handleSeed = async () => {
-    if (!confirm("Push all static products to the live database?")) return
+    if (!confirm("This will populate the database with static products. (Duplicate check is active). Continue?")) return
     setLoading(true)
     const res = await seedInitialProducts(seedData)
-    if (res.success) loadProducts()
-    else alert(res.error)
+    if (res.success) {
+      alert("Database seeded successfully!")
+      loadProducts()
+    } else {
+      alert(res.error || "Seeding failed.")
+    }
+    setLoading(false)
+  }
+
+  const handleClearAll = async () => {
+    if (!confirm("ARE YOU SURE? This will permanently delete ALL products in the database! (Use this to fix duplicates)")) return
+    setLoading(true)
+    const res = await deleteAllProducts()
+    if (res.success) {
+      alert("All products deleted!")
+      loadProducts()
+    } else {
+      alert(res.error || "Deletion failed.")
+    }
     setLoading(false)
   }
 
@@ -314,20 +352,53 @@ export default function AdminPanel() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Header Setup */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 pb-6 border-b border-slate-200/60">
-           <div>
-             <span className="text-amber-600 font-bold tracking-widest text-[10px] uppercase mb-2 block">
-                Database Interface
-             </span>
-             <h1 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">Products Admin</h1>
-           </div>
+         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 pb-6 border-b border-slate-200/60">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <span className={cn(
+                  "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border",
+                  dbStatus.isConfigured && dbStatus.tableExists ? "bg-green-50 text-green-600 border-green-100" : "bg-rose-50 text-rose-600 border-rose-100 animate-pulse"
+                )}>
+                  {dbStatus.isConfigured && dbStatus.tableExists ? "● Live Database" : "⚠ Connection Issue"}
+                </span>
+                {dbStatus.url && (
+                  <span className="text-[10px] font-bold text-slate-400 font-mono bg-slate-100 px-2 py-1 rounded-lg">
+                    {dbStatus.url.replace('https://', '')}
+                  </span>
+                )}
+              </div>
+              <h1 className="text-4xl font-black text-slate-900 uppercase tracking-tighter mb-2">Products Admin</h1>
+              
+              {dbStatus.error && (
+                <div className="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-[11px] font-bold text-rose-700 flex items-start gap-4 shadow-sm max-w-2xl">
+                   <AlertCircle className="w-5 h-5 shrink-0" />
+                   <div className="space-y-1">
+                     <p className="uppercase tracking-[0.05em]">Diagnosis: {dbStatus.error}</p>
+                     <p className="text-rose-500/80 font-medium">Verify your Project ID and internet connection. If the URL is wrong, update <code className="bg-rose-100 px-1 rounded">.env.local</code>.</p>
+                   </div>
+                </div>
+              )}
+              
+              {dbStatus.isConfigured && !dbStatus.tableExists && !dbStatus.error && (
+                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-[11px] font-bold text-amber-700 flex items-start gap-4 shadow-sm max-w-2xl">
+                   <UploadCloud className="w-5 h-5 shrink-0" />
+                   <div>
+                     <p className="uppercase tracking-[0.05em]">Schema Missing: Connection established, but no 'products' table found.</p>
+                     <p className="text-amber-600/80 font-medium italic mt-1">Run the SQL scripts in your Supabase SQL Editor or click "Seed Live DB" below.</p>
+                   </div>
+                </div>
+              )}
+            </div>
            
            <div className="flex items-center gap-3">
              <button onClick={loadProducts} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-full text-slate-600 hover:text-[#003366] hover:border-[#003366] transition-all text-xs font-black uppercase tracking-widest shadow-sm">
                <RefreshCw className="w-4 h-4" /> Refresh
              </button>
               <button onClick={handleSeed} className="flex items-center gap-2 px-4 py-2.5 bg-amber-500 rounded-full text-slate-900 transition-all text-xs font-black uppercase tracking-widest shadow-sm hover:bg-amber-600 hover:scale-105 active:scale-95">
-                <UploadCloud className="w-4 h-4" /> Seed Live DB
+                <UploadCloud className="w-4 h-4" /> Seed
+              </button>
+              <button onClick={handleClearAll} className="flex items-center gap-2 px-4 py-2.5 bg-rose-50 border border-rose-200 rounded-full text-rose-600 hover:bg-rose-100 transition-all text-xs font-black uppercase tracking-widest shadow-sm">
+                <Trash className="w-4 h-4" /> Clear Data
               </button>
              <button onClick={() => setShowAddForm(!showAddForm)} className="flex items-center gap-2 px-5 py-2.5 bg-[#003366] rounded-full text-white transition-all text-xs font-black uppercase tracking-widest shadow-[0_5px_15px_rgba(0,51,102,0.2)] hover:scale-105 active:scale-95">
                {showAddForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -469,7 +540,7 @@ export default function AdminPanel() {
                 </thead>
                 <tbody className="divide-y divide-slate-100/60">
                    <AnimatePresence>
-                     {filteredProducts.map((p, idx) => (
+                     {filteredProducts.map((p: Product, idx: number) => (
                        <motion.tr 
                          layout
                          initial={{ opacity: 0, y: 10 }}

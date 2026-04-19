@@ -69,6 +69,7 @@ function ContactForm() {
               <span className="uppercase tracking-widest text-[11px] block mb-1 text-amber-600 font-black">{"Attached for Bulk Inquiry:"}</span>
               <div className="flex flex-wrap gap-2 mt-2">
                 {productIds.split(",").map(id => {
+                  if (!id) return null;
                   const product = staticProductsFallback.find(p => p.id === parseInt(id));
                   return product ? (
                     <span key={id} className="px-3 py-1 bg-white border border-amber-200 rounded-full text-[10px] text-amber-800 font-bold uppercase tracking-tighter">

@@ -12,24 +12,24 @@ export default function NotFound() {
           <motion.div
             key={i}
             initial={{ 
-              x: Math.random() * 100 - 50 + "%", 
-              y: Math.random() * 100 - 50 + "%",
+              x: (i * 5) - 50 + "%", 
+              y: (i * 3) - 50 + "%",
               rotate: 0 
             }}
             animate={{ 
-              y: ["-10%", "10%"],
+              y: ["-5%", "5%"],
               rotate: 360,
               scale: [1, 1.1, 1]
             }}
             transition={{ 
-              duration: 5 + Math.random() * 10, 
+              duration: 10 + (i % 5), 
               repeat: Infinity,
               ease: "easeInOut"
             }}
             className="absolute text-blue-900"
-            style={{ left: Math.random() * 100 + "%", top: Math.random() * 100 + "%" }}
+            style={{ left: (i * 7) % 100 + "%", top: (i * 11) % 100 + "%" }}
           >
-            <Candy size={20 + Math.random() * 40} />
+            <Candy size={30 + (i % 20)} />
           </motion.div>
         ))}
       </div>

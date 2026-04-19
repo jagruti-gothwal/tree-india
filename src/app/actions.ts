@@ -4,10 +4,18 @@ import { createClient } from "@supabase/supabase-js"
 import nodemailer from "nodemailer"
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
-// Fallback to the publishable key they provided if standard ANON_KEY is missing
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || ""
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+// Helper to get supabase client safely
+const getSupabase = () => {
+  if (!supabaseUrl || !supabaseKey) {
+    console.warn("Supabase credentials missing. Database operations will fail.")
+    return null
+  }
+  return createClient(supabaseUrl, supabaseKey)
+}
+
+const supabase = getSupabase()
 
 export async function submitInquiry(formData: FormData) {
   const name = formData.get("name")?.toString() || ""
@@ -25,17 +33,22 @@ export async function submitInquiry(formData: FormData) {
   }
 
   // 1. Save to Database
-  const { error } = await supabase.from("inquiries").insert([data])
-
-  if (error) {
-    console.error("Database insert failed:", error)
-    return { success: false, error: error.message }
+  if (!supabase) {
+    console.error("Database submission skipped: Supabase client not initialized.")
+  } else {
+    try {
+      const { error } = await supabase.from("inquiries").insert([data])
+      if (error) {
+        console.error("Database insert failed:", error)
+        // We don't return false here yet because we still want to try sending the email
+      }
+    } catch (dbError: any) {
+      console.error("Supabase Connection Crash:", dbError.message)
+    }
   }
 
   // 2. Send Email Notification
   try {
-    // Note: You must add EMAIL_USER and EMAIL_PASS to your .env.local
-    // For Yahoo, you need to generate an "App Password" in your account security settings.
     const transporter = nodemailer.createTransport({
       service: "yahoo",
       auth: {

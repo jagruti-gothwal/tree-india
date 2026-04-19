@@ -103,6 +103,7 @@ export default function Footer() {
         
         <div className="border-t border-white/20 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] text-white/60 font-black tracking-[0.2em] uppercase">&copy; {new Date().getFullYear()} Tree India. Authorized Export Division.</p>
+          <Link href="/admin" className="text-[10px] text-white/40 hover:text-white/80 font-black tracking-[0.2em] uppercase transition-colors">Admin Access</Link>
         </div>
       </div>
     </footer>
