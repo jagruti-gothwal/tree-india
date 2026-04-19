@@ -17,7 +17,7 @@ const getSupabase = () => {
 
 const supabase = getSupabase()
 
-export async function submitInquiry(formData: FormData) {
+export async function submitInquiry(formData: FormData): Promise<{ success: boolean; error?: string }> {
   const name = formData.get("name")?.toString() || ""
   const email = formData.get("email")?.toString() || ""
   const phone = formData.get("phone")?.toString() || ""
@@ -32,18 +32,26 @@ export async function submitInquiry(formData: FormData) {
     product_ids,
   }
 
+  let dbSuccess = false;
+  let emailSuccess = false;
+  let lastError = "";
+
   // 1. Save to Database
   if (!supabase) {
     console.error("Database submission skipped: Supabase client not initialized.")
+    lastError = "Database configuration missing";
   } else {
     try {
       const { error } = await supabase.from("inquiries").insert([data])
       if (error) {
         console.error("Database insert failed:", error)
-        // We don't return false here yet because we still want to try sending the email
+        lastError = error.message;
+      } else {
+        dbSuccess = true;
       }
     } catch (dbError: any) {
       console.error("Supabase Connection Crash:", dbError.message)
+      lastError = dbError.message;
     }
   }
 
@@ -80,12 +88,23 @@ export async function submitInquiry(formData: FormData) {
 
     if (process.env.EMAIL_PASS) {
       await transporter.sendMail(mailOptions)
+      emailSuccess = true;
     } else {
       console.warn("Email not sent: EMAIL_PASS environment variable is missing.")
+      lastError = lastError || "Email configuration missing";
     }
-  } catch (emailError) {
+  } catch (emailError: any) {
     console.error("Email notification failed:", emailError)
+    lastError = emailError.message || "Email delivery failed";
   }
 
-  return { success: true }
+  // We consider it a partial success if at least one method worked
+  if (dbSuccess || emailSuccess) {
+    return { success: true }
+  }
+
+  return { 
+    success: false, 
+    error: lastError || "Failed to process inquiry through all available channels" 
+  }
 }
