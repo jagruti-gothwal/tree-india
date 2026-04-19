@@ -2,8 +2,8 @@
 
 import { createClient } from "@supabase/supabase-js"
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || ""
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ""
 
 // Type for products
 export interface Product {
@@ -17,10 +17,10 @@ export interface Product {
 // Helper to get supabase client safely
 const getSupabase = () => {
   if (!supabaseUrl) {
-    throw new Error("NEXT_PUBLIC_SUPABASE_URL is missing. Please check your .env.local file.")
+    throw new Error("NEXT_PUBLIC_SUPABASE_URL is missing. If this is a live/production site, please ensure you have added the environment variables to your hosting provider's dashboard (e.g., Vercel Project Settings).")
   }
   if (!supabaseKey) {
-    throw new Error("Supabase API Key is missing. Please check your .env.local file (ANON or SERVICE_ROLE).")
+    throw new Error("Supabase API Key is missing. Please ensure SUPABASE_SERVICE_ROLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is set in your production environment settings.")
   }
   return createClient(supabaseUrl, supabaseKey)
 }
