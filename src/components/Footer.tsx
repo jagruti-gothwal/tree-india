@@ -82,12 +82,12 @@ export default function Footer() {
           </div>
 
           {/* Contact Details */}
-          <div className="col-span-1 md:col-span-3">
-             <h3 className="text-white font-black mb-8 text-[12px] uppercase tracking-[0.3em] heading-font">{t("footerComm")}</h3>
+          <div className="col-span-1 md:col-span-3 text-center md:text-left">
+            <h3 className="text-white font-black mb-8 text-[12px] uppercase tracking-[0.3em] heading-font">{t("footerComm")}</h3>
             <ul className="space-y-6">
               <li className="flex flex-col md:flex-row items-center md:items-start gap-4">
                 <MapPin className="w-5 h-5 text-white shrink-0" />
-                <span className="text-[11px] font-black text-white uppercase tracking-widest leading-loose">Ahmedabad, Gujarat, India</span>
+                <span className="text-[11px] font-black text-white uppercase tracking-widest leading-loose">Plot No 45, GIDC Estate,<br />Ahmedabad, Gujarat, India</span>
               </li>
               <li className="flex flex-col md:flex-row items-center gap-4">
                 <Phone className="w-5 h-5 text-white shrink-0" />
@@ -95,9 +95,21 @@ export default function Footer() {
               </li>
               <li className="flex flex-col md:flex-row items-center gap-4">
                 <Mail className="w-5 h-5 text-white shrink-0" />
-                <a href="mailto:tree.india@yahoo.com" className="text-[11px] font-black text-white hover:underline transition-colors uppercase tracking-widest">Tree.India@yahoo.com</a>
+                <span 
+                  className="text-[11px] font-black text-white cursor-pointer hover:underline uppercase tracking-widest"
+                  onClick={() => window.location.href = `mailto:${'tree.india' + '@' + 'yahoo.com'}`}
+                >
+                  Contact via Email
+                </span>
               </li>
             </ul>
+
+            {/* Social Links */}
+             <div className="flex items-center justify-center md:justify-start gap-6 mt-12">
+               <a href="https://www.linkedin.com/company/treeindiaexports" target="_blank" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-[#014995] transition-all"><Globe className="w-5 h-5" /></a>
+               <a href="https://www.facebook.com/treeindiaexports" target="_blank" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-[#ff5c8a] transition-all"><ShieldCheck className="w-5 h-5" /></a>
+               <a href="https://twitter.com/treeindiaexports" target="_blank" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-blue-400 transition-all"><Globe className="w-5 h-5" /></a>
+             </div>
           </div>
         </div>
         
