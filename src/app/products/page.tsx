@@ -376,41 +376,99 @@ export default function Products() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white w-full max-w-6xl max-h-[92vh] md:h-[85vh] rounded-[2rem] md:rounded-[3rem] shadow-2xl flex flex-col md:flex-row overflow-hidden border-[6px] md:border-[10px] border-white/50 bg-clip-padding"
+              className="relative bg-white w-full max-w-7xl h-[98vh] md:h-[85vh] max-h-[900px] rounded-[2.5rem] md:rounded-[4rem] shadow-2xl flex flex-col md:flex-row overflow-hidden border-[8px] md:border-[16px] border-white/80 bg-clip-padding"
             >
               <button
                 onClick={() => setDetailProduct(null)}
                 className={cn(
-                  "absolute top-4 md:top-6 z-[70] w-10 h-10 md:w-14 md:h-14 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-[#ff5c8a] hover:scale-110 active:scale-95 transition-all text-lg md:text-xl",
-                  isRTL ? "left-4 md:left-6" : "right-4 md:right-6"
+                  "absolute top-8 z-[70] w-12 h-12 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-[#ff5c8a] hover:scale-110 active:scale-95 transition-all",
+                  isRTL ? "left-8" : "right-8"
                 )}
               >
-                <X className="w-5 h-5 md:w-7 md:h-7" strokeWidth={3} />
+                <X className="w-6 h-6" strokeWidth={3} />
               </button>
 
-              {/* Main Scrollable Content Area */}
+              {/* Main Modal Content */}
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden h-full">
-                {/* Left Side: Product Image & Variants */}
-                <div className="w-full md:w-1/2 bg-gradient-to-br from-indigo-50 via-[#f0f9ff] to-pink-50 p-4 sm:p-10 md:p-20 flex flex-col items-center justify-center relative overflow-hidden shrink-0">
-                  <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-[#ff5c8a]/10 to-transparent -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px] pointer-events-none"></div>
+                
+                {/* 1. Left Section: Hero Product Image (40%) */}
+                <div className="w-full md:w-[42%] bg-slate-50/50 p-8 sm:p-12 md:p-16 flex flex-col items-center justify-center relative overflow-hidden shrink-0">
+                  <div className="absolute top-1/2 left-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-pink-100/30 to-transparent -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px] pointer-events-none"></div>
 
                   <AnimatePresence mode="wait">
-                    <motion.img
+                    <motion.div
                       key={activeImage}
-                      initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      exit={{ opacity: 0, scale: 0.9, x: -20 }}
-                      src={activeImage || "/TREE-INDIA-LOGO-CDR.jpg"}
-                      alt={detailProduct.name}
-                      className="max-h-[160px] sm:max-h-[300px] md:max-h-[450px] w-auto object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 hover:scale-105 transition-transform duration-500"
-                    />
+                      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: -30 }}
+                      className="w-full h-full flex items-center justify-center relative z-10"
+                    >
+                      <img
+                        src={activeImage || "/TREE-INDIA-LOGO-CDR.jpg"}
+                        alt={detailProduct.name}
+                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_40px_80px_rgba(0,0,0,0.12)] transition-transform duration-700 hover:scale-[1.03]"
+                      />
+                    </motion.div>
                   </AnimatePresence>
+                </div>
 
-                  {detailProduct.variants && (detailProduct.variants.length > 1 || (detailProduct.variants.length === 1 && detailProduct.variants[0].name !== "Original")) && (
-                    <div className="mt-4 md:mt-12 w-full relative z-10">
-                      <p className="text-[8px] md:text-[10px] font-black text-[#014995] uppercase tracking-[0.2em] mb-2 md:mb-4 text-center">Available Flavors / Variants</p>
-                      <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-4 px-2">
-                        {detailProduct.variants.map((v: ProductVariant, i: number) => (
+                {/* 2. Middle Section: Content & Actions (38%) */}
+                <div className={cn(
+                  "w-full md:w-[38%] p-8 sm:p-12 md:p-16 flex flex-col justify-center bg-white h-full relative z-20 border-x border-slate-50",
+                  isRTL ? "text-right" : "text-left"
+                )}>
+                  <div className="mb-12">
+                    <span className="inline-flex items-center px-5 py-2 rounded-full bg-slate-50 text-[#014995] font-black tracking-[0.2em] text-[10px] uppercase mb-6 shadow-sm border border-slate-100">
+                      {getTranslatedCategory(detailProduct.category)}
+                    </span>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#014995] uppercase tracking-tighter leading-[0.85] heading-font mb-6 drop-shadow-sm">
+                      {detailProduct.name}
+                    </h2>
+                    <div className="h-2 w-20 bg-[#ff5c8a] rounded-full"></div>
+                  </div>
+
+                  {/* Pricing Placeholder / Specs area could go here, but keeping it clean as per user's minimalist request */}
+
+                  <div className="flex flex-col gap-5">
+                    <Link
+                      href={`https://wa.me/919408436732?text=${encodeURIComponent(`Hello, I am interested in ${detailProduct.name} ${detailProduct.variants.find(v => v.id === detailProduct.id)?.name || ""}. Can you provide more details?`)}`}
+                      target="_blank"
+                      className="h-16 lg:h-20 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95 bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-[1.02] shadow-[0_20px_40px_rgba(37,211,102,0.2)]"
+                    >
+                      <WhatsAppIcon className="w-6 h-6" />
+                      Connect on WhatsApp
+                    </Link>
+
+                    <button
+                      onClick={(e) => { toggleProductSelection(e as any, detailProduct.id); setDetailProduct(null); }}
+                      className={cn(
+                        "h-16 lg:h-20 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95",
+                        selectedProductIds.includes(detailProduct.id) 
+                          ? "bg-[#014995] text-white shadow-[0_20px_40px_rgba(1,73,149,0.2)] hover:scale-[1.02]" 
+                          : "bg-[#ff5c8a] text-white hover:bg-[#e11d48] hover:scale-[1.02] shadow-[0_20px_40px_rgba(255,92,138,0.2)]"
+                      )}
+                    >
+                      {selectedProductIds.includes(detailProduct.id) ? t("productDeselect") : t("productAddInquiry")}
+                      <ArrowRight className="w-6 h-6" strokeWidth={3} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* 3. Right Section: Compact Variants Sidebar (20%) */}
+                <div className={cn(
+                  "hidden md:flex w-[20%] bg-white flex-col overflow-y-auto custom-scrollbar p-8",
+                  isRTL && "order-first"
+                )}>
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-6">
+                      <p className="text-[11px] font-black text-slate-300 uppercase tracking-[0.2em]">{t("navFlavors") || "Flavors"}</p>
+                      <span className="text-[10px] font-bold text-[#ff5c8a] bg-pink-50 px-2 py-0.5 rounded-md">{detailProduct.variants.length}</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-3 pb-8">
+                      {detailProduct.variants.map((v: ProductVariant, i: number) => {
+                        const isSelected = activeImage === v.image || detailProduct.id === v.id;
+                        return (
                           <button
                             key={i}
                             onClick={() => {
@@ -418,57 +476,53 @@ export default function Products() {
                               setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
                             }}
                             className={cn(
-                              "relative w-11 h-11 md:w-20 md:h-20 bg-white p-1 md:p-2 rounded-[0.8rem] md:rounded-[1.5rem] border-2 transition-all hover:scale-110 hover:-translate-y-1 shadow-sm overflow-hidden shrink-0",
-                              (activeImage === v.image || detailProduct.id === v.id) ? "border-[#ff5c8a] shadow-lg shadow-pink-500/20" : "border-slate-100 hover:border-pink-200 hover:shadow-md"
+                              "group relative aspect-square w-full bg-slate-50 p-2 rounded-2xl border-2 transition-all hover:bg-white hover:scale-105 active:scale-95 overflow-hidden flex items-center justify-center",
+                              isSelected ? "border-[#ff5c8a] bg-white ring-4 ring-pink-50" : "border-transparent hover:border-slate-100"
                             )}
+                            title={v.name}
                           >
-                            <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain p-0.5 md:p-1" alt={v.name} />
-                            <div className="absolute inset-x-0 bottom-0 bg-white/95 py-0.5 text-[6px] md:text-[8px] font-bold text-[#ff5c8a] uppercase truncate px-0.5">
-                              {v.name}
-                            </div>
+                            <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                            {isSelected && (
+                              <div className="absolute top-1 right-1 w-4 h-4 bg-[#ff5c8a] rounded-full flex items-center justify-center border-2 border-white">
+                                <Check className="w-2 h-2 text-white" strokeWidth={5} />
+                              </div>
+                            )}
                           </button>
-                        ))}
-                      </div>
+                        );
+                      })}
                     </div>
-                  )}
-                </div>
 
-                {/* Right Side: Product Details */}
-                <div className={cn(
-                  "w-full md:w-1/2 p-5 sm:p-10 md:p-16 flex flex-col bg-white h-full md:overflow-y-auto",
-                  isRTL ? "text-right" : "text-left"
-                )}>
-                  <div className="mb-4 md:mb-10">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-600 font-black tracking-[0.2em] text-[9px] md:text-[11px] uppercase mb-2 md:mb-6 shadow-sm">
-                      {getTranslatedCategory(detailProduct.category)}
-                    </span>
-                    <h2 className="text-2xl sm:text-4xl md:text-7xl font-black text-[#014995] uppercase tracking-tighter leading-[0.95] md:leading-[0.85] heading-font drop-shadow-sm">
-                      {detailProduct.name}
-                    </h2>
-                  </div>
-
-                  <div className="flex flex-col gap-2 md:gap-4 mt-auto">
-                    <Link
-                      href={`https://wa.me/919408436732?text=${encodeURIComponent(`Hello, I am interested in ${detailProduct.name} ${detailProduct.specs || ""}. Can you provide more details?`)}`}
-                      target="_blank"
-                      className="h-12 sm:h-20 rounded-full font-black uppercase tracking-widest text-[11px] md:text-[14px] transition-all flex items-center justify-center gap-2 md:gap-4 transform active:scale-95 bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-105 shadow-[0_15px_30px_rgba(37,211,102,0.3)]"
-                    >
-                      <WhatsAppIcon className="w-5 h-5 md:w-7 md:h-7" />
-                      Connect on WhatsApp
-                    </Link>
-
-                    <button
-                      onClick={(e) => { toggleProductSelection(e as any, detailProduct.id); setDetailProduct(null); }}
-                      className={cn(
-                        "h-12 sm:h-20 rounded-full font-black uppercase tracking-widest text-[11px] md:text-[14px] transition-all flex items-center justify-center gap-2 md:gap-4 transform active:scale-95",
-                        selectedProductIds.includes(detailProduct.id) ? "bg-[#014995] text-white shadow-[0_15px_30px_rgba(1,73,149,0.3)] hover:scale-105" : "bg-[#ff5c8a] text-white hover:bg-[#e11d48] hover:scale-105 shadow-[0_15px_30px_rgba(255,92,138,0.3)]"
-                      )}
-                    >
-                      {selectedProductIds.includes(detailProduct.id) ? t("productDeselect") : t("productAddInquiry")}
-                      <ArrowRight className="w-4 h-4 md:w-6 md:h-6" strokeWidth={3} />
-                    </button>
+                    <div className="mt-auto pt-6 border-t border-slate-50">
+                      <p className="text-[8px] font-black text-slate-300 uppercase tracking-widest mb-1 text-center">Selected Flavor</p>
+                      <p className="text-[10px] font-black text-[#ff5c8a] uppercase tracking-tighter text-center truncate">
+                        {detailProduct.variants.find(v => v.id === detailProduct.id)?.name || "Original"}
+                      </p>
+                    </div>
                   </div>
                 </div>
+
+                {/* Mobile Variant View */}
+                <div className="md:hidden p-8 pt-0 bg-white">
+                  <div className="h-[1px] w-full bg-slate-100 mb-6"></div>
+                  <div className="flex flex-row overflow-x-auto gap-4 pb-4 no-scrollbar">
+                    {detailProduct.variants.map((v: ProductVariant, i: number) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setActiveImage(v.image);
+                          setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
+                        }}
+                        className={cn(
+                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm",
+                          (activeImage === v.image || detailProduct.id === v.id) ? "border-[#ff5c8a] bg-white" : "border-slate-100"
+                        )}
+                      >
+                        <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </motion.div>
           </div>
