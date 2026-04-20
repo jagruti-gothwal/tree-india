@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronRight, PackageSearch, X, ShoppingCart, Info, Globe, Layers, ArrowRight, Download, Loader2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 import { staticProductsFallback } from "@/lib/products";
@@ -203,10 +204,16 @@ export default function Products() {
                 )}
               >
                 <div className={cn(
-                  "w-24 h-24 md:w-32 md:h-32 mb-6 rounded-[2rem] flex items-center justify-center p-1 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
+                  "w-24 h-24 md:w-32 md:h-32 mb-6 rounded-[2rem] flex items-center justify-center p-1 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 relative",
                   isActive ? "bg-pink-50" : "bg-slate-50"
                 )}>
-                  <img src={cat.image} alt={cat.label} className="w-full h-full object-contain filter drop-shadow-sm" />
+                  <Image 
+                    src={cat.image} 
+                    alt={cat.label} 
+                    fill 
+                    className="object-contain p-4 filter drop-shadow-sm" 
+                    sizes="(max-width: 768px) 100px, 150px"
+                  />
                 </div>
 
                 <span className={cn(
@@ -310,14 +317,21 @@ export default function Products() {
 
                     <div className="aspect-square w-full bg-white flex items-center justify-center p-3 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <motion.img
-                        src={product.image || "/TREE-INDIA-LOGO-CDR.jpg"}
-                        alt={product.name}
+                      <motion.div
                         className={cn(
-                          "w-full h-full object-contain transition-transform duration-700",
+                          "w-full h-full relative transition-transform duration-700",
                           isSelected ? "scale-95" : "scale-105 group-hover:scale-115"
                         )}
-                      />
+                      >
+                        <Image
+                          src={product.image || "/TREE-INDIA-LOGO-CDR.jpg"}
+                          alt={product.name}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                          priority={filteredProducts.indexOf(product) < 4}
+                        />
+                      </motion.div>
                     </div>
 
                     <div className={cn(
@@ -401,12 +415,15 @@ export default function Products() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="w-full h-full flex items-center justify-center relative z-10"
+                      className="w-full h-full relative z-10"
                     >
-                      <img
+                      <Image
                         src={activeImage || "/TREE-INDIA-LOGO-CDR.jpg"}
                         alt={detailProduct.name}
-                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_30px_60px_rgba(0,0,0,0.08)]"
+                        fill
+                        priority
+                        className="object-contain filter drop-shadow-[0_30px_60px_rgba(0,0,0,0.08)]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </motion.div>
                   </AnimatePresence>
@@ -481,9 +498,9 @@ export default function Products() {
                               )}
                               title={v.name}
                             >
-                              <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                              <Image src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} fill className="object-contain p-2" alt={v.name} sizes="100px" />
                               {isSelected && (
-                                <div className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#ff5c8a] rounded-full flex items-center justify-center border-2 border-white">
+                                <div className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#ff5c8a] rounded-full flex items-center justify-center border-2 border-white z-20">
                                   <Check className="w-1.5 h-1.5 text-white" strokeWidth={6} />
                                 </div>
                               )}
@@ -514,11 +531,11 @@ export default function Products() {
                           setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
                         }}
                         className={cn(
-                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm",
+                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm relative",
                           (activeImage === v.image || detailProduct.id === v.id) ? "border-[#ff5c8a] bg-white" : "border-slate-100"
                         )}
                       >
-                        <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                        <Image src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} fill className="object-contain p-2" alt={v.name} sizes="80px" />
                       </button>
                     ))}
                   </div>
@@ -536,11 +553,11 @@ export default function Products() {
                           setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
                         }}
                         className={cn(
-                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm",
+                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm relative",
                           (activeImage === v.image || detailProduct.id === v.id) ? "border-[#ff5c8a] bg-white" : "border-slate-100"
                         )}
                       >
-                        <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                        <Image src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} fill className="object-contain p-2" alt={v.name} sizes="80px" />
                       </button>
                     ))}
                   </div>
