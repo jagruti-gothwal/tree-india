@@ -2,8 +2,13 @@
 
 import { createClient } from "@supabase/supabase-js"
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || ""
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ""
+// Fetch keys at runtime to ensure environment variables are fresh
+const getSupabaseConfig = () => {
+  return {
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "",
+    key: process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ""
+  };
+};
 
 // Type for products
 export interface Product {
@@ -16,30 +21,38 @@ export interface Product {
 
 // Helper to get supabase client safely
 const getSupabase = () => {
-  if (!supabaseUrl) {
-    throw new Error("NEXT_PUBLIC_SUPABASE_URL is missing. If this is a live/production site, please ensure you have added the environment variables to your hosting provider's dashboard (e.g., Vercel Project Settings).")
+  const { url, key } = getSupabaseConfig();
+  
+  if (!url) {
+    const error = "NEXT_PUBLIC_SUPABASE_URL is missing. If this is a live/production site, please ensure you have added the environment variables to your hosting provider's dashboard (e.g., Vercel Project Settings).";
+    console.error(`[Supabase Error] ${error}`);
+    throw new Error(error);
   }
-  if (!supabaseKey) {
-    throw new Error("Supabase API Key is missing. Please ensure SUPABASE_SERVICE_ROLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is set in your production environment settings.")
+  if (!key) {
+    const error = "Supabase API Key is missing. Please ensure SUPABASE_SERVICE_ROLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is set in your production environment settings.";
+    console.error(`[Supabase Error] ${error}`);
+    throw new Error(error);
   }
-  return createClient(supabaseUrl, supabaseKey)
+  return createClient(url, key);
 }
 
 function handleSupabaseError(error: any) {
+  const { url } = getSupabaseConfig();
   console.error("Supabase Operation Failed:", error)
   if (error && (error.message?.includes("fetch failed") || error.code === 'ENOTFOUND')) {
-    return `Network Connection Issue: Could not reach Supabase at ${supabaseUrl}. Please verify the URL and that your internet connection is active.`
+    return `Network Connection Issue: Could not reach Supabase at ${url}. Please verify the URL and that your internet connection is active.`
   }
   return error.message || "An unexpected database error occurred"
 }
 
 export async function getDatabaseStatus() {
-  const isConfigured = supabaseUrl.length > 0 && supabaseKey.length > 0
+  const { url, key } = getSupabaseConfig();
+  const isConfigured = url.length > 0 && key.length > 0
   
-  if (!isConfigured) return { isConfigured: false, tableExists: false, url: supabaseUrl }
+  if (!isConfigured) return { isConfigured: false, tableExists: false, url }
   
   try {
-    const supabase = createClient(supabaseUrl, supabaseKey)
+    const supabase = createClient(url, key)
     // Try a simple count query to verify connectivity and table existence
     const { error } = await supabase.from('products').select('*', { count: 'exact', head: true })
     
@@ -49,17 +62,17 @@ export async function getDatabaseStatus() {
         tableExists: error.code !== 'PGRST11' && error.code !== '42P01', 
         error: error.message,
         errorCode: error.code,
-        url: supabaseUrl
+        url
       }
     }
     
-    return { isConfigured: true, tableExists: true, url: supabaseUrl }
+    return { isConfigured: true, tableExists: true, url }
   } catch (e: any) {
     return { 
       isConfigured: true, 
       tableExists: false, 
       error: e.message || String(e),
-      url: supabaseUrl
+      url
     }
   }
 }
