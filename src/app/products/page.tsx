@@ -142,9 +142,9 @@ export default function Products() {
   return (
     <div className="pt-40 pb-40 min-h-screen relative overflow-hidden bg-gradient-to-br from-[#fff5f0] to-[#fffdec]" dir={isRTL ? "rtl" : "ltr"}>
 
-      {/* Candy Aesthetic Background Blobs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-pink-400/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-amber-300/10 rounded-full blur-[150px] pointer-events-none"></div>
+      {/* Candy Aesthetic Background Blobs - Optimized for performance */}
+      <div className="absolute top-[-5%] right-[-5%] w-[40vw] h-[40vw] bg-pink-400/5 rounded-full blur-[80px] pointer-events-none"></div>
+      <div className="absolute bottom-[-5%] left-[-5%] w-[50vw] h-[50vw] bg-amber-300/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -373,15 +373,16 @@ export default function Products() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white w-full max-w-7xl h-[98vh] md:h-[85vh] max-h-[900px] rounded-[2.5rem] md:rounded-[4rem] shadow-2xl flex flex-col md:flex-row overflow-hidden border-[8px] md:border-[16px] border-white/80 bg-clip-padding"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative bg-white w-full max-w-7xl h-[98vh] md:h-[85vh] max-h-[900px] rounded-[2.5rem] md:rounded-[4rem] shadow-2xl flex flex-col md:flex-row overflow-hidden border-[8px] md:border-[16px] border-white/90 bg-clip-padding"
             >
               <button
                 onClick={() => setDetailProduct(null)}
                 className={cn(
-                  "absolute top-8 z-[70] w-12 h-12 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-[#ff5c8a] hover:scale-110 active:scale-95 transition-all",
+                  "absolute top-8 z-[70] w-12 h-12 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-[#ff5c8a] hover:scale-110 active:scale-95 transition-all text-lg",
                   isRTL ? "left-8" : "right-8"
                 )}
               >
@@ -391,113 +392,135 @@ export default function Products() {
               {/* Main Modal Content */}
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden h-full">
                 
-                {/* 1. Left Section: Hero Product Image (40%) */}
-                <div className="w-full md:w-[42%] bg-slate-50/50 p-8 sm:p-12 md:p-16 flex flex-col items-center justify-center relative overflow-hidden shrink-0">
-                  <div className="absolute top-1/2 left-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-pink-100/30 to-transparent -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px] pointer-events-none"></div>
-
+                {/* 1. Left Section: Hero Product Image (White Background) */}
+                <div className="w-full md:w-[42%] bg-white p-8 sm:p-12 md:p-16 flex flex-col items-center justify-center relative shrink-0">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeImage}
-                      initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.9, y: -30 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
                       className="w-full h-full flex items-center justify-center relative z-10"
                     >
                       <img
                         src={activeImage || "/TREE-INDIA-LOGO-CDR.jpg"}
                         alt={detailProduct.name}
-                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_40px_80px_rgba(0,0,0,0.12)] transition-transform duration-700 hover:scale-[1.03]"
+                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_30px_60px_rgba(0,0,0,0.08)]"
                       />
                     </motion.div>
                   </AnimatePresence>
                 </div>
 
-                {/* 2. Middle Section: Content & Actions (38%) */}
-                <div className={cn(
-                  "w-full md:w-[38%] p-8 sm:p-12 md:p-16 flex flex-col justify-center bg-white h-full relative z-20 border-x border-slate-50",
-                  isRTL ? "text-right" : "text-left"
-                )}>
-                  <div className="mb-12">
-                    <span className="inline-flex items-center px-5 py-2 rounded-full bg-slate-50 text-[#014995] font-black tracking-[0.2em] text-[10px] uppercase mb-6 shadow-sm border border-slate-100">
-                      {getTranslatedCategory(detailProduct.category)}
-                    </span>
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#014995] uppercase tracking-tighter leading-[0.85] heading-font mb-6 drop-shadow-sm">
-                      {detailProduct.name}
-                    </h2>
-                    <div className="h-2 w-20 bg-[#ff5c8a] rounded-full"></div>
+                {/* Right Area Wrapper (Details + Sidebar) with background change */}
+                <div className="flex-1 flex flex-col md:flex-row bg-[#fafbff] h-full overflow-hidden">
+                  {/* 2. Middle Section: Content & Actions */}
+                  <div className={cn(
+                    "w-full md:w-[65%] p-8 sm:p-12 md:p-16 flex flex-col justify-center h-full relative z-20 border-r border-slate-100/50",
+                    isRTL ? "text-right" : "text-left"
+                  )}>
+                    <div className="mb-12">
+                      <span className="inline-flex items-center px-5 py-2 rounded-full bg-white text-[#014995] font-black tracking-[0.2em] text-[10px] uppercase mb-6 shadow-sm border border-slate-100">
+                        {getTranslatedCategory(detailProduct.category)}
+                      </span>
+                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#014995] uppercase tracking-tighter leading-[0.85] heading-font mb-6 drop-shadow-sm">
+                        {detailProduct.name}
+                      </h2>
+                      <div className="h-2 w-20 bg-[#ff5c8a] rounded-full"></div>
+                    </div>
+
+                    <div className="flex flex-col gap-5">
+                      <Link
+                        href={`https://wa.me/919408436732?text=${encodeURIComponent(`Hello, I am interested in ${detailProduct.name} ${detailProduct.variants.find(v => v.id === detailProduct.id)?.name || ""}. Can you provide more details?`)}`}
+                        target="_blank"
+                        className="h-16 lg:h-18 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95 bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-[1.02] shadow-[0_20px_40px_rgba(37,211,102,0.15)]"
+                      >
+                        <WhatsAppIcon className="w-6 h-6" />
+                        Connect on WhatsApp
+                      </Link>
+
+                      <button
+                        onClick={(e) => { toggleProductSelection(e as any, detailProduct.id); setDetailProduct(null); }}
+                        className={cn(
+                          "h-16 lg:h-18 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95",
+                          selectedProductIds.includes(detailProduct.id) 
+                            ? "bg-[#014995] text-white shadow-[0_20px_40px_rgba(1,73,149,0.15)]" 
+                            : "bg-[#ff5c8a] text-white hover:bg-[#e11d48] hover:scale-[1.02] shadow-[0_20px_40px_rgba(255,92,138,0.15)]"
+                        )}
+                      >
+                        {selectedProductIds.includes(detailProduct.id) ? t("productDeselect") : t("productAddInquiry")}
+                        <ArrowRight className="w-6 h-6" strokeWidth={3} />
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Pricing Placeholder / Specs area could go here, but keeping it clean as per user's minimalist request */}
+                  {/* 3. Right Section: Compact Variants Sidebar */}
+                  <div className={cn(
+                    "hidden md:flex w-[35%] flex-col overflow-y-auto custom-scrollbar p-8",
+                    isRTL && "order-first"
+                  )}>
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center justify-between mb-6">
+                        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] font-sans">Flavors</p>
+                        <span className="text-[10px] font-bold text-[#ff5c8a] bg-pink-50 px-2.5 py-1 rounded-lg">{detailProduct.variants.length}</span>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-3 pb-8">
+                        {detailProduct.variants.map((v: ProductVariant, i: number) => {
+                          const isSelected = activeImage === v.image || detailProduct.id === v.id;
+                          return (
+                            <button
+                              key={i}
+                              onClick={() => {
+                                setActiveImage(v.image);
+                                setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
+                              }}
+                              className={cn(
+                                "group relative aspect-square w-full bg-white p-2 rounded-2xl border-2 transition-all hover:scale-105 active:scale-95 overflow-hidden flex items-center justify-center shadow-sm",
+                                isSelected ? "border-[#ff5c8a] ring-4 ring-pink-50/50" : "border-slate-100 hover:border-pink-100"
+                              )}
+                              title={v.name}
+                            >
+                              <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                              {isSelected && (
+                                <div className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#ff5c8a] rounded-full flex items-center justify-center border-2 border-white">
+                                  <Check className="w-1.5 h-1.5 text-white" strokeWidth={6} />
+                                </div>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
 
-                  <div className="flex flex-col gap-5">
-                    <Link
-                      href={`https://wa.me/919408436732?text=${encodeURIComponent(`Hello, I am interested in ${detailProduct.name} ${detailProduct.variants.find(v => v.id === detailProduct.id)?.name || ""}. Can you provide more details?`)}`}
-                      target="_blank"
-                      className="h-16 lg:h-20 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95 bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-[1.02] shadow-[0_20px_40px_rgba(37,211,102,0.2)]"
-                    >
-                      <WhatsAppIcon className="w-6 h-6" />
-                      Connect on WhatsApp
-                    </Link>
-
-                    <button
-                      onClick={(e) => { toggleProductSelection(e as any, detailProduct.id); setDetailProduct(null); }}
-                      className={cn(
-                        "h-16 lg:h-20 rounded-[2rem] font-black uppercase tracking-widest text-[13px] transition-all flex items-center justify-center gap-4 transform active:scale-95",
-                        selectedProductIds.includes(detailProduct.id) 
-                          ? "bg-[#014995] text-white shadow-[0_20px_40px_rgba(1,73,149,0.2)] hover:scale-[1.02]" 
-                          : "bg-[#ff5c8a] text-white hover:bg-[#e11d48] hover:scale-[1.02] shadow-[0_20px_40px_rgba(255,92,138,0.2)]"
-                      )}
-                    >
-                      {selectedProductIds.includes(detailProduct.id) ? t("productDeselect") : t("productAddInquiry")}
-                      <ArrowRight className="w-6 h-6" strokeWidth={3} />
-                    </button>
+                      <div className="mt-auto pt-6 border-t border-slate-100">
+                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Selected Flavor</p>
+                        <p className="text-[11px] font-black text-[#ff5c8a] uppercase tracking-normal truncate">
+                          {detailProduct.variants.find(v => v.id === detailProduct.id)?.name || "Original"}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* 3. Right Section: Compact Variants Sidebar (20%) */}
-                <div className={cn(
-                  "hidden md:flex w-[20%] bg-white flex-col overflow-y-auto custom-scrollbar p-8",
-                  isRTL && "order-first"
-                )}>
-                  <div className="flex flex-col h-full">
-                    <div className="flex items-center justify-between mb-6">
-                      <p className="text-[11px] font-black text-slate-300 uppercase tracking-[0.2em]">{t("navFlavors") || "Flavors"}</p>
-                      <span className="text-[10px] font-bold text-[#ff5c8a] bg-pink-50 px-2 py-0.5 rounded-md">{detailProduct.variants.length}</span>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-3 pb-8">
-                      {detailProduct.variants.map((v: ProductVariant, i: number) => {
-                        const isSelected = activeImage === v.image || detailProduct.id === v.id;
-                        return (
-                          <button
-                            key={i}
-                            onClick={() => {
-                              setActiveImage(v.image);
-                              setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
-                            }}
-                            className={cn(
-                              "group relative aspect-square w-full bg-slate-50 p-2 rounded-2xl border-2 transition-all hover:bg-white hover:scale-105 active:scale-95 overflow-hidden flex items-center justify-center",
-                              isSelected ? "border-[#ff5c8a] bg-white ring-4 ring-pink-50" : "border-transparent hover:border-slate-100"
-                            )}
-                            title={v.name}
-                          >
-                            <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
-                            {isSelected && (
-                              <div className="absolute top-1 right-1 w-4 h-4 bg-[#ff5c8a] rounded-full flex items-center justify-center border-2 border-white">
-                                <Check className="w-2 h-2 text-white" strokeWidth={5} />
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    <div className="mt-auto pt-6 border-t border-slate-50">
-                      <p className="text-[8px] font-black text-slate-300 uppercase tracking-widest mb-1 text-center">Selected Flavor</p>
-                      <p className="text-[10px] font-black text-[#ff5c8a] uppercase tracking-tighter text-center truncate">
-                        {detailProduct.variants.find(v => v.id === detailProduct.id)?.name || "Original"}
-                      </p>
-                    </div>
+                {/* Mobile Variant View */}
+                <div className="md:hidden p-8 pt-0 bg-white">
+                  <div className="h-[1px] w-full bg-slate-100 mb-6"></div>
+                  <div className="flex flex-row overflow-x-auto gap-4 pb-4 no-scrollbar">
+                    {detailProduct.variants.map((v: ProductVariant, i: number) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setActiveImage(v.image);
+                          setDetailProduct({ ...detailProduct, id: v.id, image: v.image });
+                        }}
+                        className={cn(
+                          "flex-shrink-0 w-20 h-20 bg-slate-50 p-2 rounded-xl border-2 transition-all shadow-sm",
+                          (activeImage === v.image || detailProduct.id === v.id) ? "border-[#ff5c8a] bg-white" : "border-slate-100"
+                        )}
+                      >
+                        <img src={v.image || "/TREE-INDIA-LOGO-CDR.jpg"} className="w-full h-full object-contain" alt={v.name} />
+                      </button>
+                    ))}
                   </div>
                 </div>
 
