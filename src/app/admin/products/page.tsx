@@ -126,7 +126,7 @@ const seedData = [
 ];
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   category: string;
   image: string;
@@ -139,7 +139,7 @@ export default function AdminPanel() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
-  const [isEditing, setIsEditing] = useState<number | null>(null)
+  const [isEditing, setIsEditing] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [filterCategory, setFilterCategory] = useState("All")
   const [dbStatus, setDbStatus] = useState<any>({ isConfigured: true, tableExists: true, url: "" })
@@ -242,7 +242,7 @@ export default function AdminPanel() {
     setLoading(false)
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     if (!confirm("Delete this product permanently?")) return
     const res = await deleteProduct(id)
     if (res.success) loadProducts()
@@ -254,7 +254,7 @@ export default function AdminPanel() {
     setEditForm({ name: product.name, category: product.category, image: product.image, price: product.price || "Export Grade" })
   }
 
-  const saveEdit = async (id: number) => {
+  const saveEdit = async (id: string) => {
     const res = await updateProduct(id, editForm)
     if (res.success) {
       setIsEditing(null)

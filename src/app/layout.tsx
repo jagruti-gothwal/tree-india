@@ -10,11 +10,13 @@ import { LanguageProvider } from "@/context/LanguageContext";
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-inter", weight: ["400", "500", "600", "700", "800", "900"] });
 const fredoka = Fredoka({ subsets: ["latin"], variable: "--font-outfit", weight: ["400", "500", "600", "700"] });
 
+const baseUrl = 'https://www.treeindiaexports.com';
+
 export const metadata: Metadata = {
   title: "Tree India | Premium Confectionery & Beverage Export",
   description: "Global leader in confectionery export. Tree India delivers high-quality candies, biscuits, chocolates, and beverages to international markets with consistency and competitive pricing.",
   alternates: {
-    canonical: "https://www.treeindiaexports.com",
+    canonical: baseUrl,
   },
   keywords: ["confectionery export", "india candy exporter", "biscuit manufacturers india", "lollipop export", "bulk candy wholesale", "beverage export", "Tree India products"],
   authors: [{ name: "Tree India" }],
@@ -23,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tree India | Premium Confectionery & Beverage Export",
     description: "Delivering joy globally with high-quality snacks and confectionery.",
-    url: "https://tree-india.com",
+    url: baseUrl,
     siteName: "Tree India",
     images: [
       {
-        url: "/tree.png",
+        url: `${baseUrl}/tree.png`,
         width: 800,
         height: 600,
         alt: "Tree India Logo",

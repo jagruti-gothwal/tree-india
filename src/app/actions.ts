@@ -1,21 +1,7 @@
 "use server"
 
-import { createClient } from "@supabase/supabase-js"
+import { getDb } from "@/lib/mongodb"
 import nodemailer from "nodemailer"
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || ""
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ""
-
-// Helper to get supabase client safely
-const getSupabase = () => {
-  if (!supabaseUrl || !supabaseKey) {
-    console.warn("Supabase credentials missing. Database operations will fail.")
-    return null
-  }
-  return createClient(supabaseUrl, supabaseKey)
-}
-
-const supabase = getSupabase()
 
 export async function submitInquiry(formData: FormData): Promise<{ success: boolean; error?: string }> {
   const name = formData.get("name")?.toString() || ""
@@ -30,29 +16,22 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
     phone,
     message,
     product_ids,
+    created_at: new Date(),
+    status: 'new'
   }
 
   let dbSuccess = false;
   let emailSuccess = false;
   let lastError = "";
 
-  // 1. Save to Database
-  if (!supabase) {
-    console.error("Database submission skipped: Supabase client not initialized.")
-    lastError = "Database configuration missing";
-  } else {
-    try {
-      const { error } = await supabase.from("inquiries").insert([data])
-      if (error) {
-        console.error("Database insert failed:", error)
-        lastError = error.message;
-      } else {
-        dbSuccess = true;
-      }
-    } catch (dbError: any) {
-      console.error("Supabase Connection Crash:", dbError.message)
-      lastError = dbError.message;
-    }
+  // 1. Save to MongoDB
+  try {
+    const db = await getDb()
+    await db.collection("inquiries").insertOne(data)
+    dbSuccess = true;
+  } catch (dbError: any) {
+    console.error("MongoDB Connection Crash:", dbError.message)
+    lastError = dbError.message;
   }
 
   // 2. Send Email Notification

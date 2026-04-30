@@ -12,13 +12,13 @@ import { fetchAllProducts } from "../admin/actions";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 interface ProductVariant {
-  id: number;
+  id: string;
   name: string;
   image: string;
 }
 
 interface ProductGroup {
-  id: number;
+  id: string;
   name: string;
   category: string;
   image: string;
@@ -29,7 +29,7 @@ interface ProductGroup {
 export default function Products() {
   const { t, isRTL } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
+  const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
   const [detailProduct, setDetailProduct] = useState<ProductGroup | null>(null);
   const [products, setProducts] = useState<ProductGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -87,8 +87,13 @@ export default function Products() {
     const loadProducts = async () => {
       try {
         setIsLoading(true);
-        // We could fetch from Supabase here if needed, but for now we use static + local grouping
-        setProducts(groupProducts(staticProductsFallback));
+        const res = await fetchAllProducts();
+        if (res.success && res.products && res.products.length > 0) {
+          setProducts(groupProducts(res.products));
+        } else {
+          // Fallback to static if DB is empty or fails
+          setProducts(groupProducts(staticProductsFallback));
+        }
       } catch (err) {
         console.error("Error loading products:", err);
         setProducts(groupProducts(staticProductsFallback));
@@ -129,7 +134,7 @@ export default function Products() {
       return cat === active;
     });
 
-  const toggleProductSelection = (e: React.MouseEvent, id: number) => {
+  const toggleProductSelection = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
     setSelectedProductIds((prev) =>
       prev.includes(id) ? prev.filter(pId => pId !== id) : [...prev, id]

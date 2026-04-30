@@ -1,78 +1,47 @@
 "use server"
 
-import { createClient } from "@supabase/supabase-js"
-
-// Fetch keys at runtime to ensure environment variables are fresh
-const getSupabaseConfig = () => {
-  return {
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "",
-    key: process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ""
-  };
-};
+import { getDb } from "@/lib/mongodb"
+import { ObjectId } from "mongodb"
 
 // Type for products
 export interface Product {
-    id: number;
+    id: string; // Changed from number to string for MongoDB ObjectId
     name: string;
     category: string;
     image: string;
     price: string;
 }
 
-// Helper to get supabase client safely
-const getSupabase = () => {
-  const { url, key } = getSupabaseConfig();
-  
-  if (!url) {
-    const error = "NEXT_PUBLIC_SUPABASE_URL is missing. If this is a live/production site, please ensure you have added the environment variables to your hosting provider's dashboard (e.g., Vercel Project Settings).";
-    console.error(`[Supabase Error] ${error}`);
-    throw new Error(error);
-  }
-  if (!key) {
-    const error = "Supabase API Key is missing. Please ensure SUPABASE_SERVICE_ROLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is set in your production environment settings.";
-    console.error(`[Supabase Error] ${error}`);
-    throw new Error(error);
-  }
-  return createClient(url, key);
-}
-
-function handleSupabaseError(error: any) {
-  const { url } = getSupabaseConfig();
-  console.error("Supabase Operation Failed:", error)
-  if (error && (error.message?.includes("fetch failed") || error.code === 'ENOTFOUND')) {
-    return `Network Connection Issue: Could not reach Supabase at ${url}. Please verify the URL and that your internet connection is active.`
+function handleMongoError(error: any) {
+  console.error("MongoDB Operation Failed:", error)
+  if (error && error.message?.includes("connection")) {
+    return `Network Connection Issue: Could not reach MongoDB. Please verify your connection string in .env.local.`
   }
   return error.message || "An unexpected database error occurred"
 }
 
 export async function getDatabaseStatus() {
-  const { url, key } = getSupabaseConfig();
-  const isConfigured = url.length > 0 && key.length > 0
+  const uri = process.env.MONGODB_URI || "";
+  const isConfigured = uri.length > 0 && !uri.includes("<username>");
   
-  if (!isConfigured) return { isConfigured: false, tableExists: false, url }
+  if (!isConfigured) return { isConfigured: false, tableExists: false, url: "MongoDB Atlas" }
   
   try {
-    const supabase = createClient(url, key)
-    // Try a simple count query to verify connectivity and table existence
-    const { error } = await supabase.from('products').select('*', { count: 'exact', head: true })
+    const db = await getDb()
+    // Try a simple command to verify connectivity
+    await db.command({ ping: 1 })
     
-    if (error) {
-      return { 
-        isConfigured: true, 
-        tableExists: error.code !== 'PGRST11' && error.code !== '42P01', 
-        error: error.message,
-        errorCode: error.code,
-        url
-      }
-    }
+    // Check if collections exist
+    const collections = await db.listCollections().toArray()
+    const productsExist = collections.some(c => c.name === 'products')
     
-    return { isConfigured: true, tableExists: true, url }
+    return { isConfigured: true, tableExists: productsExist, url: "MongoDB Atlas" }
   } catch (e: any) {
     return { 
       isConfigured: true, 
       tableExists: false, 
       error: e.message || String(e),
-      url
+      url: "MongoDB Atlas"
     }
   }
 }
@@ -84,95 +53,115 @@ export async function checkAdminPassword(password: string) {
 
 export async function fetchAllProducts() {
   try {
-    const supabase = getSupabase()
-    const { data, error } = await supabase.from("products").select("*").order("name")
+    const db = await getDb()
+    const products = await db.collection("products").find({}).sort({ name: 1 }).toArray()
     
-    if (error) throw error
-    return { success: true, products: data || [] }
+    const formattedProducts = products.map(p => ({
+      ...p,
+      id: p._id.toString(),
+      _id: undefined
+    })) as unknown as Product[]
+
+    return { success: true, products: formattedProducts }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
 export async function addProduct(product: Omit<Product, "id">) {
   try {
-    const supabase = getSupabase()
-    const { data, error } = await supabase.from("products").insert([product]).select()
+    const db = await getDb()
+    const result = await db.collection("products").insertOne(product)
     
-    if (error) throw error
-    return { success: true, product: data?.[0] }
+    return { 
+      success: true, 
+      product: { ...product, id: result.insertedId.toString() } as Product 
+    }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
-export async function updateProduct(id: number | string, product: Partial<Product>) {
+export async function updateProduct(id: string, product: Partial<Product>) {
   try {
-    const supabase = getSupabase()
-    const { data, error } = await supabase.from("products").update(product).eq("id", id).select()
+    const db = await getDb()
+    const { id: _, ...updateData } = product as any;
+    const result = await db.collection("products").findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: updateData },
+      { returnDocument: 'after' }
+    )
     
-    if (error) throw error
-    return { success: true, product: data?.[0] }
+    if (!result) throw new Error("Product not found")
+    
+    return { 
+      success: true, 
+      product: { ...result, id: result._id.toString(), _id: undefined } as unknown as Product 
+    }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
-export async function deleteProduct(id: number | string) {
+export async function deleteProduct(id: string) {
   try {
-    const supabase = getSupabase()
-    const { error } = await supabase.from("products").delete().eq("id", id)
+    const db = await getDb()
+    const result = await db.collection("products").deleteOne({ _id: new ObjectId(id) })
     
-    if (error) throw error
+    if (result.deletedCount === 0) throw new Error("Product not found")
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
 export async function fetchAllInquiries() {
   try {
-    const supabase = getSupabase()
-    const { data, error } = await supabase.from("inquiries").select("*").order("created_at", { ascending: false })
+    const db = await getDb()
+    const inquiries = await db.collection("inquiries").find({}).sort({ created_at: -1 }).toArray()
     
-    if (error) throw error
-    return { success: true, inquiries: data || [] }
+    const formattedInquiries = inquiries.map(i => ({
+      ...i,
+      id: i._id.toString(),
+      _id: undefined
+    }))
+
+    return { success: true, inquiries: formattedInquiries }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
 export async function updateInquiryStatus(id: string, status: string) {
   try {
-    const supabase = getSupabase()
-    const { error } = await supabase.from("inquiries").update({ status }).eq("id", id)
-    
-    if (error) throw error
+    const db = await getDb()
+    await db.collection("inquiries").updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { status } }
+    )
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
 export async function deleteInquiry(id: string) {
   try {
-    const supabase = getSupabase()
-    const { error } = await supabase.from("inquiries").delete().eq("id", id)
-    
-    if (error) throw error
+    const db = await getDb()
+    await db.collection("inquiries").deleteOne({ _id: new ObjectId(id) })
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
 
 export async function seedInitialProducts(products: { name: string, category: string, image: string }[]) {
    try {
-     const supabase = getSupabase()
+     const db = await getDb()
      
      // Safety: Check if table is empty
-     const { count } = await supabase.from("products").select("*", { count: 'exact', head: true })
-     if (count && count > 0) {
+     const count = await db.collection("products").countDocuments()
+     if (count > 0) {
        return { success: false, error: "Database already has data. Clear it first." }
      }
 
@@ -180,24 +169,23 @@ export async function seedInitialProducts(products: { name: string, category: st
         name: p.name,
         category: p.category,
         image: p.image,
-        price: 'Export Grade'
+        price: 'Export Grade',
+        created_at: new Date()
      }));
      
-     const { error } = await supabase.from("products").insert(formattedProducts);
-     if (error) throw error;
+     await db.collection("products").insertMany(formattedProducts)
      return { success: true };
    } catch (error: any) {
-     return { success: false, error: handleSupabaseError(error) };
+     return { success: false, error: handleMongoError(error) };
    }
 }
 
 export async function deleteAllProducts() {
   try {
-    const supabase = getSupabase()
-    const { error } = await supabase.from("products").delete().neq("id", 0)
-    if (error) throw error
+    const db = await getDb()
+    await db.collection("products").deleteMany({})
     return { success: true }
   } catch (error: any) {
-    return { success: false, error: handleSupabaseError(error) }
+    return { success: false, error: handleMongoError(error) }
   }
 }
