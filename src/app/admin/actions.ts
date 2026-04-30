@@ -5,11 +5,22 @@ import { ObjectId } from "mongodb"
 
 // Type for products
 export interface Product {
-    id: string; // Changed from number to string for MongoDB ObjectId
+    id: string; 
     name: string;
     category: string;
     image: string;
     price: string;
+}
+
+export interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  product_ids: string;
+  status: string;
+  created_at: string;
 }
 
 function handleMongoError(error: any) {
@@ -124,7 +135,7 @@ export async function fetchAllInquiries() {
       ...i,
       id: i._id.toString(),
       _id: undefined
-    }))
+    })) as unknown as Inquiry[]
 
     return { success: true, inquiries: formattedInquiries }
   } catch (error: any) {
