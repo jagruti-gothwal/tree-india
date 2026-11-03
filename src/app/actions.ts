@@ -17,7 +17,7 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
     message,
     product_ids,
     created_at: new Date(),
-    status: 'new'
+    status: 'New'
   }
 
   let dbSuccess = false;

@@ -131,11 +131,24 @@ export async function fetchAllInquiries() {
     const db = await getDb()
     const inquiries = await db.collection("inquiries").find({}).sort({ created_at: -1 }).toArray()
     
-    const formattedInquiries = inquiries.map(i => ({
-      ...i,
-      id: i._id.toString(),
-      _id: undefined
-    })) as unknown as Inquiry[]
+    const formattedInquiries = inquiries.map(i => {
+      let status = "New"
+      if (i.status) {
+        const s = String(i.status).trim().toLowerCase()
+        if (s === "contacted") status = "Contacted"
+        else if (s === "archived") status = "Archived"
+      }
+      return {
+        id: i._id.toString(),
+        name: i.name || "",
+        email: i.email || "",
+        phone: i.phone || "",
+        message: i.message || "",
+        product_ids: i.product_ids || "",
+        status,
+        created_at: i.created_at instanceof Date ? i.created_at.toISOString() : (i.created_at ? String(i.created_at) : new Date().toISOString())
+      }
+    }) as Inquiry[]
 
     return { success: true, inquiries: formattedInquiries }
   } catch (error: any) {

@@ -47,6 +47,10 @@ export default function Navbar() {
     { name: t("navInquiry"), href: "/contact" },
   ];
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       <motion.div

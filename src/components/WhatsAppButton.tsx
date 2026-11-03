@@ -1,7 +1,14 @@
+"use client";
 import WhatsAppIcon from "./WhatsAppIcon";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const message = encodeURIComponent("Hello Tree India. I'm interested in your products.");
   const phone = "919408436732"; // Official Tree India Commercial Number
 

@@ -20,7 +20,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       {/* Top Admin Navigation */}
-      <nav className="fixed top-0 inset-x-0 h-20 bg-white border-b border-slate-200 z-[6000] flex items-center justify-between px-8 md:px-12 backdrop-blur-md bg-white/80">
+      <nav className="fixed top-0 inset-x-0 h-20 bg-white border-b border-slate-200 z-[6000] flex items-center justify-between px-8 md:px-12 shadow-xs">
         <div className="flex items-center gap-6">
            <Link href="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 bg-[#003366] rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-blue-900/10 group-hover:scale-105 transition-transform">

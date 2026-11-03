@@ -2,9 +2,16 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, Globe, ShieldCheck, Factory } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <footer className="bg-[#014995] border-none font-sans text-white relative overflow-visible">
       <div className="absolute top-0 left-0 w-full h-[150px] -translate-y-[149px] pointer-events-none">
@@ -113,9 +120,16 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-white/20 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="border-t border-white/20 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           <p className="text-[10px] text-white/60 font-black tracking-[0.2em] uppercase">&copy; {new Date().getFullYear()} Tree India. Authorized Export Division.</p>
-          <Link href="/admin" className="text-[10px] text-white/40 hover:text-white/80 font-black tracking-[0.2em] uppercase transition-colors">Admin Access</Link>
+          <a
+            href="https://ajstudio.pro/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] text-white/70 hover:text-[#ffd93d] font-black tracking-[0.2em] uppercase transition-colors"
+          >
+            Design &amp; Developed by <span className="underline decoration-white/40 underline-offset-4 hover:decoration-[#ffd93d]">AJ Studio</span>
+          </a>
         </div>
       </div>
     </footer>
